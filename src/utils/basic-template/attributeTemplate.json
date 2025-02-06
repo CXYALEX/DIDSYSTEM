@@ -1,0 +1,12 @@
+{
+  "@id": "vocaburl",
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+    "id": "@id",
+    "type": "@type",
+    "test": "https://w3id.org/test#",
+    "schema": "http://schema.org/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  }
+}

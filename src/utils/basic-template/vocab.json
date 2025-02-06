@@ -1,0 +1,20 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "@protected": true,
+
+    "name": "http://schema.org/name",
+    "description": "http://schema.org/description",
+    "identifier": "http://schema.org/identifier",
+    "MetaData":{
+      "@id": "https://w3id.org/citizenship#PermanentResidentCard",
+      "@context": {
+        "@version": 1.1,
+        "@protected": true,
+        "id": "@id",
+        "type": "@type",
+        "identifier": "http://schema.org/identifier"
+      }
+    }
+  }
+}
