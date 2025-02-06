@@ -12,7 +12,7 @@
 | Python          | 3.8.10                 | 
 | Node.js         | v16.x            |    
 
-### Create virtual env and install dependencies
+### Create virtual env and install flask dependencies
 1. Creaet the python3.8 virtual env. (Before, make sure you have install Python3.8)
 ```bash
 # 创建虚拟环境
@@ -33,7 +33,10 @@ deactivate
 cd api/
 pip3 install -r requirement.txt
 ```
-
+### install vue dependencies
+```
+npm install 
+```
 
 # Backend
 ## DataBase
