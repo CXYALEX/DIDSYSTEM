@@ -4,7 +4,7 @@
 |-----------------|-------|
 | api           | Backend |
 | src            | Frontend      |
-| DIDContract          |   VDR Implementation    |
+| DIDContract          |   Link：https://github.com/CXYALEX/DIDContract  |
 ## Dependencies
 
 | Software/Library | Version              | 
@@ -48,6 +48,8 @@ $(venv) flask db upgrade # 数据模型升级操作
 cd api/
 flask run
 ```
+## Deploy Smartcontract
+Link：https://github.com/CXYALEX/DIDContract
 
 
 
