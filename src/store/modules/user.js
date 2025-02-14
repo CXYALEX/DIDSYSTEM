@@ -82,9 +82,24 @@ const actions = {
 
   // user logout
   logout({ commit, state }) {
-    removeToken() // must remove  token  first
-    resetRouter()
-    commit('RESET_STATE')
+      return new Promise(resolve => {
+        // 清除 token
+        removeToken()
+  
+        // 重置 Vuex 状态
+        commit('RESET_STATE')
+  
+        // 调用路由重置逻辑
+        resetRouter()
+  
+        resolve()
+      })
+
+    // removeToken() // must remove  token  first
+    // resetRouter()
+    // commit('RESET_STATE')
+
+
     // return new Promise((resolve, reject) => {
     //   logout(state.token).then(() => {
     //     removeToken() // must remove  token  first

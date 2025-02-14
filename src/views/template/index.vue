@@ -1,12 +1,15 @@
 <template>
   <div class="app-container">
     <!-- 添加模板按钮 -->
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="1.5">
-        <el-button type="primary" icon="el-icon-plus" size="mini" @click="handleAdd">Add Template</el-button>
-      </el-col>
-    </el-row>
+    <div class="headerContainer">
+        <div class="title">
+            <div class="desc">Template</div>
+            <el-button class="btnStyle" type="success" icon="el-icon-plus" size="mini" @click="handleAdd">Add Template</el-button>
+        </div>
+        <div class="content">add new template viw xisting intity tails</div>
+    </div>
     <!-- 模板列表 -->
+    <div class="countNum"> template <span>{{ tableData.length }}</span> </div>
     <el-table :data="tableData" border style="width: 100%">
       <el-table-column label="Number" width="100">
         <template slot-scope="scope">
@@ -24,7 +27,7 @@
 
     <!-- 添加/编辑模板表单 -->
     <el-dialog :title="title" :visible.sync="centerDialogVisible" width="50%" center>
-      <el-form ref="form" :model="form" label-width="80px">
+      <el-form ref="form" :model="form" label-width="120px">
         <el-form-item label="Template Name">
           <el-input v-model="form.name"></el-input>
         </el-form-item>
@@ -183,8 +186,45 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .mb8 {
   margin-bottom: 8px;
 }
+.headerContainer {
+    .title {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .desc {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .btnStyle {
+        background-color: #abf370;
+        border: none;
+        color: #000;
+      }
+    }
+    .content {
+      font-size: 12px;
+      font-weight: 350;
+      margin-bottom: 20px;
+    }
+  }
+  .countNum {
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #fff;
+    border: 1px solid #f5f5f6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    span {
+        padding: 3px 5px;
+        background-color: #f3f4f7;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+  }
 </style>

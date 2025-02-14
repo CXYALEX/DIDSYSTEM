@@ -44,11 +44,7 @@ export const constantRoutes = [
     hidden: true
   },
 
-  {
-    path: '/404',
-    component: () => import('@/views/404'),
-    hidden: true
-  },
+  
 
   {
     path: '/',
@@ -75,9 +71,8 @@ export const constantRoutes = [
   },
 
 
-
-  // 404 page must be placed at the end !!!
-  { path: '*', redirect: '/404', hidden: true }
+  
+  
 ]
 
 // 在 asyncRoutes 中添加图书管理的路由
@@ -155,6 +150,24 @@ export const asyncRoutes = [
       meta: { title: 'Verifier', icon: 'user', roles: [3] }
     }]
   },
+  {
+    path: '/',
+    component: () => import('@/views/404'),
+    hidden: true,
+    children: [{
+        path: '404',
+        name: '404',
+        component: () => import('@/views/404'),
+        meta: { title: '404', icon: '404',roles:[1,2,3] }
+      }]
+  },
+  // 404 page must be placed at the end !!!
+  { path: '*', redirect: '/404', hidden: true ,children: [{
+    path: '404',
+    name: '404',
+    component: () => import('@/views/404'),
+    meta: { title: '404', icon: '404' ,roles:[1,2,3]}
+  }]}
 ];
 
 

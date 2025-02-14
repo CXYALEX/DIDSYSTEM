@@ -53,6 +53,11 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
+      
+      await this.$store.dispatch('permission/resetRoutes')//清楚动态路由
+      localStorage.removeItem('token') // 如果你有存储 token
+      sessionStorage.removeItem('token') // 如果你有存储 token
+
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   }

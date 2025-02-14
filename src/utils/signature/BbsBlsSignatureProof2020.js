@@ -101,7 +101,6 @@ class BbsBlsSignatureProof2020 extends suites.LinkedDataProof {
       // create proof JSON-LD document
       derivedProof = { "@context": SECURITY_CONTEXT_URL };
     }
-
     // ensure proof type is set
     derivedProof.type = this.type;
 
@@ -130,7 +129,7 @@ class BbsBlsSignatureProof2020 extends suites.LinkedDataProof {
     const compactInputProofDocument = await jsonld.fromRDF(
       transformedInputDocumentStatements.join("\n")
     );
-
+    console.log("stemp2",compactInputProofDocument,revealDocument,{documentLoader})
     // Frame the result to create the reveal document result
     const revealDocumentResult = await jsonld.frame(
       compactInputProofDocument,
@@ -138,7 +137,7 @@ class BbsBlsSignatureProof2020 extends suites.LinkedDataProof {
       { documentLoader },
 
     );
-
+    console.log("stemp3")
     // Canonicalize the resulting reveal document
     const revealDocumentStatements = await suite.createVerifyDocumentData(
       revealDocumentResult,

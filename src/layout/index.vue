@@ -1,11 +1,11 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <div :class="{'fixed-header':fixedHeader}">
+      <!-- <div :class="{'fixed-header':fixedHeader}">
         <navbar />
-      </div>
+      </div> -->
       <app-main />
     </div>
   </div>
@@ -14,7 +14,7 @@
 <script>
 import { Navbar, Sidebar, AppMain } from './components'
 import ResizeMixin from './mixin/ResizeHandler'
-
+import { mapGetters } from 'vuex'
 export default {
   name: 'Layout',
   components: {
@@ -24,6 +24,9 @@ export default {
   },
   mixins: [ResizeMixin],
   computed: {
+    ...mapGetters([
+      'avatar'
+    ]),
     sidebar() {
       return this.$store.state.app.sidebar
     },
@@ -35,8 +38,8 @@ export default {
     },
     classObj() {
       return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
+        // hideSidebar: !this.sidebar.opened,
+        openSidebar: true,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
@@ -53,7 +56,30 @@ export default {
 <style lang="scss" scoped>
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
-
+  .userInfo {
+    width: 280px;
+    height: 130px;
+    border: 1px solid #f1f1f1;
+    color: #687083;
+    padding: 20px;
+    .title {
+      display: flex;
+      justify-content: space-between;
+    }
+    .content {
+      margin: 10px 0;
+    }
+    .detail {
+      div {
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid #f1f1f1;
+        border-radius: 5px;
+      }
+    }
+  }
   .app-wrapper {
     @include clearfix;
     position: relative;
@@ -89,5 +115,8 @@ export default {
 
   .mobile .fixed-header {
     width: 100%;
+  }
+  .main-container {
+    background-color: #f9fafb;
   }
 </style>

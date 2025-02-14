@@ -6,23 +6,23 @@ const WIDTH = 992 // refer to Bootstrap's responsive design
 export default {
   watch: {
     $route(route) {
-      if (this.device === 'mobile' && this.sidebar.opened) {
-        store.dispatch('app/closeSideBar', { withoutAnimation: false })
-      }
+      // if (this.device === 'mobile' && this.sidebar.opened) {
+      //   store.dispatch('app/closeSideBar', { withoutAnimation: false })
+      // }
     }
   },
-  beforeMount() {
-    window.addEventListener('resize', this.$_resizeHandler)
-  },
-  beforeDestroy() {
-    window.removeEventListener('resize', this.$_resizeHandler)
-  },
+  // beforeMount() {
+  //   window.addEventListener('resize', this.$_resizeHandler)
+  // },
+  // beforeDestroy() {
+  //   window.removeEventListener('resize', this.$_resizeHandler)
+  // },
   mounted() {
-    const isMobile = this.$_isMobile()
-    if (isMobile) {
-      store.dispatch('app/toggleDevice', 'mobile')
-      store.dispatch('app/closeSideBar', { withoutAnimation: true })
-    }
+    // const isMobile = this.$_isMobile()
+    // if (isMobile) {
+    //   store.dispatch('app/toggleDevice', 'mobile')
+    //   store.dispatch('app/closeSideBar', { withoutAnimation: true })
+    // }
   },
   methods: {
     // use $_ for mixins properties

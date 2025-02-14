@@ -1,22 +1,20 @@
 <template>
     <div class="app-container">
         <!-- 添加凭证按钮和模板选择器 -->
-        <el-row :gutter="10" class="mb8">
-            <!-- 调整 span 值 -->
-            <el-col :span="6">
-                <el-select v-model="selectedTemplate" placeholder="Select Template" @change="handleTemplateChange">
-                    <el-option v-for="template in templates" :key="template.id" :label="template.name"
+        <div class="headerContainer">
+            <div class="title">
+                <div class="desc">RegisterIssuer</div>
+                <el-button class="btnStyle" type="success"  @click="handleAdd">Apply Credential</el-button>
+            </div>
+            <div class="content">wen an</div>
+        </div>
+        <!-- <div class="select"> 
+            <el-select v-model="selectedTemplate" placeholder="Select Template" @change="handleTemplateChange">
+                <el-option v-for="template in templates" :key="template.id" :label="template.name"
                         :value="template.id"></el-option>
-                </el-select>
-            </el-col>
-            <el-col :span="2">
-                <el-button type="primary" icon="el-icon-plus" size="medium" @click="handleAdd">
-                    Apply Credential
-                </el-button>
-            </el-col>
-        </el-row>
-
-
+            </el-select>
+        </div> -->
+        <div class="countNum"> Credentials <span>{{ tableData.length }}</span> </div>
         <!-- 凭证列表 -->
         <el-table :data="tableData" border style="width: 100%">
             <el-table-column label="Number" width="100">
@@ -96,10 +94,28 @@
 
         <!-- 添加/编辑凭证表单 -->
         <el-dialog :title="title" :visible.sync="centerDialogVisible" width="50%" center>
-            <el-form ref="form" :model="form" label-width="150px">
+            <el-form ref="form" :model="form" label-width="150px" class="form-container">
                 <el-form-item v-for="(value, key) in credentialSubjectFields" :key="key" :label="key" class="custom-label">
-                    <el-input v-model="form.credentialSubject[key]" />
+                    <el-select
+                            v-if="key === 'id'"
+                            v-model="form.credentialSubject[key]"
+                            placeholder="Select a DID"
+                            style="width: 80%;"
+                            >
+                        <el-option v-for="did in didList" :key="did" :label="did" :value="did" />
+                    </el-select>
+                    <el-input 
+                             v-if="key !== 'id'"
+                            v-model="form.credentialSubject[key]" style="width: 80%;"/>
                 </el-form-item>
+                <el-form-item label="" class="custom-label">
+                    <div class="select-container">
+                        <el-select v-model="selectedTemplate" placeholder="Select Template" @change="handleTemplateChange" >
+                            <el-option v-for="template in templates" :key="template.id" :label="template.name" :value="template.id"></el-option>
+                        </el-select>
+                    </div>
+                </el-form-item>
+    </el-form>
             </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="confirm">Confirm</el-button>
@@ -120,6 +136,7 @@
 </template>
 
 <script>
+import { saveTemplate, getTemplates, deleteTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
 import { saveCredential, deleteCredential } from "@/utils/indexedDB";
 import { getTemplateList, getTemplateDetailById } from "@/api/template";
 import { getVocabFromTemplate, createInputDocument, createRevealDoc } from "@/utils/bbs-utils";
@@ -154,6 +171,7 @@ export default {
             isRangeproofValues: {}, // 新增的数据属性，用于存储 "isRangeproof" 列的复选框状态
             rangeproofMin: {}, // 存储最小值
             rangeproofMax: {}, // 存储最大值
+            didList: [], // List to store DIDs
         };
     },
     methods: {
@@ -189,7 +207,13 @@ export default {
                 this.$message.error("Failed to load templates.");
             }
         },
-
+        async loadDIDList() {
+            try {
+                this.didList = await getAllDIDIds(this.$store.getters.name); // Fetch all DID IDs
+            } catch (error) {
+                this.$message.error("Failed to load DID list");
+            }
+        },
         async confirm() {
             try {
                 const inputDocument = await createInputDocument(this.template_json.vocabUrl, this.template_json.templateName, this.template_json.issuerId, this.form.credentialSubject);
@@ -523,11 +547,12 @@ export default {
     async mounted() {
         await this.loadTemplates();
         await this.getCredentialList(); // Ensure this is awaited
+        await this.loadDIDList();
     }
 };
 </script>
 
-<style lang="css">
+<style lang="css" scoped>
 .mb8 {
     margin-bottom: 8px;
 }
@@ -535,6 +560,7 @@ export default {
 .custom-label .el-form-item__label {
     width: 150px;
     flex: 0 0 150px;
+    
 }
 
 .form-row {
@@ -578,4 +604,55 @@ export default {
 .el-col-8 .el-checkbox {
     justify-content: center;
 }
+.headerContainer {
+    .title {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .desc {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .btnStyle {
+        background-color: #abf370;
+        border: none;
+        color: #000;
+      }
+    }
+    .content {
+      font-size: 12px;
+      font-weight: 350;
+      margin-bottom: 20px;
+    }
+  }
+  .select-container {
+    display: flex;
+    margin-left: 15%;         
+}
+.select {
+    padding-left: 10px;
+    height: 60px;
+    text-align: end;
+    line-height: 60px;
+    background-color: #fff;
+    border: 1px solid #f5f5f6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
+  .countNum {
+    padding-left: 10px;
+    height: 60px;
+    line-height: 60px;
+    background-color: #fff;
+    border: 1px solid #f5f5f6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+    span {
+        padding: 3px 5px;
+        background-color: #f3f4f7;
+        border-radius: 4px;
+        margin-left: 10px;
+    }
+  }
 </style>

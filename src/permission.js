@@ -5,7 +5,7 @@ import NProgress from 'nprogress' // progress bar
 import 'nprogress/nprogress.css' // progress bar style
 import { getToken } from '@/utils/auth' // get token from cookie
 import getPageTitle from '@/utils/get-page-title'
-
+import { resetRouter } from '@/router';
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
 const whiteList = ['/login', '/register'] // no redirect whitelist /register页面也需要添加在这儿
@@ -31,8 +31,9 @@ router.beforeEach(async (to, from, next) => {
     } else {
       const hasRoles = store.getters.role
       if (hasRoles) {
+        console.log(to,"routr yo")
         //next() //如果你调用 next() 而不传任何参数，则当前导航会继续前往目标路由
-        console.log("router", router);
+        console.log("user's roles:", store.getters.role);
         next()
       } else {
         try {
@@ -41,9 +42,9 @@ router.beforeEach(async (to, from, next) => {
           await store.dispatch('user/getInfo')
           // generate accessible routes map based on roles
           const accessRoutes = await store.dispatch('permission/generateRoutes', store.getters.role)
+          resetRouter();
 
-
-          console.log('Generated Routes:', accessRoutes)
+          console.log('Generated Routes:',to, accessRoutes)
           // dynamically add accessible routes
           router.addRoutes(accessRoutes);
           // ensure the navigation is complete

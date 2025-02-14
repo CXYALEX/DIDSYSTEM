@@ -1,17 +1,18 @@
 <template>
   <div class="app-container">
     <!-- 选择器 -->
-    <el-row :gutter="10" class="mb8">
-      <el-col :span="6">
-        <el-select v-model="selectedDID" placeholder="Select a DID" @change="loadApplications">
+    <div class="headerContainer">
+        <div class="title">
+            <div class="desc">Register Issuer</div>
+            <el-button class="btnStyle" type="success"  @click="registerRevocationList">Register Revocation List</el-button>
+        </div>
+        <div class="content">wen an</div>
+    </div>
+    <div class="countNum"> 
+      <el-select v-model="selectedDID" placeholder="Select a DID" @change="loadApplications">
           <el-option v-for="did in didList" :key="did" :label="did" :value="did"></el-option>
-        </el-select>
-      </el-col>
-      <el-col :span="4">
-        <el-button type="primary" @click="registerRevocationList">Register Revocation List</el-button>
-      </el-col>
-    </el-row>
-
+        </el-select>  
+    </div>
     <!-- Application 列表 -->
     <el-table :data="applicationList" border style="width: 100%">
       <el-table-column prop="id" label="Application ID" width="150"></el-table-column>
@@ -252,7 +253,7 @@ export default {
 };
 </script>
 
-<style lang="css">
+<style lang="scss" scoped>
 .mb8 {
   margin-bottom: 8px;
 }
@@ -262,4 +263,36 @@ export default {
   white-space: pre-wrap;
   word-wrap: break-word;
 }
+.headerContainer {
+    .title {
+      height: 80px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      .desc {
+        font-size: 24px;
+        font-weight: bold;
+      }
+      .btnStyle {
+        background-color: #abf370;
+        border: none;
+        color: #000;
+      }
+    }
+    .content {
+      font-size: 12px;
+      font-weight: 350;
+      margin-bottom: 20px;
+    }
+  }
+  .countNum {
+    padding-left: 10px;
+    height: 60px;
+    text-align: end;
+    line-height: 60px;
+    background-color: #fff;
+    border: 1px solid #f5f5f6;
+    border-top-left-radius: 5px;
+    border-top-right-radius: 5px;
+  }
 </style>
