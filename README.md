@@ -5,7 +5,7 @@
 | api           | Backend |
 | src            | Frontend      |
 | DIDContract          |   Link：[https://github.com/CXYALEX/DIDContract](https://github.com/CXYALEX/DIDContract)  |
-| BBS+ Library   |   Link：[https://github.com/CXYALEX/DIDContract ](https://github.com/kfxp12138/jsonld-signatures-bbs) |
+| BBS+ Library   |   Link：[https://github.com/kfxp12138/jsonld-signatures-bbs](https://github.com/kfxp12138/jsonld-signatures-bbs) |
 ## Dependencies
 
 | Software/Library | Version              | 
