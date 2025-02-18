@@ -4,13 +4,15 @@
 |-----------------|-------|
 | api           | Backend |
 | src            | Frontend      |
-| DIDContract          |   Link：https://github.com/CXYALEX/DIDContract  |
+| DIDContract          |   Link：[https://github.com/CXYALEX/DIDContract](https://github.com/CXYALEX/DIDContract)  |
+| BBS+ Library   |   Link：[https://github.com/CXYALEX/DIDContract ](https://github.com/kfxp12138/jsonld-signatures-bbs) |
 ## Dependencies
 
 | Software/Library | Version              | 
 |-----------------|----------------------|
 | Python          | 3.8.10                 | 
 | Node.js         | v16.x            |    
+
 
 ### Create virtual env and install flask dependencies
 1. Creaet the python3.8 virtual env. (Before, make sure you have install Python3.8)
