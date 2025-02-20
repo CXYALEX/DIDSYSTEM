@@ -16,9 +16,11 @@ async function createIssuerKey(_publicKeyId, _issuerId) {
 }
 
 function createVocab(template, templateName, items, url) {
-    template["@context"][templateName] = require("./basic-template/attributeTemplate.json")
+    let jsonData = require("./basic-template/attributeTemplate.json")
+    template["@context"][templateName] = JSON.parse(JSON.stringify(jsonData)) 
     template["@context"][templateName]["@id"] = url
     for (var item in items) {
+        console.log(items,item,templateName,"-----1");
         if (items[item] == "int") {
             template["@context"][templateName]["@context"][item] = { "@id": "test:" + item, "@type": "xsd:int" }
         } else if (items[item] == "dateTime") {
@@ -30,6 +32,7 @@ function createVocab(template, templateName, items, url) {
         }
     }
     template["@context"][templateName]["@context"]["id"] = "@id"
+    
     return template
 }
 
@@ -64,7 +67,9 @@ async function createTemplate(items, issuerId, publicKeyId, templateName) {
     var exampleControllerDoc = createControllerDoc(require("./basic-template/controllerDocument.json"), issuerId, publicKeyId)
     var bbsContext = require("./basic-template/bbs.json");
     var vocabUrl = "https://w3id.org/test/" + Math.round(Math.random() * 100000) + "/" + templateName
-    var vocab = createVocab(require("./basic-template/vocab.json"), templateName, items, vocabUrl)
+    let jsonData = require("./basic-template/vocab.json")
+    let jsonData1= JSON.parse(JSON.stringify(jsonData))  //解决堆导致的重复问题
+    var vocab = createVocab(jsonData1, templateName, items, vocabUrl)
     var credentialContext = require("./basic-template/credentialsContext.json")
     var suiteContext = require("./basic-template/suiteContext.json")
     var documents = {

@@ -100,9 +100,6 @@ export default {
         console.log(this.form.template);
         const templateData = JSON.parse(this.form.template);
         var template = await createTemplate(templateData, this.form.selectedDID, '666', this.form.name);
-        console.log("template");
-        //console.log(template);
-        console.log(JSON.stringify(template, null, 2));
         const templateToSave = {
           name: this.form.name,
           template_json: template,

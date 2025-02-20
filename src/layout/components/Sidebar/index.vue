@@ -97,6 +97,7 @@ export default {
     },
     async logout() {
       await this.$store.dispatch('user/logout')
+      await this.$store.commit('web3/RESET_STATE');
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   },
