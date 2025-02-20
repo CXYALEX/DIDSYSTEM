@@ -44,6 +44,7 @@ npm install
 ## DataBase
 If you wan to init the db, please delete the `/migrations` directory.
 ```
+mkdir logs
 $(venv) flask db init  # 初始化操作
 $(venv) flask db migrate # 数据库迁移操作
 $(venv) flask db upgrade # 数据模型升级操作
