@@ -12,6 +12,15 @@ api/__pycache__/
 api/migrations/
 api/logs/
 api/app/books.db
+api/app/didsystem.db
+myenv/
+
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+**/__pycache__/
+
 
 # Editor directories and files
 .idea
@@ -143,3 +152,4 @@ dist
 
 # MacOS file descriptor
 .DS_Store
+api/app/didsystem.db
