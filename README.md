@@ -1,5 +1,5 @@
 # DIDSYSTEM 
-
+scheme: [DID scheme](scheme.md)
 | Library | Function |
 |-----------------|-------|
 | api           | Backend |
