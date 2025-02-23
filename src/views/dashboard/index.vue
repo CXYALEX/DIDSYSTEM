@@ -1,8 +1,27 @@
 <template>
   <div>
+    <!-- section III -->
+    <section class="middle-section">
+      <h2 class="middle-title">What is PolyuDID? <br>Get started in minutes.</h2>
+      <p class="middle-additional-description">
+        PolyuDID is a state of the art decentralized identity infrastructure that provides comprehensive privacy-preserving solutions for Web3 applications. By leveraging zero-knowledge proofs and blockchain technology, it enables applications to implement robust digital identity features while ensuring user privacy and data sovereignty. The system supports essential privacy-preserving capabilities including selective disclosure of credentials, non-transferability of identity claims, unlinkability between transactions, and dynamic credential revocation. As an open-source middleware solution, PolyuDID can be seamlessly integrated into any Web3 application, providing developers with the tools and infrastructure needed to build privacy-first digital identity systems. The platform has demonstrated its practical value through successful implementations in anti-fraud systems and privacy-preserving academic credential verification, showcasing its potential to deliver secure, privacy-focused authentication across diverse Web3 use cases.
+      </p>
+      <el-row :gutter="20" class="middle-feature-row">
+        <!-- Card 1 -->
+          <el-card class="middle-card">
+            <div class="middle-picture">
+                <img src="@/assets/image/kyc.png" alt="KYC Icon" class="middle-card-icon-img" />
+            </div>
+            <div class="middle-card-content">
+              <h3>Digital identity open-source software and infrastructure</h3>
+              <p>A set of open-source software and infrastructure for developers to include privacy-first identity management features into their applications.</p>
+            </div>
+          </el-card>
+      </el-row>
+    </section>
     <!-- Hero Section I -->
     <section class="hero-section">
-      <h2 class="hero-title">Polyu DID makes it easy</h2>
+      <h2 class="hero-title">Digital Trust in One Click</h2>
       <el-row :gutter="20" class="feature-row">
         <!-- Card 1 -->
         <el-col :span="8">
@@ -11,8 +30,8 @@
               <i class="el-icon-refresh"></i>
             </div>
             <div class="card-content">
-              <h4>Prove once, use forever</h4>
-              <p>Users can reuse their credentials in different applications. Reduce friction with best user experience for identity verification.</p>
+            <h3>Selective Disclosure</h3>
+              <p>Enable selective disclosure of credentials, allowing users to prove their identity while revealing only necessary information. Minimize data exposure and liability.</p>
             </div>
           </el-card>
         </el-col>
@@ -24,8 +43,8 @@
               <i class="el-icon-phone"></i>
             </div>
             <div class="card-content">
-              <h4>Any device, anywhere</h4>
-              <p>With Privado ID Web Wallet, your credentials are accessible across multiple devices using just an authenticator. No downloads, no installations.</p>
+              <h3>Non-transferable & Unique</h3>
+              <p>Ensure credentials cannot be transferred or misused, maintaining the integrity of digital identities through cryptographic binding to their rightful owners.</p>
             </div>
           </el-card>
         </el-col>
@@ -37,8 +56,8 @@
               <i class="el-icon-open"></i>
             </div>
             <div class="card-content">
-              <h4>Open Source</h4>
-              <p>Privado ID is an open-source project under MIT/Apache licenses. We follow the SSI principles and implement W3C and DIF standards.</p>
+              <h3>Revoke with Confidence</h3>
+              <p>Maintain control over issued credentials with powerful revocation mechanisms. Instantly update credential status across the entire ecosystem when needed.</p>
             </div>
           </el-card>
         </el-col>
@@ -50,8 +69,8 @@
               <i class="el-icon-message"></i>
             </div>
             <div class="card-content">
-              <h4>Instant Global Scale</h4>
-              <p>Why to choose one credential provider if you can benefit from an entire ecosystem of providers? Choose your trusted providers and accept credentials from all of them.</p>
+              <h3>Perfect Privacy through Unlinkability</h3>
+              <p>Protect user privacy with transactions that cannot be linked, preventing tracking and correlation across different services and interactions.</p>
             </div>
           </el-card>
         </el-col>
@@ -63,8 +82,8 @@
               <i class="el-icon-help"></i>
             </div>
             <div class="card-content">
-              <h4>All levels of support available</h4>
-              <p>By developers, for developers. Navigate our developer portal, use our no-code builders for queries and schemas or reach us through our various support channels.</p>
+              <h3>Seamless Integration</h3>
+              <p>Built for developers, by developers. Easy-to-use SDKs and comprehensive documentation make integration into any Web3 application effortless.</p>
             </div>
           </el-card>
         </el-col>
@@ -76,8 +95,8 @@
               <i class="el-icon-lock"></i>
             </div>
             <div class="card-content">
-              <h4>Privacy First, Security Always</h4>
-              <p>Perform identity verification without requiring the user to disclose personal data. Minimize your data liability.</p>
+              <h3>Trust at Scale</h3>
+              <p>Join a growing ecosystem of trusted credential issuers and verifiers. Issue once, verify anywhere - all while maintaining the highest privacy standards.</p>
             </div>
           </el-card>
         </el-col>
@@ -138,25 +157,7 @@
         </swiper-slide> -->
       </el-row>
     </section>
-    <!-- section III -->
-    <section class="middle-section">
-      <h2 class="middle-title">What is Privado ID? <br>Get started in minutes.</h2>
-      <p class="middle-additional-description">
-        Privado ID provides middleware infrastructure and tools for applications that implement privacy-preserving digital identity, empowering users to own their data and share it only with their consent. Applications integrating Privado ID's open-source software benefit from seamless interoperability within a trusted ecosystem, providing their users with a secure, best-in-class experience.
-      </p>
-      <el-row :gutter="20" class="middle-feature-row">
-        <!-- Card 1 -->
-          <el-card class="middle-card">
-            <div class="middle-picture">
-                <img src="@/assets/image/kyc.png" alt="KYC Icon" class="middle-card-icon-img" />
-            </div>
-            <div class="middle-card-content">
-              <h4>Digital identity open-source software and infrastructure</h4>
-              <p>A set of open-source software and infrastructure for developers to include privacy-first identity management features into their applications.</p>
-            </div>
-          </el-card>
-      </el-row>
-    </section>
+    
     <!-- section IV -->
   <section class="switch-section">  
     <h2 class="switch-title">
@@ -251,7 +252,7 @@ export default {
 }
 
 .hero-title {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: bold;
   margin-bottom: 40px;
   color: #333;
@@ -364,14 +365,14 @@ export default {
 }
 
 .middle-title {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: bold;
   margin-bottom: 30px;
   color: #333; /* Darker color for the title */
 }
 
 .middle-additional-description {
-  max-width: 500px; /* Limit the maximum width */
+  max-width: 800px; /* Limit the maximum width */
   color: #666; /* Set the font color to #666 */
   font-size: 16px; /* Adjust font size */
   line-height: 1.5; /* Adjust line-height for readability */
