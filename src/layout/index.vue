@@ -3,11 +3,12 @@
     <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <!-- <div :class="{'fixed-header':fixedHeader}">
-        <navbar />
-      </div> -->
-      <app-main />
-    </div>
+  <!-- 新增内容包裹层 -->
+  <div class="content-wrapper">
+    <app-main />
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -117,6 +118,38 @@ export default {
     width: 100%;
   }
   .main-container {
-    background-color: #f9fafb;
+  // 保持原有布局逻辑
+  background-color: #f9fafb;
+  margin-left: $sideBarWidth;
+  transition: margin 0.28s;
+
+  // 新增弹性布局保证高度撑满
+  display: flex;
+  min-height: calc(100vh - 60px); // 根据实际头部高度调整
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 1200px;    // 控制最大内容宽度
+    margin: 0 auto;       // 水平居中
+    padding: 20px;        // 内容边距
+    
+    // 响应式处理
+    @media (max-width: 992px) {
+      max-width: 90%;
+      padding: 15px;
+    }
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: 10px;
+    }
   }
+  
+  // 移动端适配
+  &.mobile {
+    .content-wrapper {
+      margin-left: 0;
+    }
+  }
+}
+
 </style>

@@ -14,23 +14,27 @@
               Home
             </el-dropdown-item>
           </router-link>
-          <a target="_blank" href="https://github.com/PanJiaChen/vue-admin-template/">
+          <a target="_blank" href="https://github.com/CXYALEX/DIDSYSTEM">
             <el-dropdown-item>Github</el-dropdown-item>
           </a>
-          <a target="_blank" href="https://panjiachen.github.io/vue-element-admin-site/#/">
-            <el-dropdown-item>Docs</el-dropdown-item>
-          </a>
+          <el-dropdown-item divided @click.native="login">
+            <span style="display:block;">Log In</span>
+          </el-dropdown-item>
           <el-dropdown-item divided @click.native="logout">
             <span style="display:block;">Log Out</span>
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
       <div class="content">
-        user login data 
-      </div>
-
+      <template v-if="name">
+        User Name: {{ name }}
+      </template>
+      <template v-else>
+        Please login your account.
+      </template>
+    </div>
       <div class="detail">
-        <div class="conection" @click="connectWallet">DID</div><span>{{ web3account ? web3account : "请连接您的账户" }}</span>
+        <div class="conection" @click="connectWallet">Connect</div><span>{{ web3account ? web3account : "Connect your wallet" }}</span>
       </div>
     </div>
     <!-- <el-scrollbar wrap-class="scrollbar-wrapper">
@@ -63,7 +67,8 @@ export default {
       'sidebar',
       'permission_routes',
       'avatar',
-      "web3account"
+      "web3account",
+      'name'
     ]),
     routes() {
       let result = []
@@ -96,6 +101,11 @@ export default {
       return !this.sidebar.opened
     },
     async logout() {
+      await this.$store.dispatch('user/logout')
+      await this.$store.commit('web3/RESET_STATE');
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    async login() {
       await this.$store.dispatch('user/logout')
       await this.$store.commit('web3/RESET_STATE');
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
@@ -225,31 +235,54 @@ $subMenuBg:#488326;
       margin: 10px 0;
     }
     .detail {
-      display: flex;
-      align-items: center;
-      font-size: 12px;
-      font-weight: 400;
-      div {
-        width: 50px;
-        height: 30px;
-        font-size: 12px;
-        font-weight: 400;
-        text-align: center;
-        line-height: 30px;
-        border: 1px solid #f1f1f1;
-        border-radius: 5px;
-        margin-right: 5px;
-        cursor: pointer;
-        &:hover {
-          border: 1px solid #687083;
-          color: #687083;
-        }
-      }
-      span {
-        white-space: nowrap;       /* 防止文本换行 */
-        overflow: hidden;          /* 隐藏超出部分 */
-        text-overflow: ellipsis;   /* 超出的文本显示省略号 */
-      }
+  display: flex;
+  align-items: center;
+  font-size: 12px;
+  font-weight: 400;
+  
+  div {
+    // 按钮基础样式
+    width: auto;  // 改为自适应宽度
+    height: 32px;
+    padding: 0 12px;
+    background: #f8f9fa;  // 淡灰色背景
+    border: 1px solid #dee2e6;
+    border-radius: 6px;
+    color: #495057;  // 深灰色文字
+    font-weight: 500;
+    line-height: 30px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    position: relative;
+    
+    // 立体阴影效果
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+    
+    // 鼠标悬停效果
+    &:hover {
+      background: #e9ecef;
+      border-color: #ced4da;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.1);
+      transform: translateY(-1px);
     }
+
+    // 点击效果
+    &:active {
+      transform: translateY(1px);
+      box-shadow: inset 0 2px 4px rgba(66, 62, 62, 0.05);
+    }
+  }
+
+  span {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    margin-left: 8px;  // 增加间隔
+    color: #6c757d;  // 与按钮颜色协调
+  }
+}
+
   }
 </style>

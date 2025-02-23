@@ -8,7 +8,7 @@ import getPageTitle from '@/utils/get-page-title'
 import { resetRouter } from '@/router';
 NProgress.configure({ showSpinner: false }) // NProgress Configuration
 
-const whiteList = ['/login', '/register'] // no redirect whitelist /register页面也需要添加在这儿
+const whiteList = ['/login', '/register', '/dashboard'] // no redirect whitelist /register页面也需要添加在这儿
 
 //Vue Router 的导航守卫，它在每次路由发生变化（页面跳转）之前执行，用于拦截导航，执行一些逻辑后决定是否允许跳转、重定向或阻止导航。
 //自动触发：当用户通过 Vue Router 导航时（如点击链接或调用 this.$router.push()），会自动调用 router.beforeEach。
