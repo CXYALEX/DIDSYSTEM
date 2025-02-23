@@ -17,21 +17,21 @@
 ### Create virtual env and install flask dependencies
 1. Creaet the python3.8 virtual env. (Before, make sure you have install Python3.8)
 ```bash
-# 创建虚拟环境
+# Create virtual environment
 python3.8 -m venv myenv
 
-# 激活虚拟环境
+# Activate environment
 # Windows:
 myenv\Scripts\activate
 # Linux/Mac:
 source myenv/bin/activate
 
-# 退出虚拟环境
+# Deactivate environment
 deactivate
 ```
 2. Install dependencies
 ```bash
-# 安装依赖
+# install python dependencies
 cd api/
 pip3 install -r requirement.txt
 ```
@@ -45,9 +45,9 @@ npm install
 If you wan to init the db, please delete the `/migrations` directory.
 ```
 mkdir logs
-$(venv) flask db init  # 初始化操作
-$(venv) flask db migrate # 数据库迁移操作
-$(venv) flask db upgrade # 数据模型升级操作
+$(venv) flask db init  # Initialize database
+$(venv) flask db migrate # Generate migration scripts
+$(venv) flask db upgrade # Apply database schema
 ```
 ## Launch
 ```
