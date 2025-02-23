@@ -4,7 +4,7 @@
 A decentralized identity system design where Issuer, Holder, and Verifier components run on user frontends implemented with Vue.js, managing private keys locally. The backend manages DIDs and credential information for issuers and holders through a database. The Verifiable Data Registry (VDR) comprises blockchain and IPFS infrastructure:
 - Holders register DIDs on blockchain
 - Issuers register credential IDs on blockchain
-![Alt text](figs/scheme.png)
+![image.png](https://prod-files-secure.s3.us-west-2.amazonaws.com/471dae0b-c5f0-46fd-ac08-7a46c1287291/f6d87a5a-29fe-43b5-9b6b-f77e3ce31c72/image.png)
 
 ## Design Objectives
 * Selective Disclosure
