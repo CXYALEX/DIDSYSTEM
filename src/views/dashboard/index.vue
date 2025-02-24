@@ -10,11 +10,11 @@
         <!-- Card 1 -->
           <el-card class="middle-card">
             <div class="middle-picture">
-                <img src="@/assets/image/kyc.png" alt="KYC Icon" class="middle-card-icon-img" />
+                <img src="@/assets/image/overview.svg" alt="KYC Icon" class="middle-card-icon-img" />
             </div>
             <div class="middle-card-content">
-              <h3>Digital identity open-source software and infrastructure</h3>
-              <p>A set of open-source software and infrastructure for developers to include privacy-first identity management features into their applications.</p>
+              <h3>Digital identity infrastructure</h3>
+              <!-- <p>A set of open-source software and infrastructure for developers to include privacy-first identity management features into their applications.</p> -->
             </div>
           </el-card>
       </el-row>
@@ -104,7 +104,7 @@
     </section>
     <!-- Section II -->
     <section class="hero-section">
-      <h2 class="hero-title">Build your application</h2>
+      <h2 class="hero-title">Build your Application</h2>
       <p class="additional-description">
         Empower your solutions with privacy-first identity infrastructure. <br> PolyuDID's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification—effortlessly.
       </p>
@@ -113,7 +113,7 @@
       
           <el-card class="swiper-card">
             <div class="swiper-picture">
-                <img src="@/assets/image/kyc.png" alt="KYC Icon" class="card-icon-img" />
+                <img src="@/assets/image/newKYC.svg" alt="KYC Icon" class="card-icon-img" />
             </div>
             <div class="card-content">
               <h3>KYC (Know your Customer)</h3>
@@ -123,7 +123,7 @@
         <!-- Card 2 -->
           <el-card class="swiper-card">
             <div class="swiper-picture">
-                <img src="@/assets/image/Degree.png" alt="KYC Icon" class="card-icon-img" />
+                <img src="@/assets/image/newDegree.svg" alt="KYC Icon" class="card-icon-img" />
             </div>
             <div class="card-content">
               <h3>Academic Degree
@@ -194,7 +194,7 @@
           <div class="video-frame-container">
             <iframe 
               class="video-frame" 
-              src="https://www.youtube.com/embed/xyz" 
+              src="https://www.youtube.com/embed/xya" 
               frameborder="0" 
               allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
               allowfullscreen
@@ -410,7 +410,7 @@ export default {
 
 /* Card styles */
 .middle-card {
-  width: 600px; /* Set the card width */
+  width: 1800px; /* Set the card width */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -433,7 +433,7 @@ export default {
 
 .middle-card-icon-img {
   width: 100%; /* Ensure the image takes the full width of the card */
-  max-width: 450px; /* Optional: Set a max width to ensure the image doesn’t stretch too much */
+  max-width: 1850px; /* Optional: Set a max width to ensure the image doesn’t stretch too much */
   height: auto; /* Maintain the aspect ratio of the image */
 }
 .middle-card-content h4 {
@@ -460,7 +460,7 @@ export default {
 }
 
 .switch-title {
-  font-size: 36px;
+  font-size: 42px;
   font-weight: bold;
   margin-bottom: 30px;
   color: #333; /* Darker color for the title */

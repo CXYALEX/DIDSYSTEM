@@ -6,7 +6,7 @@
             <div class="desc">Template</div>
             <el-button class="btnStyle" type="success" icon="el-icon-plus" size="mini" @click="handleAdd">Build Template</el-button>
         </div>
-        <div class="content">Create and manage trusted, tamper-proof verifiable credential templates, revolutionizing the way trust and authentication are established.</div>
+        <div class="content">Define and manage trusted, tamper-proof verifiable credential templates that specify a set of attributes and their data types, revolutionizing trust and authentication processes.</div>
     </div>
     <!-- 模板列表 -->
     <div class="countNum"> template <span>{{ tableData.length }}</span> </div>
