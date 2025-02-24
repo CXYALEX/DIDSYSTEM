@@ -1,10 +1,8 @@
 <template>
   <div :class="{ 'has-logo': showLogo }">
-    <!-- <logo v-if="showLogo" :collapse="isCollapse" /> -->
     <div class="userInfo">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="title">
-          <!-- <img :src="avatar+'?imageView2/1/w/80/h/80'" class="user-avatar"> -->
           <img :src="require('@/assets/image/polyu.jpg')" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
@@ -37,13 +35,6 @@
         <div class="conection" @click="connectWallet">Connect</div><span>{{ web3account ? web3account : "Connect your wallet" }}</span>
       </div>
     </div>
-    <!-- <el-scrollbar wrap-class="scrollbar-wrapper">
-      <el-menu :default-active="activeMenu" :collapse="isCollapse" :background-color="variables.menuBg"
-        :text-color="variables.menuText" :unique-opened="false" :active-text-color="variables.menuActiveText"
-        :collapse-transition="false" mode="vertical">
-        <sidebar-item v-for="route in exmp" :key="route.path" :item="route" :base-path="route.path" />
-      </el-menu>
-    </el-scrollbar> -->
     <div class="contentR">
       <div class="rout" v-for="(item,index) in routes" v-if="!item.hidden" @click="handleRoute(item,index)" :key="item.path" :class="{'routActive': active == item.children[0].path}">
         <svg-icon :iconClass="item.children[0].meta.icon" />
@@ -85,7 +76,6 @@ export default {
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
-      // if set path, the sidebar will highlight the path you set
       if (meta.activeMenu) {
         return meta.activeMenu
       }
@@ -114,9 +104,9 @@ export default {
   data(){
     return {
       active:null,
-      account: null, // 存储连接的账户地址
-      recipient: '', // 收款地址
-      amount: 0, // 转账金额
+      account: null,
+      recipient: '',
+      amount: 0,
       provider: null
     }
   },
@@ -154,14 +144,16 @@ export default {
 }
 </script>
 <style scope lang="scss">
-$menuText:#7c8394;
-$menuActiveText:#488326;
-$menuHover:#f4ffe7;
-$subMenuBg:#488326;
+$menuText: #7c8394;
+$menuActiveText: #1e3a8a; // Changed to dark blue
+$menuHover: #e8f0ff; // Changed to light blue
+$subMenuBg: #1e3a8a; // Changed to dark blue
+
 .contentR {
   height: 100%;
   padding: 20px;
 }
+
 .rout {
   width: 100%;
   height: 40px;
@@ -173,116 +165,115 @@ $subMenuBg:#488326;
   color: #7c8394;
   margin-bottom: 10px;
   cursor: pointer;
-  .name {
-
-  }
 }
+
 .rout:hover {
-  color: #488326;
-  background-color: #f4ffe7;
+  color: #1e3a8a; // Changed to dark blue
+  background-color: #e8f0ff; // Changed to light blue
 }
+
 .routActive {
-  color: #488326;
-  background-color: #f4ffe7;
+  color: #1e3a8a; // Changed to dark blue
+  background-color: #e8f0ff; // Changed to light blue
 }
+
 .userInfo {
-    width: 280px;
-    height: 130px;
-    border: 1px solid #f1f1f1;
-    color: #687083;
-    padding: 20px;
-    margin-top: 100px;
-    margin-bottom: 30px;
-    border-radius: 10px;
-    .el-dropdown {
-      width: 100%;
-    }
-    .title {
-      width: 100%;
-      display: flex;
-      justify-content: space-between;
-      img {
-        width: 30px;
-        height: 30px;
-        border-radius: 2px;
-      }
-      .el-icon-caret-bottom {
-          cursor: pointer;
-          // position: absolute;
-          // right: -20px;
-          // top: 25px;
-          font-size: 12px;
-        }
-    }
-    .hamburger-container {
-      line-height: 46px;
-      height: 100%;
-      float: left;
-      cursor: pointer;
-      transition: background .3s;
-      -webkit-tap-highlight-color:transparent;
-
-      &:hover {
-        background: rgba(0, 0, 0, .025)
-      }
-    }
-
-    .breadcrumb-container {
-      float: left;
-    }
-    .content {
-      font-size: 12px;
-      margin: 10px 0;
-    }
-    .detail {
-  display: flex;
-  align-items: center;
-  font-size: 12px;
-  font-weight: 400;
+  width: 280px;
+  height: 130px;
+  border: 1px solid #f1f1f1;
+  color: #687083;
+  padding: 20px;
+  margin-top: 100px;
+  margin-bottom: 30px;
+  border-radius: 10px;
   
-  div {
-    // 按钮基础样式
-    width: auto;  // 改为自适应宽度
-    height: 32px;
-    padding: 0 12px;
-    background: #f8f9fa;  // 淡灰色背景
-    border: 1px solid #dee2e6;
-    border-radius: 6px;
-    color: #495057;  // 深灰色文字
-    font-weight: 500;
-    line-height: 30px;
-    cursor: pointer;
-    transition: all 0.2s ease;
-    position: relative;
+  .el-dropdown {
+    width: 100%;
+  }
+  
+  .title {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
     
-    // 立体阴影效果
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
-                inset 0 -1px 0 rgba(0, 0, 0, 0.05);
-    
-    // 鼠标悬停效果
-    &:hover {
-      background: #e9ecef;
-      border-color: #ced4da;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.1);
-      transform: translateY(-1px);
+    img {
+      width: 30px;
+      height: 30px;
+      border-radius: 2px;
     }
+    
+    .el-icon-caret-bottom {
+      cursor: pointer;
+      font-size: 12px;
+    }
+  }
+  
+  .hamburger-container {
+    line-height: 46px;
+    height: 100%;
+    float: left;
+    cursor: pointer;
+    transition: background .3s;
+    -webkit-tap-highlight-color: transparent;
 
-    // 点击效果
-    &:active {
-      transform: translateY(1px);
-      box-shadow: inset 0 2px 4px rgba(66, 62, 62, 0.05);
+    &:hover {
+      background: rgba(0, 0, 0, .025)
     }
   }
 
-  span {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    margin-left: 8px;  // 增加间隔
-    color: #6c757d;  // 与按钮颜色协调
+  .breadcrumb-container {
+    float: left;
+  }
+  
+  .content {
+    font-size: 12px;
+    margin: 10px 0;
+  }
+  
+  .detail {
+    display: flex;
+    align-items: center;
+    font-size: 12px;
+    font-weight: 400;
+    
+    div {
+      width: auto;
+      height: 32px;
+      padding: 0 12px;
+      background: #f8f9fa;
+      border: 1px solid #dee2e6;
+      border-radius: 6px;
+      color: #495057;
+      font-weight: 500;
+      line-height: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      position: relative;
+      
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
+                  inset 0 -1px 0 rgba(0, 0, 0, 0.05);
+      
+      &:hover {
+        background: #e8f0ff; // Changed to light blue
+        border-color: #1e3a8a; // Changed to dark blue
+        box-shadow: 0 2px 6px rgba(30, 58, 138, 0.08),
+                    inset 0 -1px 0 rgba(30, 58, 138, 0.1);
+        transform: translateY(-1px);
+      }
+
+      &:active {
+        transform: translateY(1px);
+        box-shadow: inset 0 2px 4px rgba(30, 58, 138, 0.05);
+      }
+    }
+
+    span {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      margin-left: 8px;
+      color: #6c757d;
+    }
   }
 }
-
-  }
 </style>

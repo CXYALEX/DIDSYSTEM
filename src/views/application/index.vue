@@ -4,7 +4,7 @@
     <div class="headerContainer">
         <div class="title">
             <div class="desc">Register Issuer</div>
-            <el-button class="btnStyle" type="success"  @click="registerRevocationList">Register Revocation List</el-button>
+            <el-button class="btnStyle" type="success" icon="el-icon-plus"  size="mini" @click="registerRevocationList">Register Revocation List</el-button>
         </div>
         <div class="content">wen an</div>
     </div>
@@ -274,10 +274,15 @@ export default {
         font-weight: bold;
       }
       .btnStyle {
-        background-color: #abf370;
-        border: none;
-        color: #000;
-      }
+        background-color: #5079f5;  /* 淡雅的天蓝色 */
+        border: none; 
+        color: #ffffff;   /* 深蓝色文字形成鲜明对比 */
+    }
+    .btnStyle:hover {
+        background-color: #1d53f5;  /* 稍微深一点的蓝色 */
+        transform: translateY(-1px);
+        box-shadow: 0 2px 4px rgba(75, 118, 184, 0.2);
+    }
     }
     .content {
       font-size: 12px;

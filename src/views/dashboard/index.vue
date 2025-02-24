@@ -293,7 +293,7 @@ export default {
 
 .card-icon {
   font-size: 24px;
-  color: #4caf50;
+  color: #081bec;
   /* margin-right: 10px;  Adjust margin between icon and text */
   align-self: flex-start; /* Ensure the icon aligns left */
   display: inline-block; /* Make sure icon is on the same line as text */
@@ -489,7 +489,7 @@ export default {
 .switch-div button.active {
   color: black; /* Black text when selected */
   font-weight: bold; /* Bold when selected */
-  border-bottom: 2px solid #4CAF50; /* Green bottom border when selected */
+  border-bottom: 2px solid #081bec; /* Green bottom border when selected */
 }
 
 .switch-div button:hover {
@@ -512,7 +512,7 @@ export default {
 
 .verification-video {
   width: 45%; /* Video section takes up 45% of the space */
-  border: 5px solid #4CAF50; /* Green border around the video */
+  border: 5px solid #313ed1; /* Green border around the video */
   border-radius: 10px;
   padding: 10px;
 }

@@ -615,7 +615,7 @@ export default {
         font-weight: bold;
       }
       .btnStyle {
-        background-color: #abf370;
+        background-color: #313ed1;
         border: none;
         color: #000;
       }
