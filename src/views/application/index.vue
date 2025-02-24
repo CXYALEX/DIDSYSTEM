@@ -3,10 +3,13 @@
     <!-- 选择器 -->
     <div class="headerContainer">
         <div class="title">
-            <div class="desc">Register Issuer</div>
-            <el-button class="btnStyle" type="success" icon="el-icon-plus"  size="mini" @click="registerRevocationList">Register Revocation List</el-button>
+            <div class="desc">Application</div>
+            <el-button class="btnStyle" type="success"  size="mini" @click="registerRevocationList">Register Revocation List</el-button>
         </div>
-        <div class="content">wen an</div>
+        <div class="content">Manages the credential application, including application approvals, rejections, and revocation of issued credentials.</div>
+        <div class="content">
+            <strong>Note:</strong> Before revoke the issued credential, please register the revocation list first.
+        </div>
     </div>
     <div class="countNum"> 
       <el-select v-model="selectedDID" placeholder="Select a DID" @change="loadApplications">
@@ -264,32 +267,55 @@ export default {
   word-wrap: break-word;
 }
 .headerContainer {
-    .title {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .desc {
-        font-size: 24px;
-        font-weight: bold;
-      }
-      .btnStyle {
-        background-color: #5079f5;  /* 淡雅的天蓝色 */
-        border: none; 
-        color: #ffffff;   /* 深蓝色文字形成鲜明对比 */
+  padding: 12px 0;
+
+  .title {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .desc {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
-    .btnStyle:hover {
-        background-color: #1d53f5;  /* 稍微深一点的蓝色 */
+
+    .btnStyle {
+      background-color: #4070f4;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #2955d9;
         transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(75, 118, 184, 0.2);
-    }
-    }
-    .content {
-      font-size: 12px;
-      font-weight: 350;
-      margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
+
+  .content {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
+}
   .countNum {
     padding-left: 10px;
     height: 60px;

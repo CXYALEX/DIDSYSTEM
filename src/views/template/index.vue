@@ -4,9 +4,9 @@
     <div class="headerContainer">
         <div class="title">
             <div class="desc">Template</div>
-            <el-button class="btnStyle" type="success" icon="el-icon-plus" size="mini" @click="handleAdd">Add Template</el-button>
+            <el-button class="btnStyle" type="success" icon="el-icon-plus" size="mini" @click="handleAdd">Build Template</el-button>
         </div>
-        <div class="content">add new template viw xisting intity tails</div>
+        <div class="content">Create and manage trusted, tamper-proof verifiable credential templates, revolutionizing the way trust and authentication are established.</div>
     </div>
     <!-- 模板列表 -->
     <div class="countNum"> template <span>{{ tableData.length }}</span> </div>
@@ -188,32 +188,55 @@ export default {
   margin-bottom: 8px;
 }
 .headerContainer {
-    .title {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .desc {
-        font-size: 24px;
-        font-weight: bold;
-      }
-      .btnStyle {
-        background-color: #5079f5;  /* 淡雅的天蓝色 */
-        border: none; 
-        color: #ffffff;   /* 深蓝色文字形成鲜明对比 */
+  padding: 12px 0;
+
+  .title {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .desc {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
-    .btnStyle:hover {
-        background-color: #1d53f5;  /* 稍微深一点的蓝色 */
+
+    .btnStyle {
+      background-color: #4070f4;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #2955d9;
         transform: translateY(-1px);
-        box-shadow: 0 2px 4px rgba(75, 118, 184, 0.2);
-    }
-    }
-    .content {
-      font-size: 12px;
-      font-weight: 350;
-      margin-bottom: 20px;
+        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
+
+  .content {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
+}
   .countNum {
     padding-left: 10px;
     height: 60px;

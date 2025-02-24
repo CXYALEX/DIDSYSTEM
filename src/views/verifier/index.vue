@@ -2,9 +2,9 @@
     <div class="headerContainer">
         <div class="title">
             <div class="desc">Validation</div>
-            <el-button class="btnStyle" type="success" icon="el-icon-plus" size="mini" @click="verifyFile">Verify</el-button>
+            <el-button class="btnStyle" type="success"  size="mini" @click="verifyFile">Verify</el-button>
         </div>
-        <div class="content">Please upload the credential presentation:</div>
+        <div class="content">Upload and verify the credential presentation.</div>
         <div class="head-drag-drop">
             <div
                 class="drag-drop-area"
@@ -187,28 +187,55 @@ export default {
 
 <style>
 .headerContainer {
-    .title {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .desc {
-        font-size: 24px;
-        font-weight: bold;
-      }
-      .btnStyle {
-        background-color: #abf370;
-        border: none;
-        color: #000;
-        margin-right: 60px;
-      }
+  padding: 12px 0;
+
+  .title {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .desc {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
-    .content {
-      font-size: 12px;
-      font-weight: 350;
-      margin-bottom: 20px;
+
+    .btnStyle {
+      background-color: #4070f4;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #2955d9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
+
+  .content {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
+}
 .head-drag-drop {
   width: 100%;
   padding: 20px;
@@ -216,9 +243,9 @@ export default {
   text-align: center;
 }
 
-/* Drag and drop area styles */
+/* White background container */
 .drag-drop-area {
-    border: 2px dashed #bbb;
+  border: 2px dashed #bbb;
   padding: 40px;
   text-align: center;
   cursor: pointer;
@@ -226,16 +253,22 @@ export default {
   margin: 20px auto;
   width: 80%;
   min-height: 500px;
-  border-radius: 8px;
-  background-color: #f9f9f9;
+  border-radius: 12px;
+  background-color: white;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
 }
 
 .drag-drop-image {
-    max-width: 30%; /* Limit image width */
-    max-height: 30%; /* Limit image height */
-    object-fit: contain; /* Ensure the image fits proportionally */
-    margin-top: 25%;
+  max-width: 30%;
+  max-height: 30%;
+  object-fit: contain;
+  margin-bottom: 20px;
 }
+
 .drag-drop-area.is-dragging {
   border-color: #3b82f6;
   background-color: #f0f8ff;
@@ -246,6 +279,29 @@ export default {
   margin-top: 20px;
   font-size: 16px;
   color: #666;
+}
+
+.upload-button-container {
+  margin-top: 20px;
+}
+
+.upload-button {
+  background-color: #3b82f6;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.upload-button:hover {
+  background-color: #2563eb;
+}
+
+.mb8 {
+  margin-bottom: 8px;
 }
 .upload-prompt {
     margin-bottom: 10px;

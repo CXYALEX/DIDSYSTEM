@@ -3,10 +3,10 @@
         <!-- 添加凭证按钮和模板选择器 -->
         <div class="headerContainer">
             <div class="title">
-                <div class="desc">RegisterIssuer</div>
+                <div class="desc">Credential</div>
                 <el-button class="btnStyle" type="success"  @click="handleAdd">Apply Credential</el-button>
             </div>
-            <div class="content">wen an</div>
+            <div class="content">Apply for credentials from the issuer based on the credential template and manage all issued credentials within the local identity wallet.</div>
         </div>
         <!-- <div class="select"> 
             <el-select v-model="selectedTemplate" placeholder="Select Template" @change="handleTemplateChange">
@@ -605,30 +605,54 @@ export default {
     justify-content: center;
 }
 .headerContainer {
-    .title {
-      height: 80px;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      .desc {
-        font-size: 24px;
-        font-weight: bold;
-      }
-      .btnStyle {
-        background-color: #313ed1;
-        border: none;
-        color: #000;
-      }
+  padding: 12px 0;
+
+  .title {
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 8px;
+
+    .desc {
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      font-size: 28px;
+      font-weight: 600;
+      color: #1a1a1a;
+      letter-spacing: -0.5px;
     }
-    .content {
-      font-size: 12px;
-      font-weight: 350;
-      margin-bottom: 20px;
+
+    .btnStyle {
+      background-color: #4070f4;
+      border: none;
+      color: #ffffff;
+      font-size: 14px;
+      font-weight: 500;
+      padding: 10px 20px;
+      border-radius: 6px;
+      transition: all 0.2s ease;
+
+      &:hover {
+        background-color: #2955d9;
+        transform: translateY(-1px);
+        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
+      }
+
+      &:active {
+        transform: translateY(0);
+      }
     }
   }
-  .select-container {
-    display: flex;
-    margin-left: 15%;         
+
+  .content {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    font-size: 14px;
+    line-height: 1.6;
+    font-weight: 400;
+    color: #666666;
+    margin-bottom: 20px;
+    max-width: 800px;
+  }
 }
 .select {
     padding-left: 10px;

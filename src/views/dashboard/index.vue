@@ -305,7 +305,7 @@ export default {
   justify-content: flex-start;
 }
 
-.card-content h4 {
+.card-content h3 {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 5px; /* Reduced margin between h4 and text */
