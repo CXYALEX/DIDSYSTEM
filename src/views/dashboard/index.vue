@@ -104,9 +104,9 @@
     </section>
     <!-- Section II -->
     <section class="hero-section">
-      <h2 class="hero-title">Qualified users only. <br>Get started in minutes.</h2>
+      <h2 class="hero-title">Build your application</h2>
       <p class="additional-description">
-        Welcome the right people to your app, protocol, or content. <br> Serve your audience and exclude the rest using Privado ID's easy tools.
+        Empower your solutions with privacy-first identity infrastructure. <br> PolyuDID's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification—effortlessly.
       </p>
       <el-row :gutter="20" class="feature-row">
         <!-- Card 1 -->
@@ -116,21 +116,31 @@
                 <img src="@/assets/image/kyc.png" alt="KYC Icon" class="card-icon-img" />
             </div>
             <div class="card-content">
-              <h4>KYC (Know your Customer)</h4>
-              <p>Secure, seamless KYC for effortless compliance and privacy. Verify identity privately, minimize risk.</p>
+              <h3>KYC (Know your Customer)</h3>
+              <p>Streamline compliance processes by enabling users to share verified identity attributes (age, residency) securely - reducing operational costs while enhancing privacy protection.</p>
             </div>
           </el-card>
         <!-- Card 2 -->
           <el-card class="swiper-card">
             <div class="swiper-picture">
-                <img src="@/assets/image/human.png" alt="KYC Icon" class="card-icon-img" />
+                <img src="@/assets/image/Degree.png" alt="KYC Icon" class="card-icon-img" />
             </div>
             <div class="card-content">
-              <h4>Human & Machine Identity</h4>
-              <p>Build credible content with tools for sybil resistance.</p>
+              <h3>Academic Degree
+                Verification</h3>
+              <p>Enable instant degree verification through tamper-resistant digital credentials. Educational institutions can issue verified credentials that employers can trust, eliminating lengthy verification delays.</p>
             </div>
           </el-card>
         <!-- Card 3 -->
+        <el-card class="swiper-card">
+            <div class="swiper-picture">
+                <img src="@/assets/image/anti-fraud.png" alt="KYC Icon" class="card-icon-img" />
+            </div>
+            <div class="card-content">
+              <h3>Anti-fraud System</h3>
+              <p>Prevent impersonation and fraudulent activities through secure identity verification. Real-time credential validation helps protect users and organizations from scams and unauthorized access attempts.</p>
+            </div>
+          </el-card>
         <!-- <swiper-slide>
           <el-card class="swiper-card">
             <div class="swiper-picture">
@@ -328,7 +338,7 @@ export default {
 }
 
 .swiper-card {
-  width: 45%; /* Ensure two cards per row */
+  width: 30%; /* Ensure two cards per row */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -345,9 +355,18 @@ export default {
 
 .swiper-picture {
   display: flex;
-  justify-content: center; /* Center the image */
-  align-items: center; /* Center the image vertically */
+  justify-content: center;
+  align-items: center;
+  /* 可选：如果容器本身也需要固定高度 */
+  height: 250px; /* 根据需求调整 */
 }
+
+.swiper-picture img {
+  height: 250px; /* 固定高度 */
+  width: auto; /* 宽度自适应保持比例 */
+  object-fit: cover; /* 控制图片填充方式 */
+}
+
 
 /* Adjust icon image size */
 .card-icon-img {
