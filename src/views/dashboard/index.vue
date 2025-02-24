@@ -106,7 +106,7 @@
     <section class="hero-section">
       <h2 class="hero-title">Build your Application</h2>
       <p class="additional-description">
-        Empower your solutions with privacy-first identity infrastructure. <br> PolyuDID's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification—effortlessly.
+        Empower your solutions with privacy-first identity infrastructure. <br> PolyuDID's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification.
       </p>
       <el-row :gutter="20" class="feature-row">
         <!-- Card 1 -->
@@ -262,10 +262,13 @@ export default {
 }
 
 .hero-title {
-  font-size: 42px;
-  font-weight: bold;
-  margin-bottom: 40px;
-  color: #333;
+  font-size: 3.25rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: var(--text-dark);
+  max-width: 1000px;
 }
 
 /* Feature Cards */
@@ -326,7 +329,11 @@ export default {
   padding: 10px;
 }
 .additional-description {
-  color: #666;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-medium);
+  max-width: 1500px;
+  margin-bottom: 50px;
 }
 
 /* Adjust swiper-card width for each card to take up 50% of the row */
@@ -384,20 +391,19 @@ export default {
 }
 
 .middle-title {
-  font-size: 42px;
-  font-weight: bold;
+  font-size: 3.25rem;
+  font-weight: 800;
   margin-bottom: 30px;
-  color: #333; /* Darker color for the title */
+  letter-spacing: -1px;
+  line-height: 1.2;
 }
 
 .middle-additional-description {
-  max-width: 800px; /* Limit the maximum width */
-  color: #666; /* Set the font color to #666 */
-  font-size: 16px; /* Adjust font size */
-  line-height: 1.5; /* Adjust line-height for readability */
-  margin: 0 auto; /* Center the text block horizontally */
-  text-align: center; /* Ensure the text inside is centered */
-  margin-bottom: 40px; /* Add margin to separate the text from the cards */
+  max-width: 900px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 auto 60px;
+  text-align: center;
 }
 
 /* Styling for the middle feature row (card container) */
@@ -460,20 +466,21 @@ export default {
 }
 
 .switch-title {
-  font-size: 42px;
-  font-weight: bold;
+  font-size: 3rem;
+  font-weight: 800;
   margin-bottom: 30px;
-  color: #333; /* Darker color for the title */
+  max-width: 900px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.2;
 }
 
 .switch-additional-description {
-  max-width: 500px; /* Limit the maximum width */
-  color: #666; /* Set the font color to #666 */
-  font-size: 16px; /* Adjust font size */
-  line-height: 1.5; /* Adjust line-height for readability */
-  margin: 0 auto; /* Center the text block horizontally */
-  text-align: center; /* Ensure the text inside is centered */
-  margin-bottom: 40px; /* Add margin to separate the text from the cards */
+  max-width: 700px;
+  margin: 0 auto 40px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-medium);
 }
 .switch-div button {
   background: none;
