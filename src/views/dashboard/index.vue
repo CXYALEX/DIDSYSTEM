@@ -26,10 +26,10 @@
         <!-- Card 1 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-refresh"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
             <h3>Selective Disclosure</h3>
               <p>Enable selective disclosure of credentials, allowing users to prove their identity while revealing only necessary information. Minimize data exposure and liability.</p>
             </div>
@@ -39,10 +39,10 @@
         <!-- Card 2 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-phone"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
               <h3>Non-transferable & Unique</h3>
               <p>Ensure credentials cannot be transferred or misused, maintaining the integrity of digital identities through cryptographic binding to their rightful owners.</p>
             </div>
@@ -52,10 +52,10 @@
         <!-- Card 3 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-open"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
               <h3>Revoke with Confidence</h3>
               <p>Maintain control over issued credentials with powerful revocation mechanisms. Instantly update credential status across the entire ecosystem when needed.</p>
             </div>
@@ -65,10 +65,10 @@
         <!-- Card 4 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-message"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
               <h3>Perfect Privacy through Unlinkability</h3>
               <p>Protect user privacy with transactions that cannot be linked, preventing tracking and correlation across different services and interactions.</p>
             </div>
@@ -78,10 +78,10 @@
         <!-- Card 5 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-help"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
               <h3>Seamless Integration</h3>
               <p>Built for developers, by developers. Easy-to-use SDKs and comprehensive documentation make integration into any Web3 application effortless.</p>
             </div>
@@ -91,10 +91,10 @@
         <!-- Card 6 -->
         <el-col :span="8">
           <el-card class="feature-card">
-            <div class="card-icon">
+            <div class="feature-card-icon">
               <i class="el-icon-lock"></i>
             </div>
-            <div class="card-content">
+            <div class="feature-card-content">
               <h3>Trust at Scale</h3>
               <p>Join a growing ecosystem of trusted credential issuers and verifiers. Issue once, verify anywhere - all while maintaining the highest privacy standards.</p>
             </div>
@@ -115,7 +115,7 @@
             <div class="swiper-picture">
                 <img src="@/assets/image/newKYC.svg" alt="KYC Icon" class="card-icon-img" />
             </div>
-            <div class="card-content">
+            <div class="swiper-card-content">
               <h3>KYC (Know your Customer)</h3>
               <p>Streamline compliance processes by enabling users to share verified identity attributes (age, residency) securely - reducing operational costs while enhancing privacy protection.</p>
             </div>
@@ -125,7 +125,7 @@
             <div class="swiper-picture">
                 <img src="@/assets/image/degree.svg" alt="KYC Icon" class="card-icon-img" />
             </div>
-            <div class="card-content">
+            <div class="swiper-card-content">
               <h3>Academic Degree
                 Verification</h3>
               <p>Enable instant degree verification through tamper-resistant digital credentials. Educational institutions can issue verified credentials that employers can trust, eliminating lengthy verification delays.</p>
@@ -136,7 +136,7 @@
             <div class="swiper-picture">
                 <img src="@/assets/image/anti-fraud.png" alt="KYC Icon" class="card-icon-img" />
             </div>
-            <div class="card-content">
+            <div class="swiper-card-content">
               <h3>Anti-fraud System</h3>
               <p>Prevent impersonation and fraudulent activities through secure identity verification. Real-time credential validation helps protect users and organizations from scams and unauthorized access attempts.</p>
             </div>
@@ -146,7 +146,7 @@
             <div class="swiper-picture">
                 <img src="@/assets/image/age.png" alt="KYC Icon" class="card-icon-img" />
             </div>
-            <div class="card-content">
+            <div class="swiper-card-content">
               <h4>Age Verification</h4>
               <p>Protect minors, ensure privacy, prevent fraud, and meet regulatory standards seamlessly across digital platforms.</p>
             </div>
@@ -159,7 +159,7 @@
             <div class="swiper-picture">
                 <img src="@/assets/image/nation.png" alt="KYC Icon" class="card-icon-img" />
             </div>
-            <div class="card-content">
+            <div class="swiper-card-content">
               <h4>National ID</h4>
               <p>Digital identities made secure, private, and interoperable for seamless citizen services and global authentication.</p>
             </div>
@@ -171,74 +171,116 @@
     <!-- section IV -->
   <section class="switch-section">  
     <h2 class="switch-title">
-      Serve your audience, exclude the rest in two steps</h2>
+      Create your first anonymous credential in four steps</h2>
       <p class="switch-additional-description">
       </p>
     <div class="switch-div">
     <!-- Buttons to switch content -->
-      <button 
-        :class="{'active': isSelected === 1}" 
-        @click="switchTab(1)">
-        1. Instant Identity Verification
-      </button>
-      <button 
-        :class="{'active': isSelected === 2}" 
-        @click="switchTab(2)">
-        2. Reusable Anywhere
-      </button>
+    <button 
+      :class="{'active': isSelected === 1}" 
+      @click="switchTab(1)">
+      1. Create DID
+    </button>
+    <button 
+      :class="{'active': isSelected === 2}" 
+      @click="switchTab(2)">
+      2. Create template
+    </button>
+    <button 
+      :class="{'active': isSelected === 3}" 
+      @click="switchTab(3)">
+      3. Apply for credential
+    </button>
+    <button 
+      :class="{'active': isSelected === 4}" 
+      @click="switchTab(4)">
+      4. Show credential
+    </button>
     <transition name="fade" mode="out-in">
         <!-- Content that will be shown based on the selected button -->
       <div v-if="isSelected === 1" class="verification-container">
-        <!-- Left side: Video section -->
-        <div class="verification-video">
-          <div class="video-frame-container">
-            <iframe 
-              class="video-frame" 
-              src="https://www.youtube.com/embed/xya" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-            ></iframe>
-          </div>
+        <!-- Left side: Image section (replacing Video) -->
+        <div class="verification-image-container">
+          <img 
+            src="@/assets/image/createdid.svg" 
+            alt="Instant Identity Verification" 
+            class="verification-image"
+          />
         </div>
 
         <!-- Right side: Description section -->
         <div class="verification-description">
-          <h2 class="verification-title">1. Instant Identity Verification</h2>
+          <h2 class="verification-title">1. Create DID</h2>
           <p class="verification-text">
-            Applications typically request user input directly, but when they need verifiable data, users must obtain that information from a trusted credential provider.
+            Users can establish their own Decentralized Identifier (DID), which serves as their digital identity foundation. The private keys associated with this DID are securely stored in the user's local wallet, ensuring full user control and sovereignty. 
             <br>
-          <br> Privado ID seamlessly guides users through credential acquisition, creating an identity wallet instantly if necessary. Verification takes place in-app, and may include Zero Knowledge proofs (generated on the user's device for privacy assurance) and data fields.
+          <br> Meanwhile, the corresponding DID document is registered on a Verifiable Data Registry (VDR) implemented on blockchain technology, providing immutable proof of the identity's existence without revealing sensitive information.
           <br>
-          <br> User data is securely encrypted in the cloud and decrypted only on their end. Once complete, users return to the application.
           </p>
           
         </div>
       </div>
 
       <div v-if="isSelected === 2" class="verification-container">
-        <!-- Left side: Video section -->
-        <div class="verification-video">
-          <div class="video-frame-container">
-            <iframe 
-              class="video-frame" 
-              src="https://www.youtube.com/embed/xyz" 
-              frameborder="0" 
-              allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" 
-              allowfullscreen
-            ></iframe>
-          </div>
+        <!-- Left side: Image section (replacing Video) -->
+        <div class="verification-image-container">
+          <img 
+            src="@/assets/image/createTemplate.svg" 
+            alt="Reusable Anywhere" 
+            class="verification-image"
+          />
         </div>
 
         <!-- Right side: Description section -->
         <div class="verification-description">
-          <h2 class="verification-title">2. Reusable Anywhere</h2>
+          <h2 class="verification-title">2. Create template</h2>
           <p class="verification-text">
-            The User can reuse the credentials obtained and stored in the Privado ID Cloud Wallet in other applications that use Privado ID as a verification mechanism - since there is no need to go through the issuance process again, this is a 2-click experience (authenticate & verify).
+            Credential issuers can define customized credential templates according to their specific requirements. This template creation process allows issuers to specify the exact attributes to be included in credentials and define their respective data types. These structured templates ensure consistency across issued credentials while maintaining flexibility for various use cases, from academic credentials to professional certifications.
           </p>
           
         </div>
       </div>
+
+      <div v-if="isSelected === 3" class="verification-container">
+        <!-- Left side: Image section (replacing Video) -->
+        <div class="verification-image-container">
+          <img 
+            src="@/assets/image/applycredential.svg" 
+            alt="Reusable Anywhere" 
+            class="verification-image"
+          />
+        </div>
+
+        <!-- Right side: Description section -->
+        <div class="verification-description">
+          <h2 class="verification-title">3. Apply for credential</h2>
+          <p class="verification-text">
+            When users need verifiable credentials, they can submit applications to relevant issuers. During this process, users complete the credential request by filling out the required attributes as defined in the issuer's template and including their DID as the credential subject. The application is then securely transmitted to the issuer who verifies the information before issuing the credential, establishing a trusted digital representation of the user's qualifications or attributes.
+          </p>
+          
+        </div>
+      </div>
+
+      <div v-if="isSelected === 4" class="verification-container">
+        <!-- Left side: Image section (replacing Video) -->
+        <div class="verification-image-container">
+          <img 
+            src="@/assets/image/credentialPresentation.svg" 
+            alt="Reusable Anywhere" 
+            class="verification-image"
+          />
+        </div>
+
+        <!-- Right side: Description section -->
+        <div class="verification-description">
+          <h2 class="verification-title">4. Show credential</h2>
+          <p class="verification-text">
+            Our system empowers users with selective disclosure capabilities, allowing them to share only the specific credential attributes they choose while keeping sensitive information private. For example, a user with an academic credential might reveal their degree type (Bachelor's) without disclosing their specific institution. Additionally, the system supports predicate proof generation, enabling users to prove facts about their attributes without revealing the actual values—such as demonstrating they fall within an age range of 18-60 years old without disclosing their exact age. These privacy-preserving presentations are cryptographically verifiable, maintaining trust while protecting user privacy.
+          </p>
+          
+        </div>
+      </div>
+      
     </transition>
   </div>
   </section>
@@ -246,11 +288,18 @@
 </template>
 
 <script>
-
-
 export default {
   name: "HomePage",
-  
+  data() {
+    return {
+      isSelected: 1, // Default selected tab
+    };
+  },
+  methods: {
+    switchTab(tab) {
+      this.isSelected = tab;
+    }
+  }
 };
 </script>
 
@@ -278,8 +327,9 @@ export default {
   flex-wrap: wrap;
 }
 
+/* Feature Cards */
 .feature-card {
-  padding: 0px;
+  padding: 10px; /* Increased padding */
   border-radius: 10px;
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
@@ -288,13 +338,15 @@ export default {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin-bottom: 15px; /* Added margin at the bottom */
 }
 
 .feature-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-5px); /* Changed to more subtle up movement instead of scale */
+  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
 }
 
-.card-icon {
+.feature-card-icon {
   font-size: 24px;
   color: #081bec;
   /* margin-right: 10px;  Adjust margin between icon and text */
@@ -302,22 +354,25 @@ export default {
   display: inline-block; /* Make sure icon is on the same line as text */
 }
 
-.card-content {
+.feature-card-content {
   /* display: flex; */
   flex-direction: column;
   justify-content: flex-start;
 }
 
-.card-content h3 {
-  font-size: 18px;
-  font-weight: 500;
-  margin-bottom: 5px; /* Reduced margin between h4 and text */
-  text-align: center; /* Ensure the title is left-aligned */
+.feature-card-content h3 {
+  font-size: 20px; /* Increased font size */
+  font-weight: 600; /* Made font slightly bolder */
+  margin-top: 8px; /* Reduced margin at the top */
+  margin-bottom: 7px; /* Reduced space between title and text */
+  color: #333; /* Darkened text color for better contrast */
+  text-align: left; /* Center align the title */
+  line-height: 1.2; /* Reduced line height for tighter text */
 }
 
-.card-content p {
-  font-size: 14px;
-  color: #666;
+.feature-card-content p {
+  font-size: 1.1rem;
+  color: var(--text-medium);
   margin-bottom: 5px;
   /*width: 300px;  Adjust max-width to ensure text does not go too wide */
   word-wrap: break-word;
@@ -374,6 +429,28 @@ export default {
   object-fit: cover; /* 控制图片填充方式 */
 }
 
+.swiper-card-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.swiper-card-content h3 {
+  font-size: 20px;
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: #333;
+  text-align: center;
+  line-height: 1.3;
+}
+
+.swiper-card-content p {
+  font-size: 1.1rem;
+  color: var(--text-medium);
+  margin-bottom: 5px;
+  word-wrap: break-word;
+  text-align: left;
+}
 
 /* Adjust icon image size */
 .card-icon-img {
@@ -439,21 +516,21 @@ export default {
 
 .middle-card-icon-img {
   width: 100%; /* Ensure the image takes the full width of the card */
-  max-width: 1850px; /* Optional: Set a max width to ensure the image doesn’t stretch too much */
+  max-width: 1850px; /* Optional: Set a max width to ensure the image doesn't stretch too much */
   height: auto; /* Maintain the aspect ratio of the image */
 }
-.middle-card-content h4 {
+
+.middle-card-content h3 {
   font-size: 18px;
   font-weight: 500;
   margin-bottom: 5px; /* Reduced margin between h4 and text */
-  text-align: left; /* Ensure the title is left-aligned */
+  text-align: center; /* Ensure the title is centered */
 }
 
 .middle-card-content p {
   font-size: 14px;
   color: #666;
   margin-bottom: 5px;
-  /*width: 300px;  Adjust max-width to ensure text does not go too wide */
   word-wrap: break-word;
   text-align: left;
 }
@@ -517,22 +594,23 @@ export default {
   gap: 20px;
 }
 
-.verification-video {
-  width: 45%; /* Video section takes up 45% of the space */
-  border: 5px solid #313ed1; /* Green border around the video */
+/* Updated image container styles (replaced video) */
+.verification-image-container {
+  width: 67%;
+  border: 5px solid #313ed1;
   border-radius: 10px;
-  padding: 10px;
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
-.video-frame-container {
+.verification-image {
   width: 100%;
-  overflow: hidden;
-  border-radius: 10px;
-}
-
-.video-frame {
-  width: 100%;
-  height: 400px; /* Fixed height for the video */
+  height: auto;
+  max-height: 800px;
+  object-fit: contain;
+  border-radius: 5px;
 }
 
 .verification-description {
@@ -548,13 +626,11 @@ export default {
 }
 
 .verification-text {
-  font-size: 14px;
-  color: #666;
+  font-size: 17px;
+  color: #545454;
   line-height: 1.5;
   margin-bottom: 20px;
 }
-
-
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -570,26 +646,12 @@ export default {
   .middle-feature-row {
     flex-direction: column; /* Stack the cards vertically on smaller screens */
   }
-  .verification-video, .verification-description {
+  .verification-image-container, .verification-description {
     width: 100%;
   }
-
-  .video-frame {
-    height: 200px; /* Adjust video height for small screens */
+  
+  .verification-container {
+    flex-direction: column;
   }
 }
 </style>
-<script>
-export default {
-  data() {
-    return {
-      isSelected: 1, // Default selected tab
-    };
-  },
-  methods: {
-    switchTab(tab) {
-      this.isSelected = tab;
-    }
-  }
-};
-</script>
