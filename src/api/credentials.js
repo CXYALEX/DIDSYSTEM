@@ -24,3 +24,11 @@ export function getCredentialDetailById(id) {
         method: 'get',
     })
 }
+
+// Get the details of a specific credential by ID
+export function deleteCredentialById(id) {
+    return request({
+        url: "/credentials/delete/" + id,
+        method: 'delete',
+    })
+}

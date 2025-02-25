@@ -31,3 +31,15 @@ def get_credential_detail(id):
     credential_schema = CredentialSchema()
     credential = credential_schema.dump(fetched)
     return response_with(resp.SUCCESS_200, value={"credential": credential})
+
+@credentials_bp.route('/delete/<int:id>', methods=['DELETE'])
+def delete_credential_by_id(id):
+    try:
+        credential = Credential.query.get_or_404(id)
+        db.session.delete(credential)
+        db.session.commit()
+        return response_with(resp.SUCCESS_200)
+    except Exception as e:
+        db.session.rollback()
+        print(e)
+        return response_with(resp.SERVER_ERROR_500)

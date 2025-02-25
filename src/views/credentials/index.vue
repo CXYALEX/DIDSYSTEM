@@ -28,7 +28,7 @@
                 <template slot-scope="scope">
                     <el-button size="mini" @click="handleViewCredential(scope.row)">View</el-button>
                     <el-button size="mini" type="success" @click="handleVerify(scope.row)">Verify</el-button>
-                    <el-button size="mini" type="danger" @click="handleDelete(scope.$index, scope.row)">Delete</el-button>
+                    <el-button size="mini" type="danger" @click="handleDelete(scope.row)">Delete</el-button>
                     <el-button size="mini" type="warning" @click="handlePresentation(scope.row)">Presentation</el-button>
                 </template>
             </el-table-column>
@@ -141,7 +141,7 @@ import { saveCredential, deleteCredential } from "@/utils/indexedDB";
 import { getTemplateList, getTemplateDetailById } from "@/api/template";
 import { getVocabFromTemplate, createInputDocument, createRevealDoc } from "@/utils/bbs-utils";
 import { createApplications } from "@/api/application";
-import { getCredentialsList, getCredentialDetailById } from "@/api/credentials"; // Updated import
+import { getCredentialsList, getCredentialDetailById,deleteCredentialById} from "@/api/credentials"; // Updated import
 import { saveDID, getDIDs, deleteDID } from "@/utils/indexedDB"; // IndexedDB 工具
 import { extendContextLoader, sign, verify, purposes } from "jsonld-signatures";
 import { Bls12381G2KeyPair, BbsBlsSignature2020, deriveProof, BbsBlsSignatureProof2020 } from "@/utils/signature/index";
@@ -308,16 +308,23 @@ export default {
             //this.$message.info(`Verifying credential: ${credential.name}`);
         },
 
-        handleDelete(index, row) {
-            deleteCredential(this.$store.getters.name, row.id)
-                .then(() => {
-                    this.$message.success("Credential deleted successfully.");
-                    this.getCredentialList();
-                })
-                .catch(() => {
-                    this.$message.error("Failed to delete credential.");
-                });
-        },
+        async handleDelete(credential) {
+            // First delete remote credential
+            deleteCredentialById(credential.id)
+            .then(() => {
+                // After successful remote deletion, delete the local credential
+                return deleteCredential(this.$store.getters.name, credential.id);
+            }) 
+            .then(() => {
+                this.$message.success("Credential deleted successfully.");
+                this.getCredentialList();
+            })
+            .catch((error) => {
+                console.error("Deletion error:", error);
+                this.$message.error("Failed to delete credential.");
+            });
+    },
+
 
         async getCredentialList() {
             try {

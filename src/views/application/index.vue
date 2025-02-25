@@ -4,17 +4,17 @@
     <div class="headerContainer">
         <div class="title">
             <div class="desc">Application</div>
-            <el-button class="btnStyle" type="success"  size="mini" @click="registerRevocationList">Register Revocation List</el-button>
+            <div class="action-container">
+                <el-select v-model="selectedDID" placeholder="Select a DID" @change="loadApplications" class="did-selector">
+                    <el-option v-for="did in didList" :key="did" :label="did" :value="did"></el-option>
+                </el-select>
+                <el-button class="btnStyle" type="success" size="mini" @click="registerRevocationList">Register Revocation List</el-button>
+            </div>
         </div>
         <div class="content">Manages the credential application, including application approvals, rejections, and revocation of issued credentials.</div>
         <div class="content">
             <strong>Note:</strong> Before revoke the issued credential, please register the revocation list first.
         </div>
-    </div>
-    <div class="countNum"> 
-      <el-select v-model="selectedDID" placeholder="Select a DID" @change="loadApplications">
-          <el-option v-for="did in didList" :key="did" :label="did" :value="did"></el-option>
-        </el-select>  
     </div>
     <!-- Application 列表 -->
     <el-table :data="applicationList" border style="width: 100%">
@@ -284,6 +284,16 @@ export default {
       letter-spacing: -0.5px;
     }
 
+    .action-container {
+      display: flex;
+      align-items: center;
+      gap: 15px;
+    }
+
+    .did-selector {
+      width: 250px;
+    }
+
     .btnStyle {
       background-color: #4070f4;
       border: none;
@@ -316,14 +326,4 @@ export default {
     max-width: 800px;
   }
 }
-  .countNum {
-    padding-left: 10px;
-    height: 60px;
-    text-align: end;
-    line-height: 60px;
-    background-color: #fff;
-    border: 1px solid #f5f5f6;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-  }
 </style>
