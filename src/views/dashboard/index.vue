@@ -4,7 +4,7 @@
     <section class="middle-section">
       <h2 class="middle-title">What is PolyuDID? <br>Get started in minutes.</h2>
       <p class="middle-additional-description">
-        PolyuDID is a state of the art decentralized identity infrastructure that provides comprehensive privacy-preserving solutions for Web3 applications. By leveraging zero-knowledge proofs and blockchain technology, it enables applications to implement robust digital identity features while ensuring user privacy and data sovereignty. The system supports essential privacy-preserving capabilities including selective disclosure of credentials, non-transferability of identity claims, unlinkability between transactions, and dynamic credential revocation. As an open-source middleware solution, PolyuDID can be seamlessly integrated into any Web3 application, providing developers with the tools and infrastructure needed to build privacy-first digital identity systems. The platform has demonstrated its practical value through successful implementations in anti-fraud systems and privacy-preserving academic credential verification, showcasing its potential to deliver secure, privacy-focused authentication across diverse Web3 use cases.
+        PolyuDID is a cutting-edge decentralized identity infrastructure for Web3 applications that prioritizes privacy. Using zero-knowledge proofs and blockchain technology, it enables selective credential disclosure, non-transferable identity claims, unlinkable transactions, and dynamic credential revocation. This open-source middleware integrates easily with any Web3 application, empowering developers to build privacy-first identity systems. PolyuDID has proven its effectiveness through successful implementations in anti-fraud systems and academic credential verification.
       </p>
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
@@ -123,7 +123,7 @@
         <!-- Card 2 -->
           <el-card class="swiper-card">
             <div class="swiper-picture">
-                <img src="@/assets/image/newDegree.svg" alt="KYC Icon" class="card-icon-img" />
+                <img src="@/assets/image/degree.svg" alt="KYC Icon" class="card-icon-img" />
             </div>
             <div class="card-content">
               <h3>Academic Degree

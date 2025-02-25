@@ -44,11 +44,17 @@ const createControllerDoc = (template, issuerId, publicKeyId) => {
 };
 
 const createInputDocument = (vocabUrl, templateName, issuerId, attributes) => {
-    const template = { ...inputDocument }; //Use spread syntax to create a copy
+    // const template = { ...inputDocument }; //Use spread syntax to create a copy
+    // template["@context"].push(vocabUrl);
+    // template.credentialSubject.type.push(templateName);
+    // template.issuer = issuerId;
+    // Object.assign(template.credentialSubject, attributes); //More efficient way to add attributes
+    const template = JSON.parse(JSON.stringify(inputDocument));
+    
     template["@context"].push(vocabUrl);
     template.credentialSubject.type.push(templateName);
     template.issuer = issuerId;
-    Object.assign(template.credentialSubject, attributes); //More efficient way to add attributes
+    Object.assign(template.credentialSubject, attributes);
 
     const issueTime = new Date();
     const expireTime = new Date();

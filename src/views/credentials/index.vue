@@ -116,7 +116,7 @@
                     </div>
                 </el-form-item>
     </el-form>
-            </el-form>
+        </el-form>
             <span slot="footer" class="dialog-footer">
                 <el-button type="primary" @click="confirm">Confirm</el-button>
                 <el-button @click="cancel">Cancel</el-button>
@@ -223,7 +223,7 @@ export default {
                     issuer_id: this.template_json.issuerId,
                     template_id: this.selectedTemplate
                 };
-
+                console.log("applicationToSend:", applicationToSend);
                 await createApplications(applicationToSend);
                 this.save();
                 this.$message.success("Template saved successfully");
