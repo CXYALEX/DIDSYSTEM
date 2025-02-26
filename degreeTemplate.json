@@ -1,0 +1,8 @@
+{
+    "degree_type": "string",
+    "institution_name": "string",
+    "graduation_date": "dateTime",
+    "holder_name": "string",
+    "holder_age": "int",
+    "course_average_score": "decimal"
+}
