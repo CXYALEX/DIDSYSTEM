@@ -8,9 +8,7 @@
         </div>
         <div class="content">Define and manage trusted, tamper-proof verifiable credential templates that specify a set of attributes and their data types, revolutionizing trust and authentication processes.</div>
         <div class="content">
-    <strong>Note:</strong> This is the example template of the degree KYC Credential. You can modify the template JSON to create your own template.
-    <br><br>
-    <a href="https://raw.githubusercontent.com/yourusername/yourrepo/main/kyc_template.json" download>Download JSON Template</a>
+    <strong>Note:</strong> <a href="https://raw.githubusercontent.com/CXYALEX/DIDSYSTEM/main/degreeTemplate.json" target="_blank" style="color: blue; text-decoration: underline;">DegreeTemplate</a> is the example template of the degree KYC Credential. You can modify the template JSON to create your own template.
 </div>
     </div>
     <!-- 模板列表 -->
