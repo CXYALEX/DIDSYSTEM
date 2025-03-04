@@ -141,30 +141,6 @@
               <p>Prevent impersonation and fraudulent activities through secure identity verification. Real-time credential validation helps protect users and organizations from scams and unauthorized access attempts.</p>
             </div>
           </el-card>
-        <!-- <swiper-slide>
-          <el-card class="swiper-card">
-            <div class="swiper-picture">
-                <img src="@/assets/image/age.png" alt="KYC Icon" class="card-icon-img" />
-            </div>
-            <div class="swiper-card-content">
-              <h4>Age Verification</h4>
-              <p>Protect minors, ensure privacy, prevent fraud, and meet regulatory standards seamlessly across digital platforms.</p>
-            </div>
-          </el-card>
-        </swiper-slide> -->
-
-        <!-- Card 4 -->
-        <!-- <swiper-slide>
-          <el-card class="swiper-card">
-            <div class="swiper-picture">
-                <img src="@/assets/image/nation.png" alt="KYC Icon" class="card-icon-img" />
-            </div>
-            <div class="swiper-card-content">
-              <h4>National ID</h4>
-              <p>Digital identities made secure, private, and interoperable for seamless citizen services and global authentication.</p>
-            </div>
-          </el-card>
-        </swiper-slide> -->
       </el-row>
     </section>
     
@@ -284,6 +260,141 @@
     </transition>
   </div>
   </section>
+
+  <!-- Demonstration Section -->
+  <section class="demonstration-section">
+    <h2 class="section-title">Demonstration</h2>
+    <p class="section-description">
+      See PolyuDID in action with our comprehensive demonstration video. Learn how our decentralized identity infrastructure works in real-world applications.
+    </p>
+    <div class="video-container">
+      <iframe 
+        src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID" 
+        title="PolyuDID Demonstration" 
+        frameborder="0" 
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+        allowfullscreen>
+      </iframe>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="contact-section">
+    <h2 class="section-title">Our Team</h2>
+    <p class="section-description">
+      Meet the talented individuals behind PolyuDID and get in touch with us for collaboration or inquiries.
+    </p>
+    
+    <div class="team-container">
+      <el-row :gutter="20">
+        <!-- Team Member 1 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Bin Xiao</h3>
+              <p class="team-role">Supervisor</p>
+              <p class="team-description">
+                Supervise the whole project.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> b.xiao@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        
+        <!-- Team Member 2 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Bowen Cui</h3>
+              <p class="team-role">Cryptography Specialist</p>
+              <p class="team-description">
+                Expert in zero-knowledge proofs.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> bowencui@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+        <!-- Team Member 3 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Bin Xie</h3>
+              <p class="team-role">Cryptography Specialist</p>
+              <p class="team-description">
+                Expert in smart contract development.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> binxie@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+        <!-- Team Member 4 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Rui Song</h3>
+              <p class="team-role">Cryptography Specialist</p>
+              <p class="team-description">
+                Expert in anonymous credential cryptography implementation.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> ruisong@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        
+        <!-- Team Member 5 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Zixuan Wang</h3>
+              <p class="team-role">Frontend Developer</p>
+              <p class="team-description">
+                Responsible for user experience and interface development.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> zixuanwang@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+        <!-- Team Member 6 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Xuyuan Cai</h3>
+              <p class="team-role">Backend Developer</p>
+              <p class="team-description">
+                Responsible for the whole project and the backend development.
+              </p>
+              <div class="contact-info">
+                <p><i class="el-icon-message"></i> xuyuancai@polyu.edu.hk</p>
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+
+
+
+      </el-row>
+    </div>
+  </section>
   </div>
 </template>
 
@@ -293,11 +404,31 @@ export default {
   data() {
     return {
       isSelected: 1, // Default selected tab
+      contactForm: {
+        name: '',
+        email: '',
+        message: ''
+      }
     };
   },
   methods: {
     switchTab(tab) {
       this.isSelected = tab;
+    },
+    submitForm() {
+      // Here you would implement the logic to send the form data
+      console.log('Form submitted:', this.contactForm);
+      // Reset form after submission
+      this.contactForm = {
+        name: '',
+        email: '',
+        message: ''
+      };
+      // Show a success message (you can use Element UI's notification system)
+      this.$message({
+        message: 'Thank you for your message! We will get back to you soon.',
+        type: 'success'
+      });
     }
   }
 };
@@ -632,26 +763,130 @@ export default {
   margin-bottom: 20px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-  .feature-card {
-    height: auto;
-  }
-  .feature-row {
-    flex-direction: column;
-  }
-  .middle-card {
-    width: 100%; /* Ensure cards take full width on small screens */
-  }
-  .middle-feature-row {
-    flex-direction: column; /* Stack the cards vertically on smaller screens */
-  }
-  .verification-image-container, .verification-description {
-    width: 100%;
-  }
-  
-  .verification-container {
-    flex-direction: column;
-  }
+/* Demonstration Section */
+.demonstration-section {
+  padding: 80px 20px;
+  text-align: center;
+  /* background-color: #ffffff; */
 }
+
+.section-title {
+  font-size: 3rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: var(--text-dark);
+}
+
+.section-description {
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: var(--text-medium);
+  max-width: 800px;
+  text-align: left;
+  /* margin: 0 auto 50px; */
+}
+
+.video-container {
+  position: relative;
+  width: 80%;
+  max-width: 1000px;
+  margin: 0 auto;
+  padding-bottom: 56.25%; /* 16:9 aspect ratio */
+  height: 0;
+  overflow: hidden;
+  border-radius: 10px;
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 10px;
+}
+
+/* Contact Section */
+.contact-section {
+  padding: 80px 20px;
+  background-color: #f9f9f9;
+}
+
+.team-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.team-card {
+  height: 100%;
+  border-radius: 10px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 30px;
+}
+
+.team-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+}
+
+.team-member-photo {
+  height: 200px;
+  overflow: hidden;
+}
+
+.team-member-photo img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.team-member-info {
+  padding: 20px;
+  text-align: left;
+}
+
+.team-member-info h3 {
+  font-size: 22px;
+  font-weight: 600;
+  margin-bottom: 5px;
+  color: #333;
+}
+
+.team-role {
+  font-size: 16px;
+  font-weight: 500;
+  color: #081bec;
+  margin-bottom: 15px;
+}
+
+.team-description {
+  font-size: 14px;
+  color: #666;
+  margin-bottom: 15px;
+  line-height: 1.5;
+}
+
+.contact-info {
+  margin-top: 10px;
+  font-size: 14px;
+  color: #555;
+}
+
+.contact-info p {
+  margin: 5px 0;
+  display: flex;
+  align-items: center;
+}
+
+.contact-info i {
+  margin-right: 8px;
+  color: #081bec;
+}
+
+
 </style>
