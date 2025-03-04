@@ -75,6 +75,18 @@ export const asyncRoutes = [
     component: Layout,
     //redirect: '/dashboard',
     children: [{
+      path: 'template generator',
+      name: 'Template Generator',
+      component: () => import('@/views/template_generator/index'),
+      meta: { title: 'Template Generator', icon: 'link', roles: [1] }
+    }]
+  },
+
+  {
+    path: '/',
+    component: Layout,
+    //redirect: '/dashboard',
+    children: [{
       path: 'application',
       name: 'Application',
       component: () => import('@/views/application/index'),

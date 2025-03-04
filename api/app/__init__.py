@@ -95,6 +95,9 @@ def register_blueprints(app):
 
     from app.credentials import credentials_bp
     app.register_blueprint(credentials_bp, url_prefix='/api/credentials')
+    
+    from app.template_generator import template_generator_bp
+    app.register_blueprint(template_generator_bp, url_prefix='/api/template-generator')
 
     swaggerui_blueprint = get_swaggerui_blueprint('/api/docs', '/api/spec', config={'app_name': 'Flask API Docs'})
     app.register_blueprint(swaggerui_blueprint, url_prefix='/api/docs')

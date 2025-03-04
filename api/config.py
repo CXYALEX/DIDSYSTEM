@@ -19,3 +19,4 @@ class Config(object):
   SQLALCHEMY_TRACK_MODIFICATIONS = False
   LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
   LOG_LEVEL = logging.INFO
+  API_KEY=os.environ.get("API_KEY")

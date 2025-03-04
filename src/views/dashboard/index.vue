@@ -79,11 +79,11 @@
         <el-col :span="8">
           <el-card class="feature-card">
             <div class="feature-card-icon">
-              <i class="el-icon-help"></i>
+              <i class="el-icon-lock"></i>
             </div>
             <div class="feature-card-content">
-              <h3>Seamless Integration</h3>
-              <p>Built for developers, by developers. Easy-to-use SDKs and comprehensive documentation make integration into any Web3 application effortless.</p>
+              <h3>LLM-Powered Template Design</h3>
+              <p>Automatically generate credential templates using natural language. Simply describe your verification needs and get industry-standard attributes with proper data types, eliminating manual configuration.</p>
             </div>
           </el-card>
         </el-col>
@@ -92,11 +92,11 @@
         <el-col :span="8">
           <el-card class="feature-card">
             <div class="feature-card-icon">
-              <i class="el-icon-lock"></i>
+              <i class="el-icon-help"></i>
             </div>
             <div class="feature-card-content">
-              <h3>Trust at Scale</h3>
-              <p>Join a growing ecosystem of trusted credential issuers and verifiers. Issue once, verify anywhere - all while maintaining the highest privacy standards.</p>
+              <h3>Seamless Integration</h3>
+              <p>Built for developers, by developers. Easy-to-use SDKs and comprehensive documentation make integration into any Web3 application effortless.</p>
             </div>
           </el-card>
         </el-col>
@@ -225,7 +225,7 @@
         <!-- Left side: Image section (replacing Video) -->
         <div class="verification-image-container">
           <img 
-            src="@/assets/image/createTemplate.svg" 
+            src="@/assets/image/template-generator.svg" 
             alt="Reusable Anywhere" 
             class="verification-image"
           />
@@ -233,9 +233,9 @@
 
         <!-- Right side: Description section -->
         <div class="verification-description">
-          <h2 class="verification-title">2. Create template</h2>
+          <h2 class="verification-title">2. Create template based on LLM-powered generator</h2>
           <p class="verification-text">
-            Credential issuers can define customized credential templates according to their specific requirements. This template creation process allows issuers to specify the exact attributes to be included in credentials and define their respective data types. These structured templates ensure consistency across issued credentials while maintaining flexibility for various use cases, from academic credentials to professional certifications.
+            Our platform provides an AI-powered credential template generation system that streamlines the creation of standardized digital credentials. Leveraging large language model (LLM) technology, issuers can simply describe their credential's purpose and requirements in natural language, and the system will automatically generate an appropriate template structure.
           </p>
           
         </div>
