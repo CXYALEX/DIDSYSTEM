@@ -63,7 +63,7 @@
 
 <script>
 import { saveTemplate, getTemplates, deleteTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
-import { createTemplate, createInputDocument, createControllerDoc, createIssuerKey, createVocab } from "@/utils/bbs-utils"; //bbs工具
+import { createTemplate } from "@/utils/bbs-utils"; //bbs工具
 import { registerTemplate } from "@/api/template";
 
 export default {

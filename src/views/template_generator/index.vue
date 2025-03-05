@@ -167,8 +167,8 @@
   
   <script>
   import { generateTemplate, getGeneratedTemplatesList, getGeneratedTemplateById, saveAsTemplate } from '@/api/templateGenerator';
-  import { saveTemplate, getTemplates, deleteTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
-  
+  import { saveTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
+  import { createTemplate} from "@/utils/bbs-utils"; //bbs工具
   export default {
     name: 'TemplateGenerator',
     data() {
@@ -351,15 +351,16 @@
               // If currentTemplateData is already the template_json
               templateJson = this.currentTemplateData;
             }
-            
+            //const templateData = JSON.parse(templateJson);
+            var template = await createTemplate(templateJson, this.saveForm.issuer_id, '666', this.saveForm.name);
             await saveAsTemplate({
               name: this.saveForm.name,
               issuer_id: this.saveForm.issuer_id,
-              template_json: templateJson
+              template_json: template
             });
             const templateToSave = {
                 name: this.saveForm.name,
-                template_json:  templateJson,
+                template_json:  template,
                 issuer_id: this.saveForm.issuer_id // Include selected DID
             };
             saveTemplate(this.$store.getters.name, templateToSave); // Save to IndexedDB

@@ -4,7 +4,7 @@
     <section class="middle-section">
       <h2 class="middle-title">What is PolyuDID? <br>Get started in minutes.</h2>
       <p class="middle-additional-description">
-        PolyuDID is a cutting-edge decentralized identity infrastructure for Web3 applications that prioritizes privacy. Using zero-knowledge proofs and blockchain technology, it enables selective credential disclosure, non-transferable identity claims, unlinkable transactions, and dynamic credential revocation. This open-source middleware integrates easily with any Web3 application, empowering developers to build privacy-first identity systems. PolyuDID has proven its effectiveness through successful implementations in anti-fraud systems and academic credential verification.
+        PolyuDID is a cutting-edge decentralized identity infrastructure for Web3 applications that prioritizes privacy. Using zero-knowledge proofs and blockchain technology, it enables selective credential disclosure, non-transferable identity claims, unlinkable transactions, and dynamic credential revocation.The system features an innovative AI-powered template engine, where credential issuers can simply describe requirements in natural language to automatically generate standardized templates through large language model (LLM) processing. This intelligent generation capability significantly reduces the technical barrier for creating verifiable credentials while maintaining cryptographic consistency with our privacy architecture. This open-source middleware integrates easily with any Web3 application, empowering developers to build privacy-first identity systems. PolyuDID has proven its effectiveness through successful implementations in anti-fraud systems and academic credential verification.
       </p>
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
@@ -261,22 +261,23 @@
   </div>
   </section>
 
-  <!-- Demonstration Section -->
-  <section class="demonstration-section">
-    <h2 class="section-title">Demonstration</h2>
-    <p class="section-description">
-      See PolyuDID in action with our comprehensive demonstration video. Learn how our decentralized identity infrastructure works in real-world applications.
-    </p>
-    <div class="video-container">
-      <iframe 
-        src="https://www.youtube.com/embed/YOUR_YOUTUBE_VIDEO_ID" 
-        title="PolyuDID Demonstration" 
-        frameborder="0" 
-        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
+<!-- Demonstration Section -->
+<section class="demonstration-section">
+  <h2 class="section-title">Demonstration</h2>
+  <p class="section-description">
+    See PolyuDID in action with our comprehensive demonstration video. Learn how our decentralized identity infrastructure works in real-world applications.
+  </p>
+  <div class="video-container">
+    <iframe 
+      src="https://www.youtube.com/embed/JseIY-rK0qE?si=fg1awuKM_nVJq23e" 
+      title="PolyuDID Demonstration" 
+      frameborder="0" 
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+</section>
 
   <!-- Contact Section -->
   <section class="contact-section">

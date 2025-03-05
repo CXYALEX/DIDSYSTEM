@@ -56,7 +56,8 @@ def credential_template_generator(description, num_attributes):
 
         First, analyze what information would typically be included in this type of credential.
         Then select only the most relevant attributes based on standard industry practices for this credential type.
-        
+        Finally, make sure your output has the same number of attribute names as {num_attributes}.
+
         Return ONLY a valid JSON object where keys are attribute names and values are data types.
         Example format:
         {{
@@ -71,7 +72,7 @@ def credential_template_generator(description, num_attributes):
 
         # Call the API to generate template
         response = client.chat.completions.create(
-            model="deepseek-r1-distill-qwen-7b-250120", 
+            model="deepseek-r1-distill-qwen-32b-250120", 
             messages=[
                 {"role": "system", "content": "You are a credential template design expert who creates structured JSON templates."},
                 {"role": "user", "content": prompt}
