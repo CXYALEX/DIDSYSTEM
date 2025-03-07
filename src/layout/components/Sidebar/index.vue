@@ -1,5 +1,5 @@
 <template>
-  <div :class="{ 'has-logo': showLogo }">
+  <div class="sidebar-container" :class="{ 'has-logo': showLogo }">
     <div class="userInfo">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="title">
@@ -8,9 +8,7 @@
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
           <router-link to="/">
-            <el-dropdown-item>
-              Home
-            </el-dropdown-item>
+            <el-dropdown-item>Home</el-dropdown-item>
           </router-link>
           <a target="_blank" href="https://github.com/CXYALEX/DIDSYSTEM">
             <el-dropdown-item>Github</el-dropdown-item>
@@ -23,23 +21,44 @@
           </el-dropdown-item>
         </el-dropdown-menu>
       </el-dropdown>
+      
       <div class="content">
-      <template v-if="name">
-        User Name: {{ name }}
-      </template>
-      <template v-else>
-        Please login your account.
-      </template>
-    </div>
+        <template v-if="name">
+          User Name: {{ name }}
+        </template>
+        <template v-else>
+          Please login your account.
+        </template>
+      </div>
+      
       <div class="detail">
-        <div class="conection" @click="connectWallet">Connect</div><span>{{ web3account ? web3account : "Connect your wallet" }}</span>
+        <div class="conection" @click="connectWallet">Connect</div>
+        <span>{{ web3account ? web3account : "Connect your wallet" }}</span>
       </div>
     </div>
+
     <div class="contentR">
-      <div class="rout" v-for="(item,index) in routes" v-if="!item.hidden" @click="handleRoute(item,index)" :key="item.path" :class="{'routActive': active == item.children[0].path}">
+      <div class="rout" 
+           v-for="(item,index) in routes" 
+           v-if="!item.hidden" 
+           @click="handleRoute(item,index)" 
+           :key="item.path" 
+           :class="{'routActive': active == item.children[0].path}">
         <svg-icon :iconClass="item.children[0].meta.icon" />
         <div class="name">{{ item.children[0].meta.title }}</div>
       </div>
+    </div>
+
+    <!-- 新增底部导航 -->
+    <div class="sidebar-footer">
+      <div class="footer-item" @click="openDocumentation">
+        <svg-icon icon-class="documentation" />
+        <span>Github</span>
+      </div>
+      <div class="footer-item" @click="handleLoginLogout">
+  <svg-icon :icon-class="name ? 'logout' : 'login'" />
+  <span>{{ name ? 'Log Out' : 'Log In' }}</span>
+</div>
     </div>
   </div>
 </template>
@@ -51,7 +70,9 @@ import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
 import detectEthereumProvider from '@metamask/detect-provider';
 import wasmPath from '@/utils/bbs/wasm_bg.wasm';
+
 export default {
+  name: 'Sidebar',
   components: { SidebarItem, Logo },
   computed: {
     ...mapGetters([
@@ -63,14 +84,11 @@ export default {
     ]),
     routes() {
       let result = []
-      console.log(this.permission_routes,"this.permission_routes")
       this.permission_routes.forEach(item => {
         if(!item.hidden && item.children && item.children.length > 0){
           result.push(item)
         }
       })
-      console.log(result,"222");
-      
       return result
     },
     activeMenu() {
@@ -89,21 +107,11 @@ export default {
     },
     isCollapse() {
       return !this.sidebar.opened
-    },
-    async logout() {
-      await this.$store.dispatch('user/logout')
-      await this.$store.commit('web3/RESET_STATE');
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
-    },
-    async login() {
-      await this.$store.dispatch('user/logout')
-      await this.$store.commit('web3/RESET_STATE');
-      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     }
   },
   data(){
     return {
-      active:null,
+      active: null,
       account: null,
       recipient: '',
       amount: 0,
@@ -112,10 +120,9 @@ export default {
   },
   watch:{
     $route:{
-      deep:true,
-      immediate:true,
-      handler(newVal,oldVal){
-        console.log(newVal,"nwlllllll");
+      deep: true,
+      immediate: true,
+      handler(newVal, oldVal){
         this.active = newVal.path.slice(1)
       }
     }
@@ -140,41 +147,47 @@ export default {
         alert('MetaMask is not installed. Please install it to use this feature.');
       }
     },
+    async handleLoginLogout() {
+    if(this.name) {
+      await this.logout()
+    } else {
+      await this.login()
+    }
+  },
+    async logout() {
+      await this.$store.dispatch('user/logout')
+      await this.$store.commit('web3/RESET_STATE');
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    async login() {
+      await this.$store.dispatch('user/logout')
+      await this.$store.commit('web3/RESET_STATE');
+      this.$router.push(`/login?redirect=${this.$route.fullPath}`)
+    },
+    openDocumentation() {
+      window.open('https://github.com/CXYALEX/DIDSYSTEM', '_blank')
+    }
   }
 }
 </script>
-<style scope lang="scss">
+
+<style lang="scss" scoped>
 $menuText: #7c8394;
-$menuActiveText: #1e3a8a; // Changed to dark blue
-$menuHover: #e8f0ff; // Changed to light blue
-$subMenuBg: #1e3a8a; // Changed to dark blue
+$menuActiveText: #1e3a8a;
+$menuHover: #e8f0ff;
+$subMenuBg: #1e3a8a;
+
+.sidebar-container {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
 
 .contentR {
-  height: 100%;
+  flex: 1;
   padding: 20px;
-}
-
-.rout {
-  width: 100%;
-  height: 40px;
-  padding: 10px;
-  display: flex;
-  align-items: center;
-  font-size: 14px;
-  border-radius: 5px;
-  color: #7c8394;
-  margin-bottom: 10px;
-  cursor: pointer;
-}
-
-.rout:hover {
-  color: #1e3a8a; // Changed to dark blue
-  background-color: #e8f0ff; // Changed to light blue
-}
-
-.routActive {
-  color: #1e3a8a; // Changed to dark blue
-  background-color: #e8f0ff; // Changed to light blue
+  overflow-y: auto;
 }
 
 .userInfo {
@@ -207,24 +220,7 @@ $subMenuBg: #1e3a8a; // Changed to dark blue
       font-size: 12px;
     }
   }
-  
-  .hamburger-container {
-    line-height: 46px;
-    height: 100%;
-    float: left;
-    cursor: pointer;
-    transition: background .3s;
-    -webkit-tap-highlight-color: transparent;
 
-    &:hover {
-      background: rgba(0, 0, 0, .025)
-    }
-  }
-
-  .breadcrumb-container {
-    float: left;
-  }
-  
   .content {
     font-size: 12px;
     margin: 10px 0;
@@ -236,7 +232,7 @@ $subMenuBg: #1e3a8a; // Changed to dark blue
     font-size: 12px;
     font-weight: 400;
     
-    div {
+    .conection {
       width: auto;
       height: 32px;
       padding: 0 12px;
@@ -247,23 +243,12 @@ $subMenuBg: #1e3a8a; // Changed to dark blue
       font-weight: 500;
       line-height: 30px;
       cursor: pointer;
+      margin-right: 8px;
       transition: all 0.2s ease;
-      position: relative;
-      
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05),
-                  inset 0 -1px 0 rgba(0, 0, 0, 0.05);
       
       &:hover {
-        background: #e8f0ff; // Changed to light blue
-        border-color: #1e3a8a; // Changed to dark blue
-        box-shadow: 0 2px 6px rgba(30, 58, 138, 0.08),
-                    inset 0 -1px 0 rgba(30, 58, 138, 0.1);
-        transform: translateY(-1px);
-      }
-
-      &:active {
-        transform: translateY(1px);
-        box-shadow: inset 0 2px 4px rgba(30, 58, 138, 0.05);
+        background: $menuHover;
+        border-color: $menuActiveText;
       }
     }
 
@@ -271,8 +256,70 @@ $subMenuBg: #1e3a8a; // Changed to dark blue
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
-      margin-left: 8px;
-      color: #6c757d;
+    }
+  }
+}
+
+.rout {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  font-size: 14px;
+  border-radius: 5px;
+  color: $menuText;
+  margin-bottom: 10px;
+  cursor: pointer;
+
+  &:hover {
+    color: $menuActiveText;
+    background-color: $menuHover;
+  }
+
+  .name {
+    margin-left: 10px;
+  }
+}
+
+.routActive {
+  color: $menuActiveText;
+  background-color: $menuHover;
+}
+
+// 新增底部样式
+.sidebar-footer {
+  padding: 20px;
+  border-top: 1px solid #f1f1f1;
+  margin-top: auto;
+
+  .footer-item {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    color: $menuText;
+
+    &:hover {
+      color: $menuActiveText;
+      background-color: $menuHover;
+    }
+
+    svg-icon {
+      margin-right: 12px;
+      font-size: 16px;
+    }
+
+    span {
+      margin-left: 10px;
+      font-size: 14px;
+    }
+
+    &:last-child {
+      margin-bottom: 0;
     }
   }
 }
