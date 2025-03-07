@@ -2,10 +2,9 @@
   <div>
     <!-- section III -->
     <section class="middle-section">
-      <h2 class="middle-title">What is PolyuDID? <br>Get started in minutes.</h2>
+      <h2 class="middle-title">PolyuDID for Web3</h2>
       <p class="middle-additional-description">
-        PolyuDID is a cutting-edge decentralized identity infrastructure for Web3 applications that prioritizes privacy. Using zero-knowledge proofs and blockchain technology, it enables selective credential disclosure, non-transferable identity claims, unlinkable transactions, and dynamic credential revocation.The system features an innovative AI-powered template engine, where credential issuers can simply describe requirements in natural language to automatically generate standardized templates through large language model (LLM) processing. This intelligent generation capability significantly reduces the technical barrier for creating verifiable credentials while maintaining cryptographic consistency with our privacy architecture. This open-source middleware integrates easily with any Web3 application, empowering developers to build privacy-first identity systems. PolyuDID has proven its effectiveness through successful implementations in anti-fraud systems and academic credential verification.
-      </p>
+        PolyuDID is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
           <el-card class="middle-card">
@@ -19,89 +18,160 @@
           </el-card>
       </el-row>
     </section>
+
+<!-- Standalone Title outside the section -->
+<h2 class="standalone-title">Trust Infrastructure Core</h2>
+
+<!-- Entity Resolution Section -->
+<section class="entity-resolution-section">
+  <div class="entity-resolution-container">
+    <!-- Left side: Feature points -->
+    <div class="entity-features">
+      <div class="feature-item" :class="{'active': currentContent === 1}" @mouseover="changeContent(1)">
+        <h3>Open-Source Architecture</h3>
+        <div class="feature-content" :class="{'expanded': currentContent === 1}">
+          <p>
+            PolyuDID's modular design supports multi-role participation through three core components:
+          </p>
+          <ul>
+            <li><strong>Credential Management Platform:</strong> Enables institutions to issue privacy-preserving credentials with ZKP-enabled selective disclosure capabilities, supporting multiple revocation models</li>
+            <li><strong>Identity Wallet:</strong> Allows users to create self-sovereign identities, manage credentials locally, and conduct unlinkable authentication through decentralized identifiers (DIDs)</li>
+            <li><strong>Verifier SDK:</strong> Provides developers with plug-and-play modules for credential verification, featuring blockchain status checks and privacy-preserving proof verification</li>
+          </ul>
+          <p>Our open-source middleware supports custom extensions while maintaining interoperability through W3C-compliant standards.</p>
+        </div>
+      </div>
+      
+      <hr class="feature-divider">
+      
+      <div class="feature-item" :class="{'active': currentContent === 2}" @mouseover="changeContent(2)">
+        <h3>Next-Gen Intelligent Privacy Stack</h3>
+        <div class="feature-content" :class="{'expanded': currentContent === 2}">
+          <p>
+            PolyuDID introduces groundbreaking technical capabilities:
+          </p>
+          <ul>
+            <li><strong>World's First LLM-Powered Credential Engine:</strong> Transform natural language requirements into standardized credential templates with automatic cryptographic parameter configuration</li>
+            <li><strong>Advanced Privacy Stack:</strong> Combines zk-SNARKs for selective disclosure with BBS+ signatures for multi-show unlinkability, achieving military-grade privacy</li>
+            <li><strong>Dynamic Credential Ecosystem:</strong> Supports time-bound credentials, delegated issuance, and cross-chain revocation status synchronization</li>
+          </ul>
+          <!-- <p>These innovations reduce development complexity while enhancing security - our hybrid approach decreases ZKP circuit setup time by 73% compared to conventional solutions.</p> -->
+        </div>
+      </div>
+      
+      <hr class="feature-divider">
+      
+      <div class="feature-item" :class="{'active': currentContent === 3}" @mouseover="changeContent(3)">
+        <h3>Decentralized Security by Design</h3>
+        <div class="feature-content" :class="{'expanded': currentContent === 3}">
+          <p>
+            PolyuDID ensures security through:
+          </p>
+          <ul>
+            <li><strong>Non-custodial Architecture:</strong> Private keys never leave users' local devices, secured by hardware-grade wallet protection</li>
+            <li><strong>Blockchain Anchoring:</strong> All credential fingerprints immutably recorded across Ethereum/IPFS while keeping sensitive data off-chain</li>
+            <li><strong>Trust Minimization:</strong> Multi-party computation for credential issuance and decentralized revocation registries eliminate single points of failure</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    
+    <!-- Right side: Visual representation - Simple image placeholders -->
+    <div class="entity-visual">
+      <div class="visual-container">
+        <transition name="fade" mode="out-in">
+          <div v-if="currentContent === 1" class="visual-image">
+            <img src="@/assets/image/component.svg" alt="Open-Source Architecture" class="content-image" />
+          </div>
+          
+          <div v-else-if="currentContent === 2" class="visual-image">
+            <img src="@/assets/image/tech.svg" alt="AI-Driven Privacy Innovations" class="content-image" />
+          </div>
+          
+          <div v-else-if="currentContent === 3" class="visual-image">
+            <img src="@/assets/image/security.svg" alt="Decentralized Security" class="content-image" />
+          </div>
+        </transition>
+      </div>
+    </div>
+  </div>
+</section>
+
+
     <!-- Hero Section I -->
     <section class="hero-section">
-      <h2 class="hero-title">Digital Trust in One Click</h2>
-      <el-row :gutter="20" class="feature-row">
-        <!-- Card 1 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-refresh"></i>
-            </div>
-            <div class="feature-card-content">
-            <h3>Selective Disclosure</h3>
-              <p>Enable selective disclosure of credentials, allowing users to prove their identity while revealing only necessary information. Minimize data exposure and liability.</p>
-            </div>
-          </el-card>
-        </el-col>
+  <h2 class="hero-title">Digital Trust in One Click</h2>
+  <el-row :gutter="20" class="feature-row">
+    <!-- Card 1 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-refresh"></i></div>
+        <div class="feature-card-content">
+          <h3>Selective Disclosure</h3>
+          <p>Share only required credential details. Reduce data leaks and compliance risks.</p>
+        </div>
+      </el-card>
+    </el-col>
 
-        <!-- Card 2 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-phone"></i>
-            </div>
-            <div class="feature-card-content">
-              <h3>Non-transferable & Unique</h3>
-              <p>Ensure credentials cannot be transferred or misused, maintaining the integrity of digital identities through cryptographic binding to their rightful owners.</p>
-            </div>
-          </el-card>
-        </el-col>
+    <!-- Card 2 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-phone"></i></div>
+        <div class="feature-card-content">
+          <h3>Non-transferable & Unique</h3>
+          <p>Cryptographically-bound credentials prevent misuse and duplication.</p>
+        </div>
+      </el-card>
+    </el-col>
 
-        <!-- Card 3 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-open"></i>
-            </div>
-            <div class="feature-card-content">
-              <h3>Revoke with Confidence</h3>
-              <p>Maintain control over issued credentials with powerful revocation mechanisms. Instantly update credential status across the entire ecosystem when needed.</p>
-            </div>
-          </el-card>
-        </el-col>
+    <!-- Card 3 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-open"></i></div>
+        <div class="feature-card-content">
+          <h3>Revoke with Confidence</h3>
+          <p>Instant credential revocation with ecosystem-wide synchronization.</p>
+        </div>
+      </el-card>
+    </el-col>
 
-        <!-- Card 4 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-message"></i>
-            </div>
-            <div class="feature-card-content">
-              <h3>Perfect Privacy through Unlinkability</h3>
-              <p>Protect user privacy with transactions that cannot be linked, preventing tracking and correlation across different services and interactions.</p>
-            </div>
-          </el-card>
-        </el-col>
+    <!-- Card 4 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-message"></i></div>
+        <div class="feature-card-content">
+          <h3>Perfect Privacy</h3>
+          <p>Untraceable transactions prevent cross-service tracking.</p>
+        </div>
+      </el-card>
+    </el-col>
 
-        <!-- Card 5 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-lock"></i>
-            </div>
-            <div class="feature-card-content">
-              <h3>LLM-Powered Template Design</h3>
-              <p>Automatically generate credential templates using natural language. Simply describe your verification needs and get industry-standard attributes with proper data types, eliminating manual configuration.</p>
-            </div>
-          </el-card>
-        </el-col>
+    <!-- Card 5 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-lock"></i></div>
+        <div class="feature-card-content">
+          <h3>AI Template Design</h3>
+          <p>Auto-generate credential templates using natural language prompts.</p>
+        </div>
+      </el-card>
+    </el-col>
 
-        <!-- Card 6 -->
-        <el-col :span="8">
-          <el-card class="feature-card">
-            <div class="feature-card-icon">
-              <i class="el-icon-help"></i>
-            </div>
-            <div class="feature-card-content">
-              <h3>Seamless Integration</h3>
-              <p>Built for developers, by developers. Easy-to-use SDKs and comprehensive documentation make integration into any Web3 application effortless.</p>
-            </div>
-          </el-card>
-        </el-col>
-      </el-row>
-    </section>
+    <!-- Card 6 -->
+    <el-col :span="8">
+      <el-card class="feature-card">
+        <div class="feature-card-icon"><i class="el-icon-help"></i></div>
+        <div class="feature-card-content">
+          <h3>Seamless Integration</h3>
+          <p>Developer-first SDKs and docs for effortless Web3 integration.</p>
+        </div>
+      </el-card>
+    </el-col>
+  </el-row>
+</section>
+
+
+
     <!-- Section II -->
     <section class="hero-section">
       <h2 class="hero-title">Build your Application</h2>
@@ -310,13 +380,67 @@
           <el-card class="team-card">
             
             <div class="team-member-info">
+              <h3>Xuyuan Cai</h3>
+              <p class="team-role">Backend Developer</p>
+              <p class="team-description">
+                Responsible for the whole project and the backend development.
+              </p>
+              <div class="contact-info">
+                <!-- <p><i class="el-icon-message"></i> xuyuancai@polyu.edu.hk</p> -->
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        
+
+        
+
+        <!-- Team Member 4 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Rui Song</h3>
+              <p class="team-role">Cryptography Specialist</p>
+              <p class="team-description">
+                Expert in anonymous credential cryptography implementation.
+              </p>
+              <div class="contact-info">
+                <!-- <p><i class="el-icon-message"></i> ruisong@polyu.edu.hk</p> -->
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+
+        <!-- Team Member 6 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
               <h3>Bowen Cui</h3>
               <p class="team-role">Cryptography Specialist</p>
               <p class="team-description">
                 Expert in zero-knowledge proofs.
               </p>
               <div class="contact-info">
-                <p><i class="el-icon-message"></i> bowencui@polyu.edu.hk</p>
+                <!-- <p><i class="el-icon-message"></i> bowencui@polyu.edu.hk</p> -->
+              </div>
+            </div>
+          </el-card>
+        </el-col>
+        
+        <!-- Team Member 5 -->
+        <el-col :span="8">
+          <el-card class="team-card">
+            
+            <div class="team-member-info">
+              <h3>Zixuan Wang</h3>
+              <p class="team-role">Frontend Developer</p>
+              <p class="team-description">
+                Responsible for frontend development.
+              </p>
+              <div class="contact-info">
+                <!-- <p><i class="el-icon-message"></i> zixuanwang@polyu.edu.hk</p> -->
               </div>
             </div>
           </el-card>
@@ -333,66 +457,13 @@
                 Expert in smart contract development.
               </p>
               <div class="contact-info">
-                <p><i class="el-icon-message"></i> binxie@polyu.edu.hk</p>
+                <!-- <p><i class="el-icon-message"></i> binxie@polyu.edu.hk</p> -->
               </div>
             </div>
           </el-card>
         </el-col>
 
-        <!-- Team Member 4 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Rui Song</h3>
-              <p class="team-role">Cryptography Specialist</p>
-              <p class="team-description">
-                Expert in anonymous credential cryptography implementation.
-              </p>
-              <div class="contact-info">
-                <p><i class="el-icon-message"></i> ruisong@polyu.edu.hk</p>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-        
-        <!-- Team Member 5 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Zixuan Wang</h3>
-              <p class="team-role">Frontend Developer</p>
-              <p class="team-description">
-                Responsible for user experience and interface development.
-              </p>
-              <div class="contact-info">
-                <p><i class="el-icon-message"></i> zixuanwang@polyu.edu.hk</p>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-
-        <!-- Team Member 6 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Xuyuan Cai</h3>
-              <p class="team-role">Backend Developer</p>
-              <p class="team-description">
-                Responsible for the whole project and the backend development.
-              </p>
-              <div class="contact-info">
-                <p><i class="el-icon-message"></i> xuyuancai@polyu.edu.hk</p>
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-
-
-
-
+      
       </el-row>
     </div>
   </section>
@@ -409,7 +480,8 @@ export default {
         name: '',
         email: '',
         message: ''
-      }
+      },
+      currentContent: 1 // Default content for entity resolution section
     };
   },
   methods: {
@@ -430,10 +502,22 @@ export default {
         message: 'Thank you for your message! We will get back to you soon.',
         type: 'success'
       });
+    },
+    changeContent(contentId) {
+      this.currentContent = contentId;
+      // Remove active class from all feature points
+      const featurePoints = document.querySelectorAll('.feature-point');
+      featurePoints.forEach(point => {
+        point.classList.remove('active');
+      });
+      
+      // Add active class to the hovered feature point
+      featurePoints[contentId - 1].classList.add('active');
     }
   }
 };
 </script>
+
 
 <style scoped>
 /* Hero Section */
@@ -466,7 +550,7 @@ export default {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
   background-color: #fff;
   transition: all 0.3s ease;
-  height: 250px;
+  height: 230px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -879,7 +963,7 @@ export default {
 }
 
 .contact-info p {
-  margin: 5px 0;
+  margin: 4px 0;
   display: flex;
   align-items: center;
 }
@@ -888,6 +972,147 @@ export default {
   margin-right: 8px;
   color: #081bec;
 }
+
+/* Standalone Title outside the section */
+.standalone-title {
+  font-size: 3.25rem;
+  font-weight: 800;
+  margin-bottom: 30px;
+  letter-spacing: -1px;
+  line-height: 1.2;
+  color: var(--text-dark);
+  text-align: left;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 0 20px;
+  margin-top: 60px;
+}
+
+/* Entity Resolution Section */
+.entity-resolution-section {
+  padding: 20px 20px 80px 20px;
+  background-color: #ffffff;
+}
+
+.entity-resolution-container {
+  display: flex;
+  gap: 40px;
+  max-width: 1200px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.entity-features {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Feature divider - light gray line between items */
+.feature-divider {
+  border: 0;
+  height: 1px;
+  background-color: #e0e0e0;
+  margin: 5px 0;
+}
+
+.feature-item {
+  padding: 5px 0;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #222226;
+}
+
+.feature-item.active h3 {
+  color: #070707;
+}
+
+.feature-item h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 10px;
+  /* color: #333; */
+  line-height: 1.3;
+  transition: color 0.3s ease;
+  color: #9c9cb0;
+}
+
+/* The feature content style with expand/collapse effects */
+.feature-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.5s ease, opacity 0.5s ease, margin 0.3s ease;
+  opacity: 0;
+}
+
+.feature-content.expanded {
+  max-height: 500px;
+  opacity: 1;
+  margin-top: 10px;
+}
+
+.feature-item p {
+  font-size: 1rem;
+  color: #070707;
+  line-height: 1.6;
+  margin-bottom: 10px;
+}
+
+.feature-item ul {
+  padding-left: 20px;
+  margin-bottom: 10px;
+}
+
+.feature-item li {
+  font-size: 1rem;
+  color: #131212;
+  line-height: 1.6;
+  margin-bottom: 8px;
+}
+
+.entity-visual {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.visual-container {
+  /* background-color: #0a1837; */
+  border-radius: 20px;
+  padding: 30px;
+  width: 100%;
+  height: 500px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+.visual-image {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.content-image {
+  max-width: 100%;
+  max-height: 100%;
+  object-fit: contain;
+}
+
+/* Transitions */
+.fade-enter-active, .fade-leave-active {
+  transition: opacity 0.5s ease;
+}
+
+.fade-enter-from, .fade-leave-to {
+  opacity: 0;
+}
+
 
 
 </style>
