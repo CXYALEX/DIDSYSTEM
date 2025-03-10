@@ -1,14 +1,14 @@
 <template>
     <div class="login-container">
         <div class="bg">
-            <p>P o l y u D I D</p>
+            <p>W e b 3 p o l y u</p>
             <span>SYSTEM</span>
         </div>
         <div class="login">
             <el-form ref="loginForm" :model="loginForm" :rules="loginRules" class="login-form" v-if="flagControl">
                 <!-- <h3 class="title">DID Management System</h3> -->
                 <h3 class="title">Log in</h3>
-                <h3 class="title1">New to PolyDID? <span @click="flagControl = !flagControl">Sign up</span></h3>
+                <h3 class="title1">New to Web3Polyu? <span @click="flagControl = !flagControl">Sign up</span></h3>
                 <el-form-item prop="username">
                     <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="Account">
                         <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -42,7 +42,7 @@
 
                 <!--  底部  -->
                 <div class="el-login-footer">
-                    <span>Copyright © 2024 polyu.edu.hk All Rights Reserved.</span>
+                    <span>Copyright © 2024 Web3polyu.com All Rights Reserved.</span>
                 </div>
             </el-form>
 

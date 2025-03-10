@@ -2,9 +2,9 @@
   <div>
     <!-- section III -->
     <section class="middle-section">
-      <h2 class="middle-title">PolyuDID for Web3</h2>
+      <h2 class="middle-title">What is Web3polyu?</h2>
       <p class="middle-additional-description">
-        PolyuDID is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
+        Web3polyu is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
           <el-card class="middle-card">
@@ -31,7 +31,7 @@
         <h3>Open-Source Architecture</h3>
         <div class="feature-content" :class="{'expanded': currentContent === 1}">
           <p>
-            PolyuDID's modular design supports multi-role participation through three core components:
+            Web3polyu's modular design supports multi-role participation through three core components:
           </p>
           <ul>
             <li><strong>Credential Management Platform:</strong> Enables institutions to issue privacy-preserving credentials with ZKP-enabled selective disclosure capabilities, supporting multiple revocation models</li>
@@ -48,7 +48,7 @@
         <h3>Next-Gen Intelligent Privacy Stack</h3>
         <div class="feature-content" :class="{'expanded': currentContent === 2}">
           <p>
-            PolyuDID introduces groundbreaking technical capabilities:
+            Web3polyu introduces groundbreaking technical capabilities:
           </p>
           <ul>
             <li><strong>World's First LLM-Powered Credential Engine:</strong> Transform natural language requirements into standardized credential templates with automatic cryptographic parameter configuration</li>
@@ -65,7 +65,7 @@
         <h3>Decentralized Security by Design</h3>
         <div class="feature-content" :class="{'expanded': currentContent === 3}">
           <p>
-            PolyuDID ensures security through:
+            Web3polyu ensures security through:
           </p>
           <ul>
             <li><strong>Non-custodial Architecture:</strong> Private keys never leave users' local devices, secured by hardware-grade wallet protection</li>
@@ -176,7 +176,7 @@
     <section class="hero-section">
       <h2 class="hero-title">Build your Application</h2>
       <p class="additional-description">
-        Empower your solutions with privacy-first identity infrastructure. <br> PolyuDID's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification.
+        Empower your solutions with privacy-first identity infrastructure. <br> Web3polyu's zero-knowledge proofs and BBS+ credentials let you integrate secure, user-centric verification.
       </p>
       <el-row :gutter="20" class="feature-row">
         <!-- Card 1 -->
@@ -335,12 +335,12 @@
 <section class="demonstration-section">
   <h2 class="section-title">Demonstration</h2>
   <p class="section-description">
-    See PolyuDID in action with our comprehensive demonstration video. Learn how our decentralized identity infrastructure works in real-world applications.
+    See Web3polyu in action with our comprehensive demonstration video. Learn how our decentralized identity infrastructure works in real-world applications.
   </p>
   <div class="video-container">
     <iframe 
       src="https://www.youtube.com/embed/JseIY-rK0qE?si=fg1awuKM_nVJq23e" 
-      title="PolyuDID Demonstration" 
+      title="Web3polyu Demonstration" 
       frameborder="0" 
       allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
       referrerpolicy="strict-origin-when-cross-origin"
@@ -353,7 +353,7 @@
   <section class="contact-section">
     <h2 class="section-title">Our Team</h2>
     <p class="section-description">
-      Meet the talented individuals behind PolyuDID and get in touch with us for collaboration or inquiries.
+      Meet the talented individuals behind Web3polyu and get in touch with us for collaboration or inquiries.
     </p>
     
     <div class="team-container">
