@@ -4,7 +4,9 @@
     <section class="middle-section">
       <h2 class="middle-title">What is Web3polyu?</h2>
       <p class="middle-additional-description">
-        Web3polyu is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
+        <li><strong>Credential Management Platform:</strong> Enables institutions to issue privacy-preserving credentials with ZKP-enabled selective disclosure capabilities, supporting multiple revocation models</li>
+            <li><strong>Identity Wallet:</strong> Allows users to create self-sovereign identities, manage credentials locally, and conduct unlinkable authentication through decentralized identifiers (DIDs)</li>
+          Web3polyu is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
           <el-card class="middle-card">
