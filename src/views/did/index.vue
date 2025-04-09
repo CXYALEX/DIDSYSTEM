@@ -8,7 +8,7 @@
             </div>
             <div class="content">Create and manage decentralized identifiers (DIDs) in your identity wallet. Upon successfully creating a new DID, the corresponding DID document will be registered on the VDR. </div>
             <div class="content">
-            <strong>Note:</strong> Before applying for a DID, please ensure that your MetaMask wallet is connected.
+            <strong>Note:</strong> Before applying for a DID, please ensure that your MetaMask wallet is connected and swith the network to the Sepolia TestNet.
             </div>
         </div>
         <!-- 身份信息列表 -->

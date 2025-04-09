@@ -1,0 +1,16 @@
+<svg width="280" height="120" xmlns="http://www.w3.org/2000/svg">
+ <!-- 左侧简洁图案 -->
+
+ <!-- 文字部分 -->
+ <g>
+  <title>Layer 1</title>
+  <g id="svg_1" stroke="null">
+   <!-- 简化的六边形 - DID/区块链标志 -->
+   <polygon points="42.5,35.560975790023804 68,49.310975790023804 68,76.8109757900238 42.5,90.5609757900238 17,76.8109757900238 17,49.310975790023804 " fill="rgb(158,31,56)" id="svg_2" stroke="null"/>
+   <!-- 简化的身份标志 - 钥匙孔 -->
+   <circle cx="42.5" cy="57.56098" r="7.7" fill="white" id="svg_3" stroke="null"/>
+   <rect x="37.86364" y="63.06098" width="9.27273" height="11" fill="white" id="svg_4" stroke="null"/>
+  </g>
+  <text style="cursor: move;" x="76.53659" y="75.07317" font-family="Arial, sans-serif" font-size="36" font-weight="bold" fill="rgb(158,31,56)" id="svg_5">Web3polyu</text>
+ </g>
+</svg>

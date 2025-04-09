@@ -1,9 +1,10 @@
 <template>
   <div class="sidebar-container" :class="{ 'has-logo': showLogo }">
+    <!-- User Information Panel -->
     <div class="userInfo">
       <el-dropdown class="avatar-container" trigger="click">
         <div class="title">
-          <img :src="require('@/assets/image/polyu.jpg')" class="user-avatar">
+          <img :src="require('@/assets/image/icon.svg')" class="user-avatar">
           <i class="el-icon-caret-bottom" />
         </div>
         <el-dropdown-menu slot="dropdown" class="user-dropdown">
@@ -37,28 +38,31 @@
       </div>
     </div>
 
+    <!-- Navigation Menu -->
     <div class="contentR">
-      <div class="rout" 
-           v-for="(item,index) in routes" 
-           v-if="!item.hidden" 
-           @click="handleRoute(item,index)" 
-           :key="item.path" 
-           :class="{'routActive': active == item.children[0].path}">
-        <svg-icon :iconClass="item.children[0].meta.icon" />
+      <div 
+        class="rout" 
+        v-for="(item, index) in routes" 
+        v-if="!item.hidden" 
+        @click="handleRoute(item, index)" 
+        :key="item.path" 
+        :class="{'routActive': active == item.children[0].path}"
+      >
+        <svg-icon :icon-class="item.children[0].meta.icon" />
         <div class="name">{{ item.children[0].meta.title }}</div>
       </div>
     </div>
 
-    <!-- 新增底部导航 -->
+    <!-- Footer Navigation -->
     <div class="sidebar-footer">
       <div class="footer-item" @click="openDocumentation">
         <svg-icon icon-class="documentation" />
         <span>Github</span>
       </div>
       <div class="footer-item" @click="handleLoginLogout">
-  <svg-icon :icon-class="name ? 'logout' : 'login'" />
-  <span>{{ name ? 'Log Out' : 'Log In' }}</span>
-</div>
+        <svg-icon :icon-class="name ? 'logout' : 'login'" />
+        <span>{{ name ? 'Log Out' : 'Log In' }}</span>
+      </div>
     </div>
   </div>
 </template>
@@ -68,29 +72,36 @@ import { mapGetters } from 'vuex'
 import Logo from './Logo'
 import SidebarItem from './SidebarItem'
 import variables from '@/styles/variables.scss'
-import detectEthereumProvider from '@metamask/detect-provider';
-import wasmPath from '@/utils/bbs/wasm_bg.wasm';
+import detectEthereumProvider from '@metamask/detect-provider'
+import wasmPath from '@/utils/bbs/wasm_bg.wasm'
 
 export default {
   name: 'Sidebar',
-  components: { SidebarItem, Logo },
+  
+  components: { 
+    SidebarItem, 
+    Logo 
+  },
+  
   computed: {
     ...mapGetters([
       'sidebar',
       'permission_routes',
       'avatar',
-      "web3account",
+      'web3account',
       'name'
     ]),
+    
     routes() {
       let result = []
       this.permission_routes.forEach(item => {
-        if(!item.hidden && item.children && item.children.length > 0){
+        if (!item.hidden && item.children && item.children.length > 0) {
           result.push(item)
         }
       })
       return result
     },
+    
     activeMenu() {
       const route = this.$route
       const { meta, path } = route
@@ -99,17 +110,21 @@ export default {
       }
       return path
     },
+    
     showLogo() {
       return this.$store.state.settings.sidebarLogo
     },
+    
     variables() {
       return variables
     },
+    
     isCollapse() {
       return !this.sidebar.opened
     }
   },
-  data(){
+  
+  data() {
     return {
       active: null,
       account: null,
@@ -118,52 +133,59 @@ export default {
       provider: null
     }
   },
-  watch:{
-    $route:{
+  
+  watch: {
+    $route: {
       deep: true,
       immediate: true,
-      handler(newVal, oldVal){
+      handler(newVal, oldVal) {
         this.active = newVal.path.slice(1)
       }
     }
   },
-  methods:{
-    handleRoute(item,index){
+  
+  methods: {
+    handleRoute(item, index) {
       this.$router.push(item.children[0].path)
     },
+    
     async connectWallet() {
-      this.provider = await detectEthereumProvider();
+      this.provider = await detectEthereumProvider()
       if (this.provider) {
         try {
           const accounts = await this.provider.request({
             method: 'eth_requestAccounts',
-          });
-          this.account = accounts[0];
-          await this.$store.dispatch('web3/changeWeb3Account', this.account);
+          })
+          this.account = accounts[0]
+          await this.$store.dispatch('web3/changeWeb3Account', this.account)
         } catch (error) {
-          console.error('User rejected the request:', error);
+          console.error('User rejected the request:', error)
         }
       } else {
-        alert('MetaMask is not installed. Please install it to use this feature.');
+        alert('MetaMask is not installed. Please install it to use this feature.')
       }
     },
+    
     async handleLoginLogout() {
-    if(this.name) {
-      await this.logout()
-    } else {
-      await this.login()
-    }
-  },
+      if (this.name) {
+        await this.logout()
+      } else {
+        await this.login()
+      }
+    },
+    
     async logout() {
       await this.$store.dispatch('user/logout')
-      await this.$store.commit('web3/RESET_STATE');
+      await this.$store.commit('web3/RESET_STATE')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
+    
     async login() {
       await this.$store.dispatch('user/logout')
-      await this.$store.commit('web3/RESET_STATE');
+      await this.$store.commit('web3/RESET_STATE')
       this.$router.push(`/login?redirect=${this.$route.fullPath}`)
     },
+    
     openDocumentation() {
       window.open('https://github.com/CXYALEX/DIDSYSTEM', '_blank')
     }
@@ -192,13 +214,15 @@ $subMenuBg: #1e3a8a;
 
 .userInfo {
   width: 280px;
-  height: 130px;
+  min-height: 130px; /* 改为min-height防止内容溢出 */
   border: 1px solid #f1f1f1;
   color: #687083;
-  padding: 20px;
-  margin-top: 100px;
-  margin-bottom: 30px;
+  padding: 15px 20px; /* 调整内边距 */
+  margin-top: 5px;
+  margin-bottom: 20px;
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
   
   .el-dropdown {
     width: 100%;
@@ -208,22 +232,26 @@ $subMenuBg: #1e3a8a;
     width: 100%;
     display: flex;
     justify-content: space-between;
+    align-items: center; /* 垂直居中 */
+    margin-bottom: 8px; /* 增加下边距 */
     
     img {
-      width: 30px;
-      height: 30px;
+      width: 140px; /* 减小宽度 */
+      height: auto;
       border-radius: 2px;
     }
     
     .el-icon-caret-bottom {
       cursor: pointer;
       font-size: 12px;
+      margin-top: -5px; /* 向上调整位置 */
     }
   }
 
   .content {
     font-size: 12px;
-    margin: 10px 0;
+    margin: 5px 0; /* 减小边距 */
+    word-break: break-word; /* 防止文字溢出 */
   }
   
   .detail {
@@ -231,9 +259,10 @@ $subMenuBg: #1e3a8a;
     align-items: center;
     font-size: 12px;
     font-weight: 400;
+    margin-top: 8px; /* 增加上边距 */
     
     .conection {
-      width: auto;
+      min-width: 70px; /* 设置最小宽度 */
       height: 32px;
       padding: 0 12px;
       background: #f8f9fa;
@@ -245,6 +274,7 @@ $subMenuBg: #1e3a8a;
       cursor: pointer;
       margin-right: 8px;
       transition: all 0.2s ease;
+      text-align: center;
       
       &:hover {
         background: $menuHover;
@@ -253,6 +283,7 @@ $subMenuBg: #1e3a8a;
     }
 
     span {
+      flex: 1; /* 占据剩余空间 */
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
@@ -271,6 +302,7 @@ $subMenuBg: #1e3a8a;
   color: $menuText;
   margin-bottom: 10px;
   cursor: pointer;
+  transition: all 0.2s ease;
 
   &:hover {
     color: $menuActiveText;
@@ -287,7 +319,6 @@ $subMenuBg: #1e3a8a;
   background-color: $menuHover;
 }
 
-// 新增底部样式
 .sidebar-footer {
   padding: 20px;
   border-top: 1px solid #f1f1f1;
