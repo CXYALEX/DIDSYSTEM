@@ -3,10 +3,54 @@
     <!-- section III -->
     <section class="middle-section">
       <h2 class="middle-title">What is Web3polyu?</h2>
-      <p class="middle-additional-description">
-        <li><strong>Credential Management Platform:</strong> Enables institutions to issue privacy-preserving credentials with ZKP-enabled selective disclosure capabilities, supporting multiple revocation models</li>
-            <li><strong>Identity Wallet:</strong> Allows users to create self-sovereign identities, manage credentials locally, and conduct unlinkable authentication through decentralized identifiers (DIDs)</li>
-          Web3polyu is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>
+      <div class="middle-additional-description">
+    <p class="intro-paragraph">
+      Web3polyu is an <strong>open-source</strong> decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials.Our developed Web3polyu infrastructure empowers developers to further build compliant Web3 applications with:
+    </p>
+    
+    <div class="features-container">
+      <div class="feature-column">
+        <h3 class="feature-title">Fundamental Functions</h3>
+        <ul class="feature-list">
+          <li>
+            <span class="number">1</span>
+            <span class="feature-text"><strong>Multiple roles</strong>: issuer, user/holder, verifier</span>
+          </li>
+          <li>
+            <span class="number">2</span>
+            <span class="feature-text"><strong>DID</strong> creation and management</span>
+          </li>
+          <li>
+            <span class="number">3</span>
+            <span class="feature-text"><strong>Credential</strong> application and presentation</span>
+          </li>
+        </ul>
+      </div>
+      
+      <div class="feature-column">
+        <h3 class="feature-title">Advanced Security Features</h3>
+        <ul class="feature-list">
+          <li>
+            <span class="number">1</span>
+            <span class="feature-text">Zero-knowledge proofs</span>
+          </li>
+          <li>
+            <span class="number">2</span>
+            <span class="feature-text">BBS+ signatures</span>
+          </li>
+          <li>
+            <span class="number">3</span>
+            <span class="feature-text">LLM powered credentialengine</span>
+          </li>
+        </ul>
+      </div>
+    </div>
+    
+    <p class="intro-paragraph">
+      Our DID management methods ensure complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities. We enable truly <strong>user-controlled digital identities</strong> with cryptographic privacy guarantees.
+    </p>
+  </div>
+        <!-- Web3polyu is an open-source decentralized identity infrastructure revolutionizing Web3 privacy through AI-powered anonymous credentials. As the first platform combining zero-knowledge proofs, BBS+ signatures, and LLM intelligence, we enable truly user-controlled digital identities with cryptographic privacy guarantees. Our modular system empowers developers to build compliant Web3 applications while ensuring complete transaction unlinkability, dynamic credential management, and minimal data exposure through selective disclosure capabilities.</p>  -->
       <el-row :gutter="20" class="middle-feature-row">
         <!-- Card 1 -->
           <el-card class="middle-card">
@@ -693,13 +737,101 @@ export default {
   line-height: 1.2;
 }
 
-.middle-additional-description {
+/* Styling for the middle-additional-description */
+/* .middle-additional-description {
   max-width: 900px;
   font-size: 1.1rem;
   line-height: 1.7;
   margin: 0 auto 60px;
-  text-align: center;
+  text-align: left;
+} */
+.middle-additional-description {
+  max-width: 900px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  margin: 0 auto 50px;
+  text-align: left;
+  color: #444;
 }
+
+.intro-paragraph {
+  font-size: 1.2rem;
+  margin-bottom: 30px;
+  line-height: 1.8;
+}
+
+/* Feature Lists Styling */
+.features-container {
+  display: flex;
+  justify-content: space-between;
+  margin: 30px 0;
+  flex-wrap: wrap;
+}
+
+.feature-column {
+  flex: 1;
+  min-width: 300px;
+  margin: 0 15px 20px;
+  padding: 25px;
+  background-color: #fff;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+}
+
+.feature-title {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  color: #2a2a2a;
+  position: relative;
+  padding-bottom: 10px;
+}
+
+.feature-title::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 60px;
+  height: 3px;
+  background-color: #313ed1;
+}
+
+.feature-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  text-align: left;
+}
+
+.feature-list li {
+  margin-bottom: 15px;
+  padding-left: 30px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.feature-list li .number {
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 24px;
+  height: 24px;
+  background-color: #313ed1;
+  color: white;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.8rem;
+  font-weight: bold;
+}
+
+.feature-list li .feature-text {
+  display: inline-block;
+  vertical-align: middle;
+}
+
 
 /* Styling for the middle feature row (card container) */
 .middle-feature-row {
