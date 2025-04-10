@@ -395,124 +395,118 @@
   </div>
 </section>
 
-  <!-- Contact Section -->
-  <section class="contact-section">
-    <h2 class="section-title">Our Team</h2>
-    <p class="section-description">
-      Meet the talented individuals behind Web3polyu and get in touch with us for collaboration or inquiries.
-    </p>
-    
-    <div class="team-container">
-      <el-row :gutter="20">
-        <!-- Team Member 1 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Bin Xiao</h3>
-              <p class="team-role">Supervisor</p>
-              <p class="team-description">
-                Supervise the whole project.
-              </p>
-              <div class="contact-info">
-                <p><i class="el-icon-message"></i> b.xiao@polyu.edu.hk</p>
-              </div>
+  
+<!-- Contact Section -->
+<section class="contact-section">
+  <h2 class="section-title">Our Team</h2>
+  <p class="section-description">
+    Meet the talented individuals behind Web3polyu and get in touch with us for collaboration or inquiries.
+  </p>
+  
+  <div class="team-container">
+    <el-row :gutter="20">
+      <!-- Team Member 1 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Prof. Bin Xiao</h3>
+            <p class="team-role">Supervisor</p>
+            <p class="team-description">
+              Supervise the whole project.
+            </p>
+            <div class="contact-info">
+              <p><i class="el-icon-message"></i> b.xiao@polyu.edu.hk</p>
+              <p><i class="el-icon-link"></i> <a href="https://web.comp.polyu.edu.hk/csbxiao/activities.html" target="_blank">Personal Webpage</a></p>
             </div>
-          </el-card>
-        </el-col>
-        
-        <!-- Team Member 2 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Xuyuan Cai</h3>
-              <p class="team-role">Backend Developer</p>
-              <p class="team-description">
-                Responsible for the whole project and the backend development.
-              </p>
-              <div class="contact-info">
-                <!-- <p><i class="el-icon-message"></i> xuyuancai@polyu.edu.hk</p> -->
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-        
-
-        
-
-        <!-- Team Member 4 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Rui Song</h3>
-              <p class="team-role">Cryptography Specialist</p>
-              <p class="team-description">
-                Expert in anonymous credential cryptography implementation.
-              </p>
-              <div class="contact-info">
-                <!-- <p><i class="el-icon-message"></i> ruisong@polyu.edu.hk</p> -->
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-
-        <!-- Team Member 6 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Bowen Cui</h3>
-              <p class="team-role">Cryptography Specialist</p>
-              <p class="team-description">
-                Expert in zero-knowledge proofs.
-              </p>
-              <div class="contact-info">
-                <!-- <p><i class="el-icon-message"></i> bowencui@polyu.edu.hk</p> -->
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-        
-        <!-- Team Member 5 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Zixuan Wang</h3>
-              <p class="team-role">Frontend Developer</p>
-              <p class="team-description">
-                Responsible for frontend development.
-              </p>
-              <div class="contact-info">
-                <!-- <p><i class="el-icon-message"></i> zixuanwang@polyu.edu.hk</p> -->
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-
-        <!-- Team Member 3 -->
-        <el-col :span="8">
-          <el-card class="team-card">
-            
-            <div class="team-member-info">
-              <h3>Bin Xie</h3>
-              <p class="team-role">Cryptography Specialist</p>
-              <p class="team-description">
-                Expert in smart contract development.
-              </p>
-              <div class="contact-info">
-                <!-- <p><i class="el-icon-message"></i> binxie@polyu.edu.hk</p> -->
-              </div>
-            </div>
-          </el-card>
-        </el-col>
-
+          </div>
+        </el-card>
+      </el-col>
       
-      </el-row>
-    </div>
-  </section>
+      <!-- Team Member 2 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Xuyuan Cai</h3>
+            <p class="team-role">Backend Developer</p>
+            <p class="team-description">
+              Responsible for the whole project and the backend development.
+            </p>
+            <div class="contact-info">
+              <!-- <p><i class="el-icon-message"></i> xuyuancai@polyu.edu.hk</p> -->
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+      
+      <!-- Team Member 3 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Rui Song</h3>
+            <p class="team-role">Cryptography Specialist</p>
+            <p class="team-description">
+              Expert in anonymous credential cryptography implementation.
+            </p>
+            <div class="contact-info">
+              <!-- <p><i class="el-icon-message"></i> ruisong@polyu.edu.hk</p> -->
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+
+      <!-- Team Member 4 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Bowen Cui</h3>
+            <p class="team-role">Cryptography Specialist</p>
+            <p class="team-description">
+              Expert in zero-knowledge proofs.
+            </p>
+            <div class="contact-info">
+              <!-- <p><i class="el-icon-message"></i> bowencui@polyu.edu.hk</p> -->
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+      
+      <!-- Team Member 5 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Zixuan Wang</h3>
+            <p class="team-role">Frontend Developer</p>
+            <p class="team-description">
+              Responsible for frontend development.
+            </p>
+            <div class="contact-info">
+              <!-- <p><i class="el-icon-message"></i> zixuanwang@polyu.edu.hk</p> -->
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+
+      <!-- Team Member 6 -->
+      <el-col :xs="24" :sm="12" :md="8" :lg="8" :xl="8">
+        <el-card class="team-card">
+          <div class="team-member-info">
+            <h3>Bin Xie</h3>
+            <p class="team-role">Cryptography Specialist</p>
+            <p class="team-description">
+              Expert in smart contract development.
+            </p>
+            <div class="contact-info">
+              <!-- <p><i class="el-icon-message"></i> binxie@polyu.edu.hk</p> -->
+            </div>
+          </div>
+        </el-card>
+      </el-col>
+    </el-row>
+  </div>
+</section>
+
+
+
   </div>
 </template>
 
@@ -1029,6 +1023,7 @@ export default {
 }
 
 /* Contact Section */
+/* Contact Section */
 .contact-section {
   padding: 80px 20px;
   background-color: #f9f9f9;
@@ -1039,13 +1034,27 @@ export default {
   margin: 0 auto;
 }
 
+/* 关键修改: el-row需要设置为flex布局，确保每行卡片高度一致 */
+.team-container .el-row {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+/* 关键修改: 确保每个el-col高度一致 */
+.team-container .el-col {
+  display: flex;
+  margin-bottom: 30px;
+}
+
 .team-card {
-  height: 100%;
+  width: 100%; /* 确保卡片占据整个列宽 */
   border-radius: 10px;
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  margin-bottom: 30px;
+  /* 移除margin-bottom，因为已经在el-col上设置了 */
+  display: flex;
+  flex-direction: column;
 }
 
 .team-card:hover {
@@ -1053,20 +1062,12 @@ export default {
   box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
 }
 
-.team-member-photo {
-  height: 200px;
-  overflow: hidden;
-}
-
-.team-member-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
 .team-member-info {
   padding: 20px;
   text-align: left;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
 }
 
 .team-member-info h3 {
@@ -1091,7 +1092,7 @@ export default {
 }
 
 .contact-info {
-  margin-top: 10px;
+  margin-top: auto; /* 将联系信息推到底部 */
   font-size: 14px;
   color: #555;
 }
@@ -1106,6 +1107,24 @@ export default {
   margin-right: 8px;
   color: #081bec;
 }
+
+.contact-info a {
+  color: #081bec;
+  text-decoration: none;
+}
+
+.contact-info a:hover {
+  text-decoration: underline;
+}
+
+/* 响应式调整 */
+@media (max-width: 768px) {
+  .team-container .el-col {
+    margin-bottom: 20px;
+  }
+}
+
+
 
 /* Standalone Title outside the section */
 .standalone-title {

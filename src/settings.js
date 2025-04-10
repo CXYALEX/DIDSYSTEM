@@ -1,6 +1,6 @@
 module.exports = {
 
-  title: 'Vue Flask',
+  title: 'Web3polyu',
 
   /**
    * @type {boolean} true | false
