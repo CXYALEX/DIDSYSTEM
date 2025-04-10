@@ -1,5 +1,5 @@
 <template>
-  <div class="sidebar-container" :class="{ 'has-logo': showLogo }">
+  <div class="sidebar-container" :class="{ 'has-logo': showLogo, 'is-mobile': isMobile }">
     <!-- User Information Panel -->
     <div class="userInfo">
       <el-dropdown class="avatar-container" trigger="click">
@@ -34,7 +34,7 @@
       
       <div class="detail">
         <div class="conection" @click="connectWallet">Connect</div>
-        <span>{{ web3account ? web3account : "Connect your wallet" }}</span>
+        <div class="account-info">{{ web3account ? web3account : "Connect your wallet" }}</div>
       </div>
     </div>
 
@@ -121,6 +121,10 @@ export default {
     
     isCollapse() {
       return !this.sidebar.opened
+    },
+    
+    isMobile() {
+      return this.$store.state.app.device === 'mobile'
     }
   },
   
@@ -147,6 +151,10 @@ export default {
   methods: {
     handleRoute(item, index) {
       this.$router.push(item.children[0].path)
+      // 在移动端点击路由后自动关闭侧边栏
+      if (this.isMobile) {
+        this.$store.dispatch('app/closeSideBar')
+      }
     },
     
     async connectWallet() {
@@ -198,12 +206,86 @@ $menuText: #7c8394;
 $menuActiveText: #1e3a8a;
 $menuHover: #e8f0ff;
 $subMenuBg: #1e3a8a;
+$mobileSidebarWidth: 180px;
 
 .sidebar-container {
   height: 100%;
   display: flex;
   flex-direction: column;
-  position: relative;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  background: white;
+  width: 280px;
+  transition: all 0.3s;
+  z-index: 1001;
+  overflow-y: auto;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  
+  // 移动端适配
+  &.is-mobile {
+    width: $mobileSidebarWidth;
+    
+    .userInfo {
+      width: 100%;
+      padding: 10px;
+      
+      .title {
+        img {
+          width: 100px; // 移动端减小logo尺寸
+        }
+      }
+      
+      .detail {
+        flex-direction: column;
+        align-items: flex-start;
+        
+        .conection {
+          margin-bottom: 5px;
+          width: 80px;
+        }
+        
+        .account-info {
+          font-size: 10px;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          max-width: 100%;
+        }
+      }
+    }
+    
+    .contentR {
+      padding: 10px;
+      
+      .rout {
+        padding: 8px;
+        height: 36px;
+        margin-bottom: 8px;
+        
+        .name {
+          font-size: 12px;
+        }
+      }
+    }
+    
+    .sidebar-footer {
+      padding: 10px;
+      
+      .footer-item {
+        padding: 8px;
+        
+        svg-icon {
+          font-size: 14px;
+        }
+        
+        span {
+          font-size: 12px;
+        }
+      }
+    }
+  }
 }
 
 .contentR {
@@ -214,10 +296,10 @@ $subMenuBg: #1e3a8a;
 
 .userInfo {
   width: 280px;
-  min-height: 130px; /* 改为min-height防止内容溢出 */
+  min-height: 130px;
   border: 1px solid #f1f1f1;
   color: #687083;
-  padding: 15px 20px; /* 调整内边距 */
+  padding: 15px 20px;
   margin-top: 5px;
   margin-bottom: 20px;
   border-radius: 10px;
@@ -232,11 +314,11 @@ $subMenuBg: #1e3a8a;
     width: 100%;
     display: flex;
     justify-content: space-between;
-    align-items: center; /* 垂直居中 */
-    margin-bottom: 8px; /* 增加下边距 */
+    align-items: center;
+    margin-bottom: 8px;
     
     img {
-      width: 140px; /* 减小宽度 */
+      width: 140px;
       height: auto;
       border-radius: 2px;
     }
@@ -244,14 +326,14 @@ $subMenuBg: #1e3a8a;
     .el-icon-caret-bottom {
       cursor: pointer;
       font-size: 12px;
-      margin-top: -5px; /* 向上调整位置 */
+      margin-top: -5px;
     }
   }
 
   .content {
     font-size: 12px;
-    margin: 5px 0; /* 减小边距 */
-    word-break: break-word; /* 防止文字溢出 */
+    margin: 5px 0;
+    word-break: break-word;
   }
   
   .detail {
@@ -259,10 +341,10 @@ $subMenuBg: #1e3a8a;
     align-items: center;
     font-size: 12px;
     font-weight: 400;
-    margin-top: 8px; /* 增加上边距 */
+    margin-top: 8px;
     
     .conection {
-      min-width: 70px; /* 设置最小宽度 */
+      min-width: 70px;
       height: 32px;
       padding: 0 12px;
       background: #f8f9fa;
@@ -282,11 +364,12 @@ $subMenuBg: #1e3a8a;
       }
     }
 
-    span {
-      flex: 1; /* 占据剩余空间 */
+    .account-info {
+      flex: 1;
       white-space: nowrap;
       overflow: hidden;
       text-overflow: ellipsis;
+      max-width: 180px;
     }
   }
 }
@@ -311,6 +394,9 @@ $subMenuBg: #1e3a8a;
 
   .name {
     margin-left: 10px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
   }
 }
 
@@ -347,6 +433,7 @@ $subMenuBg: #1e3a8a;
     span {
       margin-left: 10px;
       font-size: 14px;
+      white-space: nowrap;
     }
 
     &:last-child {
