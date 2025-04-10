@@ -1,12 +1,14 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
+    <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
     <sidebar class="sidebar-container" />
     <div class="main-container">
-      <div class="content-wrapper">
-        <app-main />
-      </div>
-    </div>
+  <!-- 新增内容包裹层 -->
+  <div class="content-wrapper">
+    <app-main />
+  </div>
+</div>
+
   </div>
 </template>
 
@@ -37,8 +39,8 @@ export default {
     },
     classObj() {
       return {
-        hideSidebar: !this.sidebar.opened,
-        openSidebar: this.sidebar.opened,
+        // hideSidebar: !this.sidebar.opened,
+        openSidebar: true,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
@@ -55,19 +57,40 @@ export default {
 <style lang="scss" scoped>
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
-  
+  .userInfo {
+    width: 280px;
+    height: 130px;
+    border: 1px solid #f1f1f1;
+    color: #687083;
+    padding: 20px;
+    .title {
+      display: flex;
+      justify-content: space-between;
+    }
+    .content {
+      margin: 10px 0;
+    }
+    .detail {
+      div {
+        width: 50px;
+        height: 30px;
+        text-align: center;
+        line-height: 30px;
+        border: 1px solid #f1f1f1;
+        border-radius: 5px;
+      }
+    }
+  }
   .app-wrapper {
     @include clearfix;
     position: relative;
     height: 100%;
     width: 100%;
-    
-    &.mobile.openSidebar {
+    &.mobile.openSidebar{
       position: fixed;
       top: 0;
     }
   }
-  
   .drawer-bg {
     background: #000;
     opacity: 0.3;
@@ -94,62 +117,39 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
-  
   .main-container {
-    background-color: #f9fafb;
-    margin-left: $sideBarWidth;
-    transition: margin-left 0.28s;
-    min-height: 100vh;
+  // 保持原有布局逻辑
+  background-color: #f9fafb;
+  margin-left: $sideBarWidth;
+  transition: margin 0.28s;
+
+  // 新增弹性布局保证高度撑满
+  display: flex;
+  min-height: calc(100vh - 60px); // 根据实际头部高度调整
+
+  .content-wrapper {
+    width: 100%;
+    max-width: 1200px;    // 控制最大内容宽度
+    margin: 0 auto;       // 水平居中
+    padding: 20px;        // 内容边距
     
-    // 移动端适配
-    .mobile & {
+    // 响应式处理
+    @media (max-width: 992px) {
+      max-width: 90%;
+      padding: 15px;
+    }
+    @media (max-width: 768px) {
+      max-width: 100%;
+      padding: 10px;
+    }
+  }
+  
+  // 移动端适配
+  &.mobile {
+    .content-wrapper {
       margin-left: 0;
     }
-    
-    // 当隐藏侧边栏时
-    .hideSidebar & {
-      margin-left: 54px;
-      
-      @media (max-width: 768px) {
-        margin-left: 0;
-      }
-    }
+  }
+}
 
-    .content-wrapper {
-      width: 100%;
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 20px;
-      
-      @media (max-width: 992px) {
-        max-width: 96%;
-        padding: 15px;
-      }
-      
-      @media (max-width: 768px) {
-        max-width: 100%;
-        padding: 10px;
-      }
-    }
-  }
-  
-  // 移动端侧边栏样式调整
-  .mobile {
-    .sidebar-container {
-      width: 180px !important; // 移动端时侧边栏宽度更小
-      transform: translateX(-100%);
-      transition: transform 0.3s ease;
-    }
-    
-    &.openSidebar {
-      .sidebar-container {
-        transform: translateX(0);
-      }
-      
-      .main-container {
-        position: relative;
-        transform: translateX(180px); // 与侧边栏宽度匹配
-      }
-    }
-  }
 </style>
