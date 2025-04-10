@@ -10,6 +10,17 @@ body {
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
   font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* 防止横向滚动 */
+  font-size: 16px; /* 基础字体大小 */
+}
+
+/* 响应式字体大小 */
+@media (max-width: 768px) {
+  body {
+    font-size: 14px; /* 移动设备上字体略小 */
+  }
 }
 
 label {
@@ -19,6 +30,7 @@ label {
 html {
   height: 100%;
   box-sizing: border-box;
+  -webkit-tap-highlight-color: transparent; /* 移动端点击时不显示高亮 */
 }
 
 #app {
@@ -29,6 +41,8 @@ html {
 *:before,
 *:after {
   box-sizing: inherit;
+  margin: 0;
+  padding: 0;
 }
 
 a:focus,
@@ -59,7 +73,152 @@ div:focus {
   }
 }
 
-// main-container global css
+/* 添加触摸反馈效果，适用于移动设备 */
+@media (pointer: coarse) {
+  .touch-feedback:active {
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+}
+
+/* 主容器响应式样式 */
 .app-container {
   padding: 20px;
+  max-width: 100%;
+  margin: 0 auto;
+  
+  @media (max-width: 992px) {
+    padding: 15px;
+  }
+  
+  @media (max-width: 768px) {
+    padding: 10px;
+  }
+}
+
+/* 响应式网格布局 */
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 20px;
+  
+  @media (max-width: 768px) {
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 15px;
+  }
+  
+  @media (max-width: 480px) {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+}
+
+/* 弹性布局辅助类 */
+.flex-row {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.flex-center {
+  justify-content: center;
+  align-items: center;
+}
+
+.flex-between {
+  justify-content: space-between;
+}
+
+/* 响应式间距类 */
+.m-auto {
+  margin: 0 auto;
+}
+
+.mt-1 {
+  margin-top: 0.25rem;
+}
+
+.mt-2 {
+  margin-top: 0.5rem;
+}
+
+.mt-3 {
+  margin-top: 1rem;
+}
+
+.mb-1 {
+  margin-bottom: 0.25rem;
+}
+
+.mb-2 {
+  margin-bottom: 0.5rem;
+}
+
+.mb-3 {
+  margin-bottom: 1rem;
+}
+
+/* 响应式可见性类 */
+.desktop-only {
+  @media (max-width: 768px) {
+    display: none !important;
+  }
+}
+
+.mobile-only {
+  display: none !important;
+  
+  @media (max-width: 768px) {
+    display: block !important;
+  }
+}
+
+/* 针对移动设备的触摸区域优化 */
+.touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* 安全区域处理（适用于全面屏手机） */
+@supports (padding: env(safe-area-inset-bottom)) {
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+}
+
+/* 响应式表格 */
+.responsive-table {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* 移动设备上固定菜单按钮 */
+.mobile-menu-trigger {
+  display: none;
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  width: 50px;
+  height: 50px;
+  background: var(--primary-color, #1e3a8a);
+  color: white;
+  border-radius: 50%;
+  z-index: 1000;
+  justify-content: center;
+  align-items: center;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  
+  @media (max-width: 768px) {
+    display: flex;
+  }
 }
