@@ -1,14 +1,13 @@
 #app {
-
   .main-container {
     min-height: 100%;
-    // transition: margin-left .28s;
+    transition: margin-left .28s;
     margin-left: $sideBarWidth;
     position: relative;
   }
 
   .sidebar-container {
-    // transition: width 0.28s;
+    transition: width 0.28s, transform 0.28s;
     width: $sideBarWidth !important;
     background-color: $menuBg;
     height: 100%;
@@ -19,10 +18,11 @@
     left: 0;
     z-index: 1001;
     overflow: hidden;
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
 
     // reset element-ui css
     .horizontal-collapse-transition {
-      // transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
+      transition: 0s width ease-in-out, 0s padding-left ease-in-out, 0s padding-right ease-in-out;
     }
 
     .scrollbar-wrapper {
@@ -89,67 +89,153 @@
         background-color: $subMenuHover !important;
       }
     }
+    
+    // 添加响应式样式
+    @media (max-width: 1200px) {
+      width: 240px !important;
+      
+      & .nest-menu .el-submenu>.el-submenu__title,
+      & .el-submenu .el-menu-item {
+        min-width: 240px !important;
+      }
+    }
+    
+    @media (max-width: 992px) {
+      width: 220px !important;
+      
+      & .nest-menu .el-submenu>.el-submenu__title,
+      & .el-submenu .el-menu-item {
+        min-width: 220px !important;
+      }
+      
+      .svg-icon {
+        margin-right: 12px;
+      }
+    }
+    
+    @media (max-width: 768px) {
+      width: 64px !important;
+      
+      .el-submenu__title span,
+      .el-menu-item span {
+        display: none;
+      }
+      
+      .svg-icon {
+        margin-right: 0;
+        margin-left: 0;
+      }
+      
+      .el-submenu__icon-arrow {
+        display: none !important;
+      }
+    }
+  }
+
+  // 修改主内容区域的响应式布局
+  @media (max-width: 1200px) {
+    .main-container {
+      margin-left: 240px;
+    }
+  }
+  
+  @media (max-width: 992px) {
+    .main-container {
+      margin-left: 220px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .main-container {
+      margin-left: 64px;
+    }
   }
 
   .hideSidebar {
-    // .sidebar-container {
-    //   width: 54px !important;
-    // }
+    .sidebar-container {
+      width: 64px !important;
+      
+      .el-submenu__title span,
+      .el-menu-item span {
+        display: none;
+      }
+      
+      .svg-icon {
+        margin-right: 0;
+        margin-left: 16px;
+      }
+      
+      .el-submenu__icon-arrow {
+        display: none !important;
+      }
+      
+      @media (max-width: 768px) {
+        transform: translateX(-64px);
+        
+        .svg-icon {
+          margin-left: 16px;
+        }
+      }
+    }
 
-    // .main-container {
-    //   margin-left: 54px;
-    // }
+    .main-container {
+      margin-left: 64px;
+      
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
 
-    // .submenu-title-noDropdown {
-    //   padding: 0 !important;
-    //   position: relative;
+    .submenu-title-noDropdown {
+      padding: 0 !important;
+      position: relative;
 
-    //   .el-tooltip {
-    //     padding: 0 !important;
+      .el-tooltip {
+        padding: 0 !important;
 
-    //     .svg-icon {
-    //       margin-left: 20px;
-    //     }
+        .svg-icon {
+          margin-left: 20px;
+        }
 
-    //     .sub-el-icon {
-    //       margin-left: 19px;
-    //     }
-    //   }
-    // }
+        .sub-el-icon {
+          margin-left: 19px;
+        }
+      }
+    }
 
-    // .el-submenu {
-    //   overflow: hidden;
+    .el-submenu {
+      overflow: hidden;
 
-    //   &>.el-submenu__title {
-    //     padding: 0 !important;
+      &>.el-submenu__title {
+        padding: 0 !important;
 
-    //     .svg-icon {
-    //       margin-left: 20px;
-    //     }
+        .svg-icon {
+          margin-left: 20px;
+        }
 
-    //     .sub-el-icon {
-    //       margin-left: 19px;
-    //     }
+        .sub-el-icon {
+          margin-left: 19px;
+        }
 
-    //     .el-submenu__icon-arrow {
-    //       display: none;
-    //     }
-    //   }
-    // }
+        .el-submenu__icon-arrow {
+          display: none;
+        }
+      }
+    }
 
-    // .el-menu--collapse {
-    //   .el-submenu {
-    //     &>.el-submenu__title {
-    //       &>span {
-    //         height: 0;
-    //         width: 0;
-    //         overflow: hidden;
-    //         visibility: hidden;
-    //         display: inline-block;
-    //       }
-    //     }
-    //   }
-    // }
+    .el-menu--collapse {
+      .el-submenu {
+        &>.el-submenu__title {
+          &>span {
+            height: 0;
+            width: 0;
+            overflow: hidden;
+            visibility: hidden;
+            display: inline-block;
+          }
+        }
+      }
+    }
   }
 
   .el-menu--collapse .el-menu .el-submenu {
@@ -165,6 +251,28 @@
     .sidebar-container {
       transition: transform .28s;
       width: $sideBarWidth !important;
+      transform: translate3d(-$sideBarWidth, 0, 0);
+      
+      @media (max-width: 992px) {
+        width: 220px !important;
+        transform: translate3d(-220px, 0, 0);
+      }
+      
+      @media (max-width: 768px) {
+        width: 200px !important;
+        transform: translate3d(-200px, 0, 0);
+      }
+      
+      @media (max-width: 576px) {
+        width: 180px !important;
+        transform: translate3d(-180px, 0, 0);
+      }
+    }
+
+    &.openSidebar {
+      .sidebar-container {
+        transform: translate3d(0, 0, 0);
+      }
     }
 
     &.hideSidebar {
@@ -177,7 +285,6 @@
   }
 
   .withoutAnimation {
-
     .main-container,
     .sidebar-container {
       transition: none;
@@ -222,5 +329,39 @@
       background: #99a9bf;
       border-radius: 20px;
     }
+  }
+  
+  // 响应式调整菜单弹出层
+  @media (max-width: 992px) {
+    &>.el-menu--popup {
+      max-width: 220px;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    &>.el-menu--popup {
+      max-width: 200px;
+    }
+  }
+  
+  @media (max-width: 576px) {
+    &>.el-menu--popup {
+      max-width: 180px;
+    }
+  }
+}
+
+// 添加汉堡菜单按钮样式
+.hamburger-container {
+  padding: 0 15px;
+  height: 50px;
+  display: flex;
+  align-items: center;
+  cursor: pointer;
+  transition: background .3s;
+  -webkit-tap-highlight-color:transparent;
+  
+  &:hover {
+    background: rgba(0, 0, 0, .025);
   }
 }
