@@ -1,14 +1,13 @@
 <template>
   <div :class="classObj" class="app-wrapper">
-    <!-- <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" /> -->
+    <div v-if="device==='mobile'&&sidebar.opened" class="drawer-bg" @click="handleClickOutside" />
     <sidebar class="sidebar-container" />
     <div class="main-container">
-  <!-- 新增内容包裹层 -->
-  <div class="content-wrapper">
-    <app-main />
-  </div>
-</div>
-
+      <!-- 内容包裹层 -->
+      <div class="content-wrapper">
+        <app-main />
+      </div>
+    </div>
   </div>
 </template>
 
@@ -39,8 +38,8 @@ export default {
     },
     classObj() {
       return {
-        // hideSidebar: !this.sidebar.opened,
-        openSidebar: true,
+        hideSidebar: !this.sidebar.opened,
+        openSidebar: this.sidebar.opened,
         withoutAnimation: this.sidebar.withoutAnimation,
         mobile: this.device === 'mobile'
       }
@@ -57,6 +56,7 @@ export default {
 <style lang="scss" scoped>
   @import "~@/styles/mixin.scss";
   @import "~@/styles/variables.scss";
+  
   .userInfo {
     width: 280px;
     height: 130px;
@@ -81,16 +81,19 @@ export default {
       }
     }
   }
+  
   .app-wrapper {
     @include clearfix;
     position: relative;
     height: 100%;
     width: 100%;
-    &.mobile.openSidebar{
+    
+    &.mobile.openSidebar {
       position: fixed;
       top: 0;
     }
   }
+  
   .drawer-bg {
     background: #000;
     opacity: 0.3;
@@ -117,39 +120,69 @@ export default {
   .mobile .fixed-header {
     width: 100%;
   }
-  .main-container {
-  // 保持原有布局逻辑
-  background-color: #f9fafb;
-  margin-left: $sideBarWidth;
-  transition: margin 0.28s;
-
-  // 新增弹性布局保证高度撑满
-  display: flex;
-  min-height: calc(100vh - 60px); // 根据实际头部高度调整
-
-  .content-wrapper {
-    width: 100%;
-    max-width: 1200px;    // 控制最大内容宽度
-    margin: 0 auto;       // 水平居中
-    padding: 20px;        // 内容边距
+  
+  .sidebar-container {
+    transition: width 0.28s;
+    width: $sideBarWidth !important;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1001;
+    overflow: hidden;
     
-    // 响应式处理
-    @media (max-width: 992px) {
-      max-width: 90%;
-      padding: 15px;
-    }
+    // 移动端适配
     @media (max-width: 768px) {
-      max-width: 100%;
-      padding: 10px;
+      width: 0 !important; // 默认隐藏侧边栏
+      
+      .openSidebar & {
+        width: 210px !important; // 移动端打开时侧边栏宽度
+      }
     }
   }
   
-  // 移动端适配
-  &.mobile {
-    .content-wrapper {
+  .main-container {
+    background-color: #f9fafb;
+    margin-left: $sideBarWidth;
+    transition: margin-left 0.28s;
+    min-height: 100vh;
+    
+    // 移动端适配
+    @media (max-width: 768px) {
       margin-left: 0;
     }
-  }
-}
+    
+    // 当隐藏侧边栏时
+    .hideSidebar & {
+      margin-left: 54px; 
+      
+      @media (max-width: 768px) {
+        margin-left: 0;
+      }
+    }
+    
+    // 当在移动端打开侧边栏时
+    .mobile.openSidebar & {
+      margin-left: 0;
+      transform: translateX(210px); // 与移动端侧边栏宽度相同
+    }
 
+    .content-wrapper {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      padding: 20px;
+      
+      // 响应式处理
+      @media (max-width: 992px) {
+        max-width: 96%;
+        padding: 15px;
+      }
+      
+      @media (max-width: 768px) {
+        max-width: 100%;
+        padding: 10px;
+      }
+    }
+  }
 </style>
