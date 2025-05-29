@@ -55,8 +55,36 @@ export const getDIDs = async (userId) => {
     });
 };
 
+// // 获取所有DID ID
+// export const getAllDIDIds = async (userId) => {
+//     const db = await openDB(userId);
+//     const transaction = db.transaction(DID_STORE_NAME, 'readonly');
+//     const store = transaction.objectStore(DID_STORE_NAME);
+//     const request = store.getAll();
+
+//     return new Promise((resolve, reject) => {
+//         request.onsuccess = (event) => {
+//             // 提取所有的 did.id
+//             const dids = event.target.result;
+//             const didIds = dids.map(did => did.id);
+//             resolve(didIds); // 返回 did.id 的列表
+//         };
+//         request.onerror = () => reject('获取DID ID列表失败');
+//     });
+// };
 // 获取所有DID ID
 export const getAllDIDIds = async (userId) => {
+    // 判断是否为测试账号（test-开头）
+    if (userId && userId.startsWith('test-')) {
+        // 测试账号直接返回预定义的DID IDs
+        const didIds = [
+            `did:${userId}:123`,
+            `did:${userId}:456`
+        ];
+        return didIds;
+    }
+
+    // 非测试账号，正常从数据库获取
     const db = await openDB(userId);
     const transaction = db.transaction(DID_STORE_NAME, 'readonly');
     const store = transaction.objectStore(DID_STORE_NAME);

@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import { saveDID, getDIDs, deleteDID } from "@/utils/indexedDB"; // IndexedDB 工具
+import { saveDID, getAllDIDIds, deleteDID } from "@/utils/indexedDB"; // IndexedDB 工具
 import detectEthereumProvider from "@metamask/detect-provider";
 import { VDRContract } from "@/utils/interactVDR";
 
@@ -75,10 +75,21 @@ export default {
     },
     methods: {
         async handleAdd() {
+            // 判断是否为测试账号（test-开头）
+            if (this.$store.getters.name && this.$store.getters.name.startsWith('test-')) {
+                this.$message({
+                    type: 'warning',
+                    message: 'The current account is a test account and does not support this function.'
+                });
+                return; // 直接返回，不执行后续操作
+            }
+            
+            // 非测试账号，执行正常的添加操作
             this.centerDialogVisible = true;
             this.title = "New Decentralized Identity";
             this.resetForm();
         },
+
 
         async save() {
             try {
@@ -103,12 +114,20 @@ export default {
                 this.didDocument = JSON.stringify(didDocument, null, 2); // 格式化为字符串并缩进
                 this.didDocumentDialogVisible = true;
             } catch (error) {
-                console.error("Failed to fetch DID document:", error);
+                console.error("Failed to fetch DID document:",   error);
                 this.$message.error("Get DID Document Failure");
             }
         },
 
         handleDelete(index, row) {
+            // 判断是否为测试账号（test-开头）
+            if (this.$store.getters.name && this.$store.getters.name.startsWith('test-')) {
+                this.$message({
+                    type: 'warning',
+                    message: 'The current account is a test account and does not support this function.'
+                });
+                return; // 直接返回，不执行后续操作
+            }
             deleteDID(this.$store.getters.name, row.id)
                 .then(() => {
                     this.$message.success("Delete Success");
@@ -119,15 +138,27 @@ export default {
                 });
         },
 
+        // getDIDList() {
+        //     getDIDs(this.$store.getters.name)
+        //         .then((dids) => {
+        //             this.tableData = dids;
+        //         })
+        //         .catch(() => {
+        //             this.$message.error("Get DID List Failed");
+        //         });
+        // },
         getDIDList() {
-            getDIDs(this.$store.getters.name)
-                .then((dids) => {
-                    this.tableData = dids;
+            getAllDIDIds(this.$store.getters.name)  // 改为 getAllDIDIds
+                .then((didIds) => {
+                    // 将字符串数组转换为对象数组
+                    this.tableData = didIds.map(id => ({ id }));
                 })
                 .catch(() => {
                     this.$message.error("Get DID List Failed");
                 });
         },
+
+
 
         cancel() {
             this.centerDialogVisible = false;

@@ -28,3 +28,18 @@ export function getTemplateDetailByName(name) {
         method: 'get',
     })
 }
+
+// 新增：根据发行者ID查询模板列表
+export function getTemplateListByIssuerID(issuerId) {
+    return request({
+        url: `/templates/searchbyissuerid/${issuerId}`,
+        method: 'get',
+    })
+}
+
+export function deleteTemplateById(id) {
+    return request({
+        url: `/templates/${id}`,
+        method: 'delete',
+    })
+}

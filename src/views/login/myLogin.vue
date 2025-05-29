@@ -9,6 +9,29 @@
                 <!-- <h3 class="title">DID Management System</h3> -->
                 <h3 class="title">Log in</h3>
                 <h3 class="title1">New to Web3Polyu? <span @click="flagControl = !flagControl">Sign up</span></h3>
+                
+                <!-- 测试账号说明 -->
+                <div class="test-accounts">
+                    <div class="test-accounts-header">
+                        <i class="el-icon-info"></i>
+                        <span>Test Accounts</span>
+                    </div>
+                    <div class="test-accounts-list">
+                        <div class="account-item">
+                            <span class="role-label issuer">Issuer</span>
+                            <span class="account-info" @click="fillTestAccount('test-issuer', 'test-issuer')">test-issuer / test-issuer</span>
+                        </div>
+                        <div class="account-item">
+                            <span class="role-label holder">Holder</span>
+                            <span class="account-info" @click="fillTestAccount('test-holder', 'test-holder')">test-holder / test-holder</span>
+                        </div>
+                        <div class="account-item">
+                            <span class="role-label verifier">Verifier</span>
+                            <span class="account-info" @click="fillTestAccount('test-verifier', 'test-verifier')">test-verifier / test-verifier</span>
+                        </div>
+                    </div>
+                </div>
+
                 <el-form-item prop="username">
                     <el-input v-model="loginForm.username" type="text" auto-complete="off" placeholder="Account">
                         <svg-icon slot="prefix" icon-class="user" class="el-input__icon input-icon" />
@@ -32,13 +55,6 @@
                         <span v-else>Logging in...</span>
                     </el-button>
                 </el-form-item>
-
-                <!-- 添加的注册按钮 -->
-                <!-- <el-form-item style="width: 100%;">
-                    <el-button size="medium" type="info" style="width:100%;" @click.prevent="goToRegister">
-                        Register
-                    </el-button>
-                </el-form-item> -->
 
                 <!--  底部  -->
                 <div class="el-login-footer">
@@ -68,11 +84,6 @@
                 </el-form-item>
 
                 <div class="title1">Role Select</div>
-                <!-- <el-select v-model="registerForm.role" name="role" required>
-                    <el-option value="issuer">Issuer</el-option>
-                    <el-option value="holder">Holder</el-option>
-                    <el-option value="verifier">Verifier</el-option>
-                </el-select> -->
                 <el-form-item style="width: 100%;" prop="Role">
                     <el-select v-model="registerForm.role" name="role" required>
                         <el-option value="issuer">Issuer</el-option>
@@ -86,11 +97,6 @@
                         <span v-else>Registering...</span>
                     </el-button>
                 </el-form-item>
-                <!-- <el-form-item style="width: 100%;">
-                    <el-button size="medium" type="info" style="width: 100%;" @click="goToLogin">
-                        Back to Login
-                    </el-button>
-                </el-form-item> -->
 
                 <!--  底部  -->
                 <div class="el-login-footer">
@@ -105,8 +111,6 @@
 
 <script>
 import { validUsername } from "@/utils/validate";
-
-
 
 export default {
     name: "Login",
@@ -186,6 +190,11 @@ export default {
                 this.$refs.password.focus();
             });
         },
+        // 新增方法：填充测试账号
+        fillTestAccount(username, password) {
+            this.loginForm.username = username;
+            this.loginForm.password = password;
+        },
         handleLogin() {
             console.log("跳转到登录页面");
             this.$refs.loginForm.validate(valid => {
@@ -230,7 +239,6 @@ export default {
                         password: this.registerForm.password,
                         role_id: roleValue, // Send the role value
                     };
-                    console.log("123");
                     // Dispatch the register action from Vuex
                     this.$store
                         .dispatch("user/register", userInfo) // Trigger Vuex action: user/register
@@ -311,6 +319,81 @@ $light_gray: #eee;
             color: rgba(51, 64, 206);
         }
     }
+    
+    // 测试账号样式
+    .test-accounts {
+        background: #f8f9fa;
+        border: 1px solid #e9ecef;
+        border-radius: 8px;
+        padding: 15px;
+        margin-bottom: 20px;
+        
+        .test-accounts-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+            font-size: 14px;
+            font-weight: 600;
+            color: #495057;
+            
+            i {
+                margin-right: 5px;
+                color: rgba(51, 64, 206);
+            }
+        }
+        
+        .test-accounts-list {
+            .account-item {
+                display: flex;
+                align-items: center;
+                margin-bottom: 8px;
+                
+                &:last-child {
+                    margin-bottom: 0;
+                }
+                
+                .role-label {
+                    display: inline-block;
+                    padding: 2px 8px;
+                    border-radius: 12px;
+                    font-size: 11px;
+                    font-weight: 500;
+                    min-width: 60px;
+                    text-align: center;
+                    margin-right: 10px;
+                    
+                    &.issuer {
+                        background: #e3f2fd;
+                        color: #1976d2;
+                    }
+                    
+                    &.holder {
+                        background: #e8f5e8;
+                        color: #388e3c;
+                    }
+                    
+                    &.verifier {
+                        background: #fff3e0;
+                        color: #f57c00;
+                    }
+                }
+                
+                .account-info {
+                    font-size: 12px;
+                    color: #6c757d;
+                    cursor: pointer;
+                    font-family: 'Courier New', monospace;
+                    transition: all 0.2s ease;
+                    
+                    &:hover {
+                        color: rgba(51, 64, 206);
+                        text-decoration: underline;
+                    }
+                }
+            }
+        }
+    }
+    
     .el-login-footer {
         font-size: 12px;
         color: #889aa4;

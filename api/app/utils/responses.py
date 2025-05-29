@@ -68,6 +68,17 @@ SUCCESS_204 = {
     'code': 'success'
 }
 
+NOT_FOUND_TEMPLATE_404 = {
+    'http_code': 404,
+    "code": "notFound",
+    "message": "template not found"
+}
+
+NOT_FOUND_TEMPLATE_206 = {
+    'http_code': 206,
+    'code': 'success'
+}
+
 
 def response_with(response, value=None, message=None, error=None, headers={}, pagination=None):
     result = {}

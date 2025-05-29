@@ -56,7 +56,7 @@ export const constantRoutes = [
   
 ]
 
-// 在 asyncRoutes 中添加图书管理的路由
+// 在 asyncRoutes 中添加
 export const asyncRoutes = [
   {
     path: '/',
@@ -99,12 +99,25 @@ export const asyncRoutes = [
     component: Layout,
     //redirect: '/dashboard',
     children: [{
+      path: 'applying',
+      name: 'applying',
+      component: () => import('@/views/applying/index'),
+      meta: { title: 'Applying', icon: 'form', roles: [2] }
+    }]
+  },
+
+  {
+    path: '/',
+    component: Layout,
+    //redirect: '/dashboard',
+    children: [{
       path: 'credentials',
       name: 'credentials',
       component: () => import('@/views/credentials/index'),
       meta: { title: 'Credential', icon: 'tree', roles: [2] }
     }]
   },
+  
 
   {
     path: '/',

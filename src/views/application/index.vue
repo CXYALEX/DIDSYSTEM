@@ -43,8 +43,6 @@ import { getAllDIDIds } from "@/utils/indexedDB"; // 获取 DID 列表工具
 import { getApplicationsList, updateApplicationStatusToCompleted, updateApplicationStatusToRejected, updateApplicationStatusToRevoked } from "@/api/application"; // Application 操作接口
 import { registerCredential, revokeCredential, registerRevocationList } from "@/api/credentials"; // Revocation 操作接口
 import { getTemplateDetailById } from "@/api/template";
-//import { Bls12381G2KeyPair, BbsBlsSignature2020 } from "@mattrglobal/jsonld-signatures-bbs";
-//import { Bls12381G2KeyPair, BbsBlsSignature2020 } from "@mattrglobal/jsonld-signatures-bbs";
 import { Bls12381G2KeyPair, BbsBlsSignature2020 } from "@/utils/signature/index";
 import { extendContextLoader, sign, purposes } from "jsonld-signatures";
 import { VDRContract } from "@/utils/interactVDR";
@@ -174,6 +172,14 @@ export default {
 
     // 撤销 Application
     async revokeApplication(application) {
+      // 判断是否为测试账号（test-开头）
+      if (this.$store.getters.name && this.$store.getters.name.startsWith('test-')) {
+          this.$message({
+              type: 'warning',
+              message: 'The current account is a test account and does not support this function.'
+          });
+          return; // 直接返回，不执行后续操作
+      }
       try {
         const receipt = await this.contract.revoke(
           this.$store.state.web3.web3account,
@@ -192,6 +198,14 @@ export default {
 
     // 注册撤销列表
     async registerRevocationList() {
+      // 判断是否为测试账号（test-开头）
+      if (this.$store.getters.name && this.$store.getters.name.startsWith('test-')) {
+          this.$message({
+              type: 'warning',
+              message: 'The current account is a test account and does not support this function.'
+          });
+          return; // 直接返回，不执行后续操作
+      }
       try {
         // 确保钱包已连接
         if (!this.$store.state.web3.web3account) {

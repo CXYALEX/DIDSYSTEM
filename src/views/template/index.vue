@@ -20,6 +20,7 @@
         </template>
       </el-table-column>
       <el-table-column prop="name" label="Template Name"></el-table-column>
+      <el-table-column prop="issuer_id" label="Issuer ID"></el-table-column>
       <el-table-column label="Operation" width="180" align="center">
         <template slot-scope="scope">
           <el-button size="mini" @click="handleViewTemplate(scope.row)">View</el-button>
@@ -62,9 +63,9 @@
 </template>
 
 <script>
-import { saveTemplate, getTemplates, deleteTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
+import { getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
 import { createTemplate } from "@/utils/bbs-utils"; //bbs工具
-import { registerTemplate } from "@/api/template";
+import { registerTemplate,getTemplateListByIssuerID,deleteTemplateById} from "@/api/template";
 
 export default {
   data() {
@@ -111,7 +112,6 @@ export default {
         registerTemplate(templateToSave)
           .then(res => {
             if (res.code === "success") {
-              saveTemplate(this.$store.getters.name, templateToSave); // Save to IndexedDB
               this.$message.success("Template saved successfully");
               this.getTemplateList();
               this.centerDialogVisible = false;
@@ -124,10 +124,6 @@ export default {
             this.$message.error("服务端异常，请联系管理员解决。");
           });
 
-        // await saveTemplate(this.$store.getters.name, templateToSave); // Save to IndexedDB
-        // this.$message.success("Template saved successfully");
-        // this.getTemplateList();
-        // this.centerDialogVisible = false;
       } catch (error) {
         console.error("Failed to save template:", error);
         this.$message.error("Failed to save template. Please check your JSON format.");
@@ -139,26 +135,88 @@ export default {
       this.templateDocumentDialogVisible = true;
     },
 
-    handleDelete(index, row) {
-      deleteTemplate(this.$store.getters.name, row.id)
-        .then(() => {
-          this.$message.success("Template deleted successfully");
-          this.getTemplateList();
+    handleDelete(index,row) {
+      console.log("Deleting template with ID:", row.id);
+      if (!row.id) {
+        this.$message.error("Template ID is missing");
+        return;
+      }
+      deleteTemplateById(row.id)
+        .then((response) => {
+          if (response.code === "success") {
+            this.$message.success("Template deleted successfully");
+            this.getTemplateList();
+          } else {
+            this.$message.error("Failed to delete template");
+          }
         })
-        .catch(() => {
+        .catch((error) => {
+          console.error("Delete template error:", error);
           this.$message.error("Failed to delete template");
         });
     },
 
-    getTemplateList() {
-      getTemplates(this.$store.getters.name)
-        .then((templates) => {
-          this.tableData = templates;
-        })
-        .catch(() => {
-          this.$message.error("Failed to retrieve template list");
-        });
-    },
+    async getTemplateList() {
+  try {
+    // 首先确保didList已经加载
+    if (this.didList.length === 0) {
+      await this.loadDIDList();
+    }
+    
+    // 如果仍然没有DID，则清空表格数据
+    if (this.didList.length === 0) {
+      this.tableData = [];
+      return;
+    }
+
+    const allTemplates = [];
+    
+    // 遍历每个DID并获取其模板列表
+    for (const did of this.didList) {
+      try {
+        console.log(`Fetching templates for DID: ${did}`);
+        const response = await getTemplateListByIssuerID(did);
+        console.log(`Templates for DID ${did}:`, response);
+        
+        // 检查响应结构并提取模板数组
+        let templateList = [];
+        if (response && response.code === 'success' && response.templates) {
+          templateList = response.templates;
+        } else if (Array.isArray(response)) {
+          // 如果直接返回数组
+          templateList = response;
+        }
+        
+        // 为每个模板添加issuer_id信息，便于后续识别
+        if (Array.isArray(templateList)) {
+          const templatesWithIssuer = templateList.map(template => ({
+            ...template,
+            issuer_id: did
+          }));
+          allTemplates.push(...templatesWithIssuer);
+        }
+      } catch (error) {
+        // 检查错误消息是否包含"No templates found"
+        const errorMessage = error.response?.data?.message || '';
+        if (errorMessage.includes('No templates found for issuer_id')) {
+          // 没有找到模板时静默处理，继续处理下一个DID
+          console.log(`No templates found for DID ${did}`);
+          continue;
+        }
+      }
+    }
+    
+    console.log('All templates retrieved:', allTemplates);
+    this.tableData = allTemplates;
+  } catch (error) {
+    console.error("Failed to retrieve template list:", error);
+    this.$message.error("Failed to retrieve template list");
+  }
+},
+
+
+
+
 
     cancel() {
       this.centerDialogVisible = false;
@@ -181,6 +239,7 @@ export default {
 
   async mounted() {
     // Initialize template list
+    await this.loadDIDList();
     this.getTemplateList();
   }
 };

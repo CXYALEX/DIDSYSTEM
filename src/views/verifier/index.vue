@@ -111,25 +111,29 @@ export default {
 
         async verifyFile() {
             try {
-                //在检查credential的proof以前，先检查该credential的id是否已经被撤销
-                // 确保钱包已连接
-                if (!this.$store.state.web3.web3account) {
-                    this.$message.error("Please connect your wallet.");
-                    return; // 如果未连接账号，则直接退出
+                // 判断是否为测试账号，如果不是测试账号才执行撤销检查
+                if (!this.$store.getters.name || !this.$store.getters.name.startsWith('test-')) {
+                    //在检查credential的proof以前，先检查该credential的id是否已经被撤销
+                    // 确保钱包已连接
+                    if (!this.$store.state.web3.web3account) {
+                        this.$message.error("Please connect your wallet.");
+                        return; // 如果未连接账号，则直接退出
+                    }
+
+                    try {
+                        // 尝试获取发行者信息
+                        const isRevoked = await this.contract.checkRevocation(this.fileContent.issuer, this.fileContent.id);
+                        console.log("isRevoked!!!!!!!!: ", isRevoked);
+                        if (isRevoked === true) {
+                            this.verificationResult = "The credential has been revoked";
+                            return;
+                        }
+                    } catch (error) {
+                        // 继续执行注册
+                        console.warn("the credential id is not exist in the revocation list");
+                    }
                 }
 
-                try {
-                    // 尝试获取发行者信息
-                    const isRevoked = await this.contract.checkRevocation(this.fileContent.issuer, this.fileContent.id);
-                    console.log("isRevoked!!!!!!!!: ", isRevoked);
-                    if (isRevoked === true) {
-                        this.verificationResult = "The credential has been revoked";
-                        return;
-                    }
-                } catch (error) {
-                    // 继续执行注册
-                    console.warn("the credential id is not exist in the revocation list");
-                }
                 const response = await getTemplateDetailByName(this.fileContent.credentialSubject.type);
                 const template = response.template.template_json;
 
@@ -163,6 +167,7 @@ export default {
             }
         },
     },
+
     async mounted() {
         // 初始化智能合约
         const provider = await detectEthereumProvider();

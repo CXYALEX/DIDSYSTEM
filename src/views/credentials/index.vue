@@ -4,9 +4,9 @@
         <div class="headerContainer">
             <div class="title">
                 <div class="desc">Credential</div>
-                <el-button class="btnStyle" type="success"  @click="handleAdd">Apply Credential</el-button>
+                <!-- <el-button class="btnStyle" type="success"  @click="handleAdd">Apply Credential</el-button> -->
             </div>
-            <div class="content">Apply for credentials from the issuer based on the credential template and manage all issued credentials within the local identity wallet.</div>
+            <div class="content">Manage all issued credentials within the local identity wallet.</div>
         </div>
         <!-- <div class="select"> 
             <el-select v-model="selectedTemplate" placeholder="Select Template" @change="handleTemplateChange">
@@ -22,8 +22,12 @@
                     {{ scope.$index + 1 }}
                 </template>
             </el-table-column>
-            <el-table-column prop="issuerId" label="Issuer ID"></el-table-column>
+            
             <el-table-column prop="holderId" label="Holder ID"></el-table-column>
+            <el-table-column prop="issuerId" label="Issuer ID"></el-table-column>
+            <el-table-column prop="type" label="Type"></el-table-column>
+            <el-table-column prop="issuancedate" label="Issuance Date"></el-table-column>
+            
             <el-table-column label="Operation" width="380" align="center">
                 <template slot-scope="scope">
                     <el-button size="mini" @click="handleViewCredential(scope.row)">View</el-button>
@@ -136,13 +140,12 @@
 </template>
 
 <script>
-import { saveTemplate, getTemplates, deleteTemplate, getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
+import { getAllDIDIds } from "@/utils/indexedDB"; // IndexedDB 工具
 import { saveCredential, deleteCredential } from "@/utils/indexedDB";
 import { getTemplateList, getTemplateDetailById } from "@/api/template";
 import { getVocabFromTemplate, createInputDocument, createRevealDoc } from "@/utils/bbs-utils";
 import { createApplications } from "@/api/application";
 import { getCredentialsList, getCredentialDetailById,deleteCredentialById} from "@/api/credentials"; // Updated import
-import { saveDID, getDIDs, deleteDID } from "@/utils/indexedDB"; // IndexedDB 工具
 import { extendContextLoader, sign, verify, purposes } from "jsonld-signatures";
 import { Bls12381G2KeyPair, BbsBlsSignature2020, deriveProof, BbsBlsSignatureProof2020 } from "@/utils/signature/index";
 export default {
@@ -175,14 +178,14 @@ export default {
         };
     },
     methods: {
-        async handleAdd() {
-            this.centerDialogVisible = true;
-            this.title = "Apply Credential";
-            this.resetForm();
-            if (this.selectedTemplate) {
-                await this.fetchTemplate();
-            }
-        },
+        // async handleAdd() {
+        //     this.centerDialogVisible = true;
+        //     this.title = "Apply Credential";
+        //     this.resetForm();
+        //     if (this.selectedTemplate) {
+        //         await this.fetchTemplate();
+        //     }
+        // },
 
         async fetchTemplate() {
             try {
@@ -226,6 +229,14 @@ export default {
                 console.log("applicationToSend:", applicationToSend);
                 await createApplications(applicationToSend);
                 this.save();
+                // 判断是否为测试账号（test-开头）
+                if (this.$store.getters.name && this.$store.getters.name.startsWith('test-')) {
+                    this.$message({
+                        type: 'warning',
+                        message: 'Template saved successfull. Please switch to the issuer account to agree to this application.',
+                    });
+                    return; // 直接返回，不执行后续操作
+                }
                 this.$message.success("Template saved successfully");
             } catch (error) {
                 this.$message.error("Failed to create input document.");
@@ -328,24 +339,28 @@ export default {
 
         async getCredentialList() {
             try {
-                const dids = await getDIDs(this.$store.getters.name); // Fetch DIDs first
+                const didIds = await getAllDIDIds(this.$store.getters.name); // 直接获取所有DID的ID列表
                 const credentials = [];
 
-                for (const did of dids) {
-                    const didCredentials = await getCredentialsList(did.id); // Fetch credentials for each DID
-                    credentials.push(...didCredentials.credentials); // Combine results
+                for (const didId of didIds) {
+                    const didCredentials = await getCredentialsList(didId); // 使用DID ID获取凭证
+                    credentials.push(...didCredentials.credentials); // 合并结果
                 }
-                console.log(credentials)
-                // Map credentials to include only issuerId and holderId for display
+                console.log(credentials,    "credentials");
+                
+                // 映射凭证数据，只包含显示所需的 issuerId 和 holderId
                 this.tableData = credentials.map(credential => ({
                     issuerId: credential.issuer_id,
                     holderId: credential.holder_id,
-                    id: credential.id // Keep id for further operations
+                    id: credential.id, // 保留id用于后续操作
+                    type: credential.credential_json.credentialSubject.type ? credential.credential_json.credentialSubject.type.join(", ") : "Unknown Type",
+                    issuancedate: credential.credential_json.issuanceDate
                 }));
             } catch (error) {
                 this.$message.error("Failed to retrieve credential list.");
             }
         },
+
 
         async handleTemplateChange() {
             if (this.selectedTemplate) {
@@ -455,7 +470,6 @@ export default {
 
                 const documentLoader = extendContextLoader(customDocLoader);
 
-                console.log("11111111");
                 console.log("RevealDoc", createRevealDoc(template, selectedFields));
 
                 // 创建 Derived Proof
