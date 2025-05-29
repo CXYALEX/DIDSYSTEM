@@ -152,4 +152,4 @@ dist
 
 # MacOS file descriptor
 .DS_Store
-api/app/didsystem.db
+# api/app/didsystem.db
