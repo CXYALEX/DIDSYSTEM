@@ -200,76 +200,98 @@ export default {
 </script>
 
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .mb8 {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
-.headerContainer {
-  padding: 12px 0;
 
-  .title {
-    height: 80px;
-    display: flex;
+.app-container {
+  .headerContainer {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 220px;
+      height: 220px;
+      right: -90px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(80, 107, 255, 0.18) 0%, rgba(80, 107, 255, 0) 72%);
+      pointer-events: none;
+    }
+
+    .title {
+      min-height: 64px;
+      margin-bottom: 10px;
+
+      .desc {
+        font-size: 2rem;
+      }
+
+      .btnStyle {
+        background: linear-gradient(135deg, #4b65ff 0%, #2f45e6 100%);
+        border: none;
+        padding: 10px 18px;
+        font-weight: 600;
+        letter-spacing: .02em;
+      }
+    }
+
+    .content {
+      max-width: 980px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .countNum {
+    display: inline-flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
+    gap: 8px;
+    height: auto;
+    line-height: 1;
+    padding: 10px 14px;
+    margin-bottom: 10px;
+    border-radius: 999px;
+    border: 1px solid #dfe5ff;
+    background: #f8faff;
+    color: #4b5677;
 
-    .desc {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
+    span {
+      padding: 4px 10px;
+      margin: 0;
+      border-radius: 999px;
+      background: #e9eeff;
+      color: #2f45e6;
+      font-weight: 700;
     }
-
-    
-
-    .btnStyle {
-      background-color: #4070f4;
-      border: none;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background-color: #2955d9;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
-  }
-
-  .content {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 400;
-    color: #666666;
-    margin-bottom: 20px;
-    max-width: 800px;
   }
 }
 
-.countNum {
-    padding-left: 10px;
-    height: 60px;
-    line-height: 60px;
-    background-color: #fff;
-    border: 1px solid #f5f5f6;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    span {
-        padding: 3px 5px;
-        background-color: #f3f4f7;
-        border-radius: 4px;
-        margin-left: 10px;
-    }
+::v-deep .el-dialog {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+::v-deep .el-dialog__header {
+  background: #f7f9ff;
+  border-bottom: 1px solid #e8ecff;
+}
+
+pre {
+  margin: 0;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f6f8ff;
+  border: 1px solid #e1e7ff;
+  max-height: 380px;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .app-container .headerContainer .title {
+    align-items: flex-start;
   }
+}
 </style>

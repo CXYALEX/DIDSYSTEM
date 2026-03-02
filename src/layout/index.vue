@@ -119,19 +119,19 @@ export default {
   }
   .main-container {
   // 保持原有布局逻辑
-  background-color: #f9fafb;
+  background: linear-gradient(180deg, #f4f6ff 0%, #f9fbff 100%);
   margin-left: $sideBarWidth;
   transition: margin 0.28s;
 
   // 新增弹性布局保证高度撑满
   display: flex;
-  min-height: calc(100vh - 60px); // 根据实际头部高度调整
+  min-height: calc(100vh - 64px); // 根据实际头部高度调整
 
   .content-wrapper {
     width: 100%;
-    max-width: 1200px;    // 控制最大内容宽度
+    max-width: 1320px;    // 控制最大内容宽度
     margin: 0 auto;       // 水平居中
-    padding: 20px;        // 内容边距
+    padding: 28px 24px;        // 内容边距
     
     // 响应式处理
     @media (max-width: 992px) {
