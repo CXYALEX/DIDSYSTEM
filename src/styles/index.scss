@@ -4,12 +4,23 @@
 @import './element-ui.scss';
 @import './sidebar.scss';
 
+:root {
+  --ui-primary: #3f51f7;
+  --ui-primary-soft: #eef1ff;
+  --ui-bg: #f5f7ff;
+  --ui-surface: #ffffff;
+  --ui-border: #e6eaff;
+  --ui-title: #1d2542;
+  --ui-text: #5f6b85;
+}
+
 body {
   height: 100%;
   -moz-osx-font-smoothing: grayscale;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
-  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  font-family: Inter, Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Arial, sans-serif;
+  background: linear-gradient(180deg, #f3f6ff 0%, #f8faff 100%);
 }
 
 label {
@@ -53,13 +64,99 @@ div:focus {
     visibility: hidden;
     display: block;
     font-size: 0;
-    content: " ";
+    content: ' ';
     clear: both;
     height: 0;
   }
 }
 
 // main-container global css
-.app-container {
-  padding: 20px;
+.app-container,
+.apply-credential-container,
+.headerContainer {
+  width: 100%;
+  max-width: 1320px;
+  margin: 0 auto;
+}
+
+.app-container,
+.apply-credential-container {
+  padding: 16px 8px 24px;
+}
+
+.headerContainer {
+  background: var(--ui-surface);
+  border: 1px solid var(--ui-border);
+  border-radius: 18px;
+  box-shadow: 0 16px 40px rgba(45, 68, 176, 0.08);
+  padding: 22px;
+  margin-bottom: 18px;
+}
+
+.title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.title .desc {
+  font-size: 1.8rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--ui-title);
+}
+
+.content {
+  color: var(--ui-text);
+  line-height: 1.7;
+}
+
+.btnStyle,
+.el-button--success,
+.el-button--primary,
+.el-button--warning,
+.el-button--danger {
+  border-radius: 10px;
+}
+
+.el-table {
+  border: 1px solid var(--ui-border);
+  border-radius: 14px;
+  overflow: hidden;
+  box-shadow: 0 14px 30px rgba(36, 58, 166, 0.07);
+}
+
+.el-table th {
+  background: #f7f9ff !important;
+  color: #3d4868;
+}
+
+.el-table tr:hover > td {
+  background: #f7f9ff;
+}
+
+.el-card {
+  border-radius: 14px;
+  border: 1px solid var(--ui-border);
+  box-shadow: 0 12px 30px rgba(34, 56, 162, 0.08);
+}
+
+.el-input__inner,
+.el-textarea__inner,
+.el-select .el-input__inner {
+  border-radius: 10px;
+  border-color: #dce2ff;
+}
+
+@media (max-width: 768px) {
+  .title .desc {
+    font-size: 1.45rem;
+  }
+
+  .headerContainer {
+    padding: 16px;
+    border-radius: 14px;
+  }
 }

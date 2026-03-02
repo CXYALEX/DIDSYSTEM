@@ -66,14 +66,18 @@ export default {
 
 <style lang="scss" scoped>
 .navbar {
-  height: 50px;
+  height: 64px;
   overflow: hidden;
-  position: relative;
-  background: #fff;
-  box-shadow: 0 1px 4px rgba(0,21,41,.08);
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  background: rgba(255, 255, 255, 0.88);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid #e8ecff;
+  box-shadow: 0 10px 30px rgba(63, 81, 247, 0.08);
 
   .hamburger-container {
-    line-height: 46px;
+    line-height: 60px;
     height: 100%;
     float: left;
     cursor: pointer;
@@ -92,7 +96,7 @@ export default {
   .right-menu {
     float: right;
     height: 100%;
-    line-height: 50px;
+    line-height: 64px;
 
     &:focus {
       outline: none;
@@ -117,17 +121,18 @@ export default {
     }
 
     .avatar-container {
-      margin-right: 30px;
+      margin-right: 36px;
 
       .avatar-wrapper {
-        margin-top: 5px;
+        margin-top: 10px;
         position: relative;
 
         .user-avatar {
           cursor: pointer;
           width: 40px;
           height: 40px;
-          border-radius: 10px;
+          border-radius: 50%;
+          border: 2px solid #dbe0ff;
         }
 
         .el-icon-caret-bottom {

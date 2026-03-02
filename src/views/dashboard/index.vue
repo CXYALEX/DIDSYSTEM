@@ -1,5 +1,25 @@
 <template>
-  <div>
+  <div class="dashboard-page">
+    <section class="hero-banner">
+      <div class="hero-banner__content">
+        <p class="hero-kicker">Decentralized Identity Platform</p>
+        <h1>Build trusted DID workflows with modern privacy primitives</h1>
+        <p class="hero-subtitle">
+          Web3polyu helps issuers, holders and verifiers deploy production-ready DID experiences with selective disclosure,
+          revocation and AI-assisted credential tooling.
+        </p>
+        <div class="hero-actions">
+          <router-link to="/did"><el-button type="primary">Create DID</el-button></router-link>
+          <router-link to="/template_generator"><el-button plain>Generate Template</el-button></router-link>
+        </div>
+      </div>
+      <div class="hero-banner__stats">
+        <div class="stat-card"><span>3</span><p>Core roles</p></div>
+        <div class="stat-card"><span>ZKP</span><p>Selective disclosure</p></div>
+        <div class="stat-card"><span>BBS+</span><p>Unlinkable proofs</p></div>
+      </div>
+    </section>
+
     <!-- section III -->
     <section class="middle-section">
       <h2 class="middle-title">What is Web3polyu?</h2>
@@ -545,14 +565,6 @@ export default {
     },
     changeContent(contentId) {
       this.currentContent = contentId;
-      // Remove active class from all feature points
-      const featurePoints = document.querySelectorAll('.feature-point');
-      featurePoints.forEach(point => {
-        point.classList.remove('active');
-      });
-      
-      // Add active class to the hovered feature point
-      featurePoints[contentId - 1].classList.add('active');
     }
   }
 };
@@ -560,10 +572,110 @@ export default {
 
 
 <style scoped>
+.dashboard-page {
+  --primary-color: #3f51f7;
+  --primary-soft: #eef1ff;
+  --card-border: #e8ebff;
+  --text-strong: #1a1f36;
+  --text-secondary: #58627a;
+  background: linear-gradient(180deg, #f7f9ff 0%, #ffffff 18%, #f9fbff 100%);
+  color: var(--text-strong);
+}
+
+.hero-banner {
+  max-width: 1280px;
+  margin: 24px auto 0;
+  padding: 36px;
+  border-radius: 24px;
+  background: radial-gradient(circle at 20% 10%, #5c73ff 0%, #3447d4 45%, #1f2b7a 100%);
+  color: #fff;
+  display: flex;
+  gap: 24px;
+  justify-content: space-between;
+  box-shadow: 0 24px 40px rgba(33, 56, 175, 0.28);
+}
+
+.hero-banner__content {
+  max-width: 760px;
+}
+
+.hero-kicker {
+  margin: 0 0 10px;
+  font-size: 13px;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.hero-banner h1 {
+  font-size: 2.9rem;
+  margin: 0;
+  line-height: 1.15;
+}
+
+.hero-subtitle {
+  margin-top: 18px;
+  font-size: 1.1rem;
+  line-height: 1.7;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.hero-actions {
+  display: flex;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.hero-actions .el-button {
+  border-radius: 999px;
+  padding: 12px 24px;
+  font-weight: 600;
+}
+
+.hero-actions .el-button--primary {
+  background: #ffffff;
+  color: #2f45e6;
+  border-color: transparent;
+}
+
+.hero-actions .el-button.is-plain {
+  background: rgba(255, 255, 255, 0.12);
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.25);
+}
+
+.hero-banner__stats {
+  width: 280px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px;
+}
+
+.stat-card {
+  background: rgba(255, 255, 255, 0.14);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 16px;
+  padding: 14px 16px;
+  backdrop-filter: blur(4px);
+}
+
+.stat-card span {
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.stat-card p {
+  margin: 6px 0 0;
+  color: rgba(255, 255, 255, 0.84);
+}
+
+
 /* Hero Section */
 .hero-section {
   text-align: left;
-  padding: 60px 20px;
+  padding: 64px 28px;
+  max-width: 1280px;
+  margin: 0 auto;
 }
 
 .hero-title {
@@ -585,9 +697,10 @@ export default {
 
 /* Feature Cards */
 .feature-card {
-  padding: 10px; /* Increased padding */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  padding: 14px;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px rgba(31, 48, 159, 0.08);
   background-color: #fff;
   transition: all 0.3s ease;
   height: 230px;
@@ -598,16 +711,22 @@ export default {
 }
 
 .feature-card:hover {
-  transform: translateY(-5px); /* Changed to more subtle up movement instead of scale */
-  box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15); /* Enhanced shadow on hover */
+  transform: translateY(-5px);
+  box-shadow: 0 16px 36px rgba(20, 44, 173, 0.16);
 }
 
 .feature-card-icon {
   font-size: 24px;
-  color: #081bec;
+  color: var(--primary-color);
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  background: var(--primary-soft);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
   /* margin-right: 10px;  Adjust margin between icon and text */
   align-self: flex-start; /* Ensure the icon aligns left */
-  display: inline-block; /* Make sure icon is on the same line as text */
 }
 
 .feature-card-content {
@@ -621,14 +740,14 @@ export default {
   font-weight: 600; /* Made font slightly bolder */
   margin-top: 8px; /* Reduced margin at the top */
   margin-bottom: 7px; /* Reduced space between title and text */
-  color: #333; /* Darkened text color for better contrast */
+  color: var(--text-strong);
   text-align: left; /* Center align the title */
   line-height: 1.2; /* Reduced line height for tighter text */
 }
 
 .feature-card-content p {
   font-size: 1.1rem;
-  color: var(--text-medium);
+  color: var(--text-secondary);
   margin-bottom: 5px;
   /*width: 300px;  Adjust max-width to ensure text does not go too wide */
   word-wrap: break-word;
@@ -657,8 +776,9 @@ export default {
 
 .swiper-card {
   width: 30%; /* Ensure two cards per row */
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 10px 30px rgba(31, 48, 159, 0.08);
   background-color: #fff;
   transition: all 0.3s ease;
   height: auto; /* Let the height adjust based on content */
@@ -668,7 +788,7 @@ export default {
 }
 
 .swiper-card:hover {
-  transform: scale(1.05);
+  transform: translateY(-4px);
 }
 
 .swiper-picture {
@@ -719,8 +839,8 @@ export default {
 /* section III */
 .middle-section {
   text-align: center; /* Center the text and content */
-  padding: 60px 20px; /* Add padding to the section */
-  background-color: #f9f9f9; /* Optional: Add background color for better visibility */
+  padding: 80px 28px;
+  background: linear-gradient(135deg, #eef2ff 0%, #f9f9f9 45%, #eef8ff 100%);
 }
 
 .middle-title {
@@ -768,8 +888,9 @@ export default {
   margin: 0 15px 20px;
   padding: 25px;
   background-color: #fff;
-  border-radius: 12px;
-  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
+  box-shadow: 0 8px 26px rgba(31, 48, 159, 0.08);
 }
 
 .feature-title {
@@ -882,8 +1003,8 @@ export default {
 /* section IV */
 .switch-section {
   text-align: center; /* Center the text and content */
-  padding: 60px 20px; /* Add padding to the section */
-  background-color: #f9f9f9; /* Optional: Add background color for better visibility */
+  padding: 80px 28px;
+  background: #f5f7ff;
 }
 
 .switch-title {
@@ -915,9 +1036,9 @@ export default {
 }
 
 .switch-div button.active {
-  color: black; /* Black text when selected */
+  color: var(--text-strong);
   font-weight: bold; /* Bold when selected */
-  border-bottom: 2px solid #081bec; /* Green bottom border when selected */
+  border-bottom: 2px solid var(--primary-color);
 }
 
 .switch-div button:hover {
@@ -941,9 +1062,11 @@ export default {
 /* Updated image container styles (replaced video) */
 .verification-image-container {
   width: 67%;
-  border: 5px solid #313ed1;
-  border-radius: 10px;
-  padding: 5px;
+  border: 1px solid #cfd7ff;
+  border-radius: 16px;
+  background: #fff;
+  padding: 10px;
+  box-shadow: 0 10px 30px rgba(41, 67, 199, 0.13);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -1025,8 +1148,8 @@ export default {
 /* Contact Section */
 /* Contact Section */
 .contact-section {
-  padding: 80px 20px;
-  background-color: #f9f9f9;
+  padding: 80px 28px;
+  background: linear-gradient(180deg, #f6f8ff 0%, #ffffff 100%);
 }
 
 .team-container {
@@ -1048,7 +1171,8 @@ export default {
 
 .team-card {
   width: 100%; /* 确保卡片占据整个列宽 */
-  border-radius: 10px;
+  border-radius: 16px;
+  border: 1px solid var(--card-border);
   overflow: hidden;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -1138,13 +1262,13 @@ export default {
   max-width: 1200px;
   margin-left: auto;
   margin-right: auto;
-  padding: 0 20px;
+  padding: 0 28px;
   margin-top: 60px;
 }
 
 /* Entity Resolution Section */
 .entity-resolution-section {
-  padding: 20px 20px 80px 20px;
+  padding: 20px 28px 80px;
   background-color: #ffffff;
 }
 
@@ -1188,7 +1312,7 @@ export default {
   /* color: #333; */
   line-height: 1.3;
   transition: color 0.3s ease;
-  color: #9c9cb0;
+  color: #7b8198;
 }
 
 /* The feature content style with expand/collapse effects */
@@ -1232,7 +1356,8 @@ export default {
 }
 
 .visual-container {
-  /* background-color: #0a1837; */
+  background: linear-gradient(160deg, #f4f6ff 0%, #fbfcff 100%);
+  border: 1px solid var(--card-border);
   border-radius: 20px;
   padding: 30px;
   width: 100%;
@@ -1264,6 +1389,37 @@ export default {
 
 .fade-enter-from, .fade-leave-to {
   opacity: 0;
+}
+
+@media (max-width: 992px) {
+  .hero-banner,
+  .entity-resolution-container,
+  .verification-container {
+    flex-direction: column;
+  }
+
+  .hero-banner {
+    padding: 26px;
+  }
+
+  .hero-banner h1 {
+    font-size: 2.2rem;
+  }
+
+  .hero-banner__stats,
+  .verification-image-container,
+  .verification-description,
+  .swiper-card {
+    width: 100%;
+  }
+
+  .hero-title,
+  .middle-title,
+  .standalone-title,
+  .switch-title,
+  .section-title {
+    font-size: 2.4rem;
+  }
 }
 
 

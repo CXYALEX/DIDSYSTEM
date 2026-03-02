@@ -573,131 +573,147 @@ export default {
 };
 </script>
 
-<style lang="css" scoped>
+<style lang="scss" scoped>
 .mb8 {
-    margin-bottom: 8px;
+  margin-bottom: 8px;
 }
 
 .custom-label .el-form-item__label {
-    width: 150px;
-    flex: 0 0 150px;
-    
+  width: 150px;
+  flex: 0 0 150px;
 }
 
 .form-row {
-    margin-bottom: 15px;
+  margin-bottom: 15px;
 }
 
 .form-row.header {
-    font-weight: bold;
-    margin-bottom: 20px;
+  font-weight: 600;
+  margin-bottom: 20px;
+  color: #303a5a;
 }
 
-.text-center {
-    text-align: center;
-}
-
-.text-right {
-    text-align: right;
-    padding-right: 10px;
-}
-
-.text-left {
-    text-align: left;
-}
+.text-center { text-align: center; }
+.text-right { text-align: right; padding-right: 10px; }
+.text-left { text-align: left; }
 
 .el-checkbox,
 .el-input {
-    display: flex;
-    align-items: center;
-    height: 100%;
+  display: flex;
+  align-items: center;
+  height: 100%;
 }
 
-.el-checkbox__inner {
-    margin-top: 2px;
-}
+.el-checkbox__inner { margin-top: 2px; }
 
-.el-dialog {
-    width: 80% !important;
-}
+.el-dialog { width: 80% !important; }
 
 .el-col-2 .el-checkbox,
 .el-col-8 .el-checkbox {
-    justify-content: center;
+  justify-content: center;
 }
-.headerContainer {
-  padding: 12px 0;
 
-  .title {
-    height: 80px;
+.app-container {
+  .headerContainer {
+    position: relative;
+    overflow: hidden;
+
+    &::after {
+      content: '';
+      position: absolute;
+      width: 230px;
+      height: 230px;
+      right: -90px;
+      top: -120px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(80, 107, 255, 0.18) 0%, rgba(80, 107, 255, 0) 72%);
+      pointer-events: none;
+    }
+
+    .title {
+      min-height: 64px;
+      margin-bottom: 10px;
+
+      .desc {
+        font-size: 2rem;
+      }
+
+      .btnStyle {
+        background: linear-gradient(135deg, #4b65ff 0%, #2f45e6 100%);
+        border: none;
+        padding: 10px 18px;
+        font-weight: 600;
+      }
+    }
+
+    .content {
+      max-width: 980px;
+      margin-bottom: 12px;
+    }
+  }
+
+  .select,
+  .countNum {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    margin-bottom: 8px;
-
-    .desc {
-      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-      font-size: 28px;
-      font-weight: 600;
-      color: #1a1a1a;
-      letter-spacing: -0.5px;
-    }
-
-    .btnStyle {
-      background-color: #4070f4;
-      border: none;
-      color: #ffffff;
-      font-size: 14px;
-      font-weight: 500;
-      padding: 10px 20px;
-      border-radius: 6px;
-      transition: all 0.2s ease;
-
-      &:hover {
-        background-color: #2955d9;
-        transform: translateY(-1px);
-        box-shadow: 0 4px 12px rgba(64, 112, 244, 0.2);
-      }
-
-      &:active {
-        transform: translateY(0);
-      }
-    }
+    height: auto;
+    min-height: 44px;
+    line-height: 1.4;
+    background: #f8faff;
+    border: 1px solid #dfe5ff;
+    border-radius: 12px;
+    padding: 8px 12px;
+    margin-bottom: 10px;
   }
 
-  .content {
-    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
-    font-size: 14px;
-    line-height: 1.6;
-    font-weight: 400;
-    color: #666666;
-    margin-bottom: 20px;
-    max-width: 800px;
+  .select {
+    justify-content: flex-end;
+  }
+
+  .countNum {
+    gap: 8px;
+    color: #4b5677;
+
+    span {
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: #e9eeff;
+      color: #2f45e6;
+      margin: 0;
+      font-weight: 700;
+    }
   }
 }
-.select {
-    padding-left: 10px;
-    height: 60px;
-    text-align: end;
-    line-height: 60px;
-    background-color: #fff;
-    border: 1px solid #f5f5f6;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
+
+::v-deep .el-dialog {
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+::v-deep .el-dialog__header {
+  background: #f7f9ff;
+  border-bottom: 1px solid #e8ecff;
+}
+
+::v-deep .el-form-item__label {
+  color: #3e4a6e;
+  font-weight: 600;
+}
+
+pre {
+  margin: 0;
+  padding: 14px;
+  border-radius: 10px;
+  background: #f6f8ff;
+  border: 1px solid #e1e7ff;
+  max-height: 360px;
+  overflow: auto;
+}
+
+@media (max-width: 768px) {
+  .custom-label .el-form-item__label {
+    width: 110px;
+    flex: 0 0 110px;
   }
-  .countNum {
-    padding-left: 10px;
-    height: 60px;
-    line-height: 60px;
-    background-color: #fff;
-    border: 1px solid #f5f5f6;
-    border-top-left-radius: 5px;
-    border-top-right-radius: 5px;
-    span {
-        padding: 3px 5px;
-        background-color: #f3f4f7;
-        border-radius: 4px;
-        margin-left: 10px;
-    }
-  }
+}
 </style>
